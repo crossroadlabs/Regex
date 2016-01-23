@@ -23,6 +23,8 @@ class RegexTests: XCTestCase {
     let letter = "l"
     let digits = "321321"
     let rest = "alala"
+    let replaceAllTemplate = "$1-$2-$3"
+    let replaceAllResult = "l-321321-alala"
     
     override func setUp() {
         super.setUp()
@@ -72,6 +74,11 @@ class RegexTests: XCTestCase {
         } else {
             XCTFail("Bad test, can not reach this path")
         }
+    }
+    
+    func testReplaceAll() {
+        let replaced = regex.replaceAll(source, replacement: replaceAllTemplate)
+        XCTAssertEqual(replaceAllResult, replaced)
     }
     
     func testExample() {

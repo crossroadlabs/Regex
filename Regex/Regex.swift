@@ -29,6 +29,11 @@ public protocol RegexType {
     
     func findAll(source:String) -> MatchSequence
     func findFirst(source:String) -> Match?
+    
+    func replaceAll(source:String, replacement:String) -> String
+//    func replaceAll(source:String, replacer:MatchType -> String?) -> String
+//    func replaceFirst(source:String, replacement:String) -> String
+//    func replaceFirst(source:String, replacer:MatchType -> String?) -> String
 }
 
 // later make OS X to work via pcre as well (should be faster)
@@ -99,6 +104,12 @@ public class Regex : RegexType {
         return match.map { match in
             Match(source: source, match: match, groupNames: groupNames)
         }
+    }
+    
+    public func replaceAll(source:String, replacement:String) -> String {
+        let options = NSMatchingOptions(rawValue: 0)
+        let range = NSRange(location: 0, length: source.characters.count)
+        return compiled!.stringByReplacingMatchesInString(source, options: options, range: range, withTemplate: replacement)
     }
     
 #endif
