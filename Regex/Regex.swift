@@ -34,6 +34,8 @@ public protocol RegexType {
     func replaceAll(source:String, replacer:Match -> String?) -> String
     func replaceFirst(source:String, replacement:String) -> String
     func replaceFirst(source:String, replacer:Match -> String?) -> String
+    
+    func split(source:String) -> [String]
 }
 
 // later make OS X to work via pcre as well (should be faster)
@@ -146,5 +148,20 @@ public class Regex : RegexType {
             matches.append(match)
         }
         return replaceMatches(source, matches: matches, replacer: replacer)
+    }
+    
+    public func split(source:String) -> [String] {
+        var result = Array<String>()
+        let matches = findAll(source)
+        var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
+        for match in matches {
+            let range = StringRange(start: lastRange.endIndex, end: match.range.startIndex)
+            let piece = source.substringWithRange(range)
+            result.append(piece)
+            lastRange = match.range
+        }
+        let rest = source.substringFromIndex(lastRange.endIndex)
+        result.append(rest)
+        return result
     }
 }

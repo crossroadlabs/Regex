@@ -114,6 +114,13 @@ class RegexTests: XCTestCase {
         XCTAssertEqual("l321321la321a", replaced2)
     }
     
+    func testSplit() {
+        let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand";
+        let re = "\\s*;\\s*".r!;
+        let nameList = re.split(names);
+        XCTAssertEqual(nameList, ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"])
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
