@@ -41,6 +41,15 @@ class RegexTests: XCTestCase {
         super.tearDown()
     }
     
+    func testMatches() {
+        XCTAssert(regex.matches(source))
+        XCTAssert(source =~ regex)
+        XCTAssert(source =~ RegexTests.pattern)
+        
+        XCTAssertFalse(source !~ regex)
+        XCTAssertFalse(source !~ RegexTests.pattern)
+    }
+    
     func testSimple() {
         XCTAssertEqual(RegexTests.pattern.r?.findFirst(source)?.group(2), digits)
     }

@@ -13,7 +13,27 @@ Add following lines to your Cartfile:
 
 ### Examples
 
-#### Hellow Regex:
+#### Hello Regex:
+
+All the lines below are identical and represent simple matching. All operators and `matches` function return Bool
+
+```swift
+//operator way, can match either regex or string containing pattern
+"l321321alala" =~ "(.+?)([1,2,3]*)(.*)".r
+"l321321alala" =~ "(.+?)([1,2,3]*)(.*)"
+
+//similar function
+"(.+?)([1,2,3]*)(.*)".r!.matches("l321321alala")
+```
+Operator `!~` returns `true` if expression does **NOT** match:
+
+```swift
+"l321321alala" !~ "(.+?)([1,2,3]*)(.*)".r
+"l321321alala" !~ "(.+?)([1,2,3]*)(.*)"
+//both return false
+```
+
+#### Accessing groups:
 
 ```swift
 // strings can be converted to regex in Scala style .r property of a string
@@ -77,10 +97,8 @@ let splits = myString.split("(\\d)".r)
 
 ## Roadmap
 
-* v0.3
+* v0.4
 	* iOS and watchOS support
-	* CocoaPod
-* v0.4: syntactic sugar operators (like ~=)
 * v0.5: alternative PCRE based implementation (OS X, Linux)
 * v1.0: full Linux support
 
@@ -88,6 +106,9 @@ let splits = myString.split("(\\d)".r)
 
 * v0.3
 	* Split
+	* Matches
+	* CocoaPod
+	* Syntactic sugar operators (`=~` and `!~`)
 * v0.2
 	* Replace functions
 	* Carthage support

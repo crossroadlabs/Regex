@@ -27,6 +27,8 @@ public protocol RegexType {
     var pattern:String {get}
     var groupNames:[String] {get}
     
+    func matches(source:String) -> Bool
+    
     func findAll(source:String) -> MatchSequence
     func findFirst(source:String) -> Match?
     
@@ -135,6 +137,13 @@ public class Regex : RegexType {
         }
         result += source.substringFromIndex(lastRange.endIndex)
         return result
+    }
+    
+    public func matches(source:String) -> Bool {
+        guard let _ = findFirst(source) else {
+            return false
+        }
+        return true
     }
     
     public func replaceAll(source:String, replacer:Match -> String?) -> String {
