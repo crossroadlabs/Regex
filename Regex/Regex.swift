@@ -27,6 +27,8 @@ public protocol RegexType {
     var pattern:String {get}
     var groupNames:[String] {get}
     
+    func matches(source:String) -> Bool
+    
     func findAll(source:String) -> MatchSequence
     func findFirst(source:String) -> Match?
     
@@ -34,6 +36,8 @@ public protocol RegexType {
     func replaceAll(source:String, replacer:Match -> String?) -> String
     func replaceFirst(source:String, replacement:String) -> String
     func replaceFirst(source:String, replacer:Match -> String?) -> String
+    
+    func split(source:String) -> [String]
 }
 
 // later make OS X to work via pcre as well (should be faster)
@@ -135,6 +139,13 @@ public class Regex : RegexType {
         return result
     }
     
+    public func matches(source:String) -> Bool {
+        guard let _ = findFirst(source) else {
+            return false
+        }
+        return true
+    }
+    
     public func replaceAll(source:String, replacer:Match -> String?) -> String {
         let matches = findAll(source)
         return replaceMatches(source, matches: matches, replacer: replacer)
@@ -146,5 +157,24 @@ public class Regex : RegexType {
             matches.append(match)
         }
         return replaceMatches(source, matches: matches, replacer: replacer)
+    }
+    
+    public func split(source:String) -> [String] {
+        var result = Array<String>()
+        let matches = findAll(source)
+        var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
+        for match in matches {
+            //extract the piece before the match
+            let range = StringRange(start: lastRange.endIndex, end: match.range.startIndex)
+            let piece = source.substringWithRange(range)
+            result.append(piece)
+            lastRange = match.range
+            
+            //add subgroups
+            result.appendContentsOf(match.subgroups)
+        }
+        let rest = source.substringFromIndex(lastRange.endIndex)
+        result.append(rest)
+        return result
     }
 }

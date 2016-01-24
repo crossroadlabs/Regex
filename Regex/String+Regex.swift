@@ -20,4 +20,33 @@ public extension String {
             return try? Regex(pattern: self)
         }
     }
+    
+    public func split(regex:RegexType?) -> [String] {
+        guard let regex = regex else {
+            return [self]
+        }
+        return regex.split(self)
+    }
+}
+
+infix operator =~ {associativity left precedence 140}
+infix operator !~ {associativity left precedence 140}
+
+public func =~(source:String, regex:RegexType?) -> Bool {
+    guard let matches = regex?.matches(source) else {
+        return false
+    }
+    return matches
+}
+
+public func =~(source:String, pattern:String) -> Bool {
+    return source =~ pattern.r
+}
+
+public func !~(source:String, regex:RegexType?) -> Bool {
+    return !(source =~ regex)
+}
+
+public func !~(source:String, pattern:String) -> Bool {
+    return !(source =~ pattern.r)
 }

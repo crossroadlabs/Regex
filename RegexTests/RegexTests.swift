@@ -27,6 +27,10 @@ class RegexTests: XCTestCase {
     let replaceAllTemplate = "$1-$2-$3"
     let replaceAllResult = "l-321321-alala"
     
+    let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand"
+    let namesSplitPattern = "\\s*;\\s*";
+    let splitNames = ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,6 +39,15 @@ class RegexTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testMatches() {
+        XCTAssert(regex.matches(source))
+        XCTAssert(source =~ regex)
+        XCTAssert(source =~ RegexTests.pattern)
+        
+        XCTAssertFalse(source !~ regex)
+        XCTAssertFalse(source !~ RegexTests.pattern)
     }
     
     func testSimple() {
@@ -112,6 +125,23 @@ class RegexTests: XCTestCase {
             return nil
         }
         XCTAssertEqual("l321321la321a", replaced2)
+    }
+    
+    func testSplit() {
+        let re = namesSplitPattern.r!
+        let nameList = re.split(names)
+        XCTAssertEqual(nameList, splitNames)
+    }
+    
+    func testSplitOnString() {
+        let nameList = names.split(namesSplitPattern.r)
+        XCTAssertEqual(nameList, splitNames)
+    }
+    
+    func testSplitWithSubgroups() {
+        let myString = "Hello 1 word. Sentence number 2."
+        let splits = myString.split("(\\d)".r)
+        XCTAssertEqual(splits, ["Hello ", "1", " word. Sentence number ", "2", "."])
     }
     
     func testExample() {
