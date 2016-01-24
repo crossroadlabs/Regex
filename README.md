@@ -57,8 +57,7 @@ let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll("l321321la321a") { match in
 
 ## Roadmap
 
-* v0.2 replace support
-* v0.3 split
+* v0.3 split; iOS and watchOS support
 * v0.4 syntactic sugar operators (like ~=)
 * v0.5 alternative PCRE based implementation (OS X, Linux)
 * v1.0 full Linux support
