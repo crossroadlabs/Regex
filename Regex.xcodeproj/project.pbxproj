@@ -12,16 +12,10 @@
 		6516550C1C53AB2000B613AB /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516550B1C53AB2000B613AB /* RegexTests.swift */; };
 		651655171C53AB3F00B613AB /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655161C53AB3F00B613AB /* Regex.swift */; };
 		651655191C53ABC500B613AB /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655181C53ABC500B613AB /* String+Regex.swift */; };
-		6516551A1C53B1D200B613AB /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655161C53AB3F00B613AB /* Regex.swift */; };
 		6516551E1C53C05C00B613AB /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551D1C53C05C00B613AB /* Match.swift */; };
 		651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
 		651655221C53DAD200B613AB /* FoundationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* FoundationUtils.swift */; };
 		651655241C53DB1300B613AB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
-		651655251C53E38F00B613AB /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551D1C53C05C00B613AB /* Match.swift */; };
-		651655261C53E39200B613AB /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
-		651655271C53E39400B613AB /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655181C53ABC500B613AB /* String+Regex.swift */; };
-		651655281C53E39700B613AB /* FoundationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* FoundationUtils.swift */; };
-		651655291C53E39A00B613AB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,13 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				651655261C53E39200B613AB /* MatchSequence.swift in Sources */,
-				651655271C53E39400B613AB /* String+Regex.swift in Sources */,
 				6516550C1C53AB2000B613AB /* RegexTests.swift in Sources */,
-				651655291C53E39A00B613AB /* Utils.swift in Sources */,
-				6516551A1C53B1D200B613AB /* Regex.swift in Sources */,
-				651655281C53E39700B613AB /* FoundationUtils.swift in Sources */,
-				651655251C53E38F00B613AB /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +406,7 @@
 				651655121C53AB2000B613AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		651655131C53AB2000B613AB /* Build configuration list for PBXNativeTarget "RegexTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +415,7 @@
 				651655151C53AB2000B613AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
