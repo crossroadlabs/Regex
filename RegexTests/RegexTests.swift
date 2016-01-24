@@ -97,6 +97,18 @@ class RegexTests: XCTestCase {
         XCTAssertEqual("l321321lA321A", replaced)
     }
     
+    func testReplaceFirstWithReplacer() {
+        let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
+            return match.matched.uppercaseString
+        }
+        XCTAssertEqual("L321321La321a", replaced1)
+        
+        let replaced2 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
+            return nil
+        }
+        XCTAssertEqual("l321321la321a", replaced2)
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

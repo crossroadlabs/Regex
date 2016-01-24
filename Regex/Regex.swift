@@ -33,7 +33,7 @@ public protocol RegexType {
     func replaceAll(source:String, replacement:String) -> String
     func replaceAll(source:String, replacer:MatchType -> String?) -> String
 //    func replaceFirst(source:String, replacement:String) -> String
-//    func replaceFirst(source:String, replacer:MatchType -> String?) -> String
+    func replaceFirst(source:String, replacer:MatchType -> String?) -> String
 }
 
 // later make OS X to work via pcre as well (should be faster)
@@ -113,9 +113,7 @@ public class Regex : RegexType {
     }
     
 #endif
-    
-    public func replaceAll(source:String, replacer:MatchType -> String?) -> String {
-        let matches = findAll(source)
+    private func replaceMatches<T: SequenceType where T.Generator.Element : MatchType>(source:String, matches:T, replacer:MatchType -> String?) -> String {
         var result = ""
         var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
         for match in matches {
@@ -129,5 +127,18 @@ public class Regex : RegexType {
         }
         result += source.substringFromIndex(lastRange.endIndex)
         return result
+    }
+    
+    public func replaceAll(source:String, replacer:MatchType -> String?) -> String {
+        let matches = findAll(source)
+        return replaceMatches(source, matches: matches, replacer: replacer)
+    }
+    
+    public func replaceFirst(source:String, replacer:MatchType -> String?) -> String {
+        var matches = Array<Match>()
+        if let match = findFirst(source) {
+            matches.append(match)
+        }
+        return replaceMatches(source, matches: matches, replacer: replacer)
     }
 }
