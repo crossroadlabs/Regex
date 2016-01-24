@@ -112,6 +112,8 @@ public class Regex : RegexType {
         return compiled!.stringByReplacingMatchesInString(source, options: options, range: range, withTemplate: replacement)
     }
     
+#endif
+    
     public func replaceAll(source:String, replacer:MatchType -> String?) -> String {
         let matches = findAll(source)
         var result = ""
@@ -128,6 +130,4 @@ public class Regex : RegexType {
         result += source.substringFromIndex(lastRange.endIndex)
         return result
     }
-    
-#endif
 }
