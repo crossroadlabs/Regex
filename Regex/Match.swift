@@ -15,18 +15,24 @@
 //===----------------------------------------------------------------------===//
 
 public protocol MatchType {
+    var source:String {get}
+    
     var range:StringRange {get}
     var ranges:[StringRange] {get}
     
     func range(atIndex:Int) -> StringRange
     func range(byName:String) -> StringRange
     
+    var matched:String {get}
+    var subgroups:[String] {get}
+    
     func group(atIndex:Int) -> String
     func group(byName:String) -> String
 }
 
 public class Match : MatchType {
-    let source:String
+    public let source:String
+    
     let match:CompiledPatternMatch
     let groupNames:[String]
     let nameMap:Dictionary<String, Int>

@@ -31,7 +31,7 @@ public protocol RegexType {
     func findFirst(source:String) -> Match?
     
     func replaceAll(source:String, replacement:String) -> String
-//    func replaceAll(source:String, replacer:MatchType -> String?) -> String
+    func replaceAll(source:String, replacer:MatchType -> String?) -> String
 //    func replaceFirst(source:String, replacement:String) -> String
 //    func replaceFirst(source:String, replacer:MatchType -> String?) -> String
 }
@@ -110,6 +110,23 @@ public class Regex : RegexType {
         let options = NSMatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
         return compiled!.stringByReplacingMatchesInString(source, options: options, range: range, withTemplate: replacement)
+    }
+    
+    public func replaceAll(source:String, replacer:MatchType -> String?) -> String {
+        let matches = findAll(source)
+        var result = ""
+        var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
+        for match in matches {
+            result += source.substringWithRange(Range(start: lastRange.endIndex, end:match.range.startIndex))
+            if let replacement = replacer(match) {
+                result += replacement
+            } else {
+                result += source.substringWithRange(match.range)
+            }
+            lastRange = match.range
+        }
+        result += source.substringFromIndex(lastRange.endIndex)
+        return result
     }
     
 #endif
