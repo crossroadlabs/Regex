@@ -18,7 +18,8 @@ import XCTest
 @testable import Regex
 
 class RegexTests: XCTestCase {
-    let regex:RegexType = try! Regex(pattern:"(.+?)([1,2,3]*)(.*)", groupNames:"letter", "digits", "rest")
+    static let pattern:String = "(.+?)([1,2,3]*)(.*)"
+    let regex:RegexType = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
     let source = "l321321alala"
     let letter = "l"
     let digits = "321321"
@@ -34,6 +35,10 @@ class RegexTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testSimple() {
+        XCTAssertEqual(RegexTests.pattern.r?.findFirst(source)?.group(2), digits)
     }
     
     func testGroup(group:String, reference:String) {
