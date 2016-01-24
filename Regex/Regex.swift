@@ -31,9 +31,9 @@ public protocol RegexType {
     func findFirst(source:String) -> Match?
     
     func replaceAll(source:String, replacement:String) -> String
-    func replaceAll(source:String, replacer:MatchType -> String?) -> String
-//    func replaceFirst(source:String, replacement:String) -> String
-    func replaceFirst(source:String, replacer:MatchType -> String?) -> String
+    func replaceAll(source:String, replacer:Match -> String?) -> String
+    func replaceFirst(source:String, replacement:String) -> String
+    func replaceFirst(source:String, replacer:Match -> String?) -> String
 }
 
 // later make OS X to work via pcre as well (should be faster)
@@ -112,8 +112,14 @@ public class Regex : RegexType {
         return compiled!.stringByReplacingMatchesInString(source, options: options, range: range, withTemplate: replacement)
     }
     
+    public func replaceFirst(source:String, replacement:String) -> String {
+        return replaceFirst(source) { match in
+            self.compiled!.replacementStringForResult(match.match, inString: source, offset: 0, template: replacement)
+        }
+    }
+    
 #endif
-    private func replaceMatches<T: SequenceType where T.Generator.Element : MatchType>(source:String, matches:T, replacer:MatchType -> String?) -> String {
+    private func replaceMatches<T: SequenceType where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
         var result = ""
         var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
         for match in matches {
@@ -129,12 +135,12 @@ public class Regex : RegexType {
         return result
     }
     
-    public func replaceAll(source:String, replacer:MatchType -> String?) -> String {
+    public func replaceAll(source:String, replacer:Match -> String?) -> String {
         let matches = findAll(source)
         return replaceMatches(source, matches: matches, replacer: replacer)
     }
     
-    public func replaceFirst(source:String, replacer:MatchType -> String?) -> String {
+    public func replaceFirst(source:String, replacer:Match -> String?) -> String {
         var matches = Array<Match>()
         if let match = findFirst(source) {
             matches.append(match)
