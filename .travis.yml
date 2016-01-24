@@ -1,0 +1,28 @@
+language: objective-c
+osx_image: xcode7.2
+env:
+  global: 
+    - FRAMEWORK_NAME=Regex
+before_install:
+  - brew update
+  - brew install carthage
+before_script:
+  # bootstrap the dependencies for the project
+  # you can remove if you don't have dependencies
+  # - carthage bootstrap
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
+script:
+- xcodebuild test -project Regex.xcodeproj -scheme Regex
+notifications:
+  email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: bln+wxsxX4fV0egcGEnF4VJpQBBos+ZqqnO8j88HVeVqTVKjrcnICalowX8nxwX6KhXqnuZNZWacc4bl4bLbIlAns1EgxhsR/N0qeMnp0SpSasBUSulWSaC8R4G7I6hxtScxZhh3BtZbJq3iYMGNj27LhpKaTpXGWxk4YOWmZEm19v8vUrXBI7qPYLRbnlHXx8DwOC3vjotSlIMyNGBlmC/npZ3A3QH2CLZSW8seXEhSlTUzbQ9gY5nNs7/rjmDhkRnNtEnvEuZdUix5SuCD5WO7VMYY7+Y+O3XyGjeIrd22B04DXyL70XrfTjbFGaQAt7uRYXWbd9M4ONo762Ee5boRNCJKolD6hVzUp0eRY3cLZgGIoZDMqUXEX5N4ZF1PbULKyEWGfavB7kzLx1kw4P6unYJW5gZR3blreij+eaN9HAVGNzf++c7vGhbwiE+zsoRZEiriEtii/hRZZ//czmeiFn7t0TQo/PozEu9lSaRSeGsUXseX12lWg9VCAYADvVV1PIIkb/FfQ76WRtP8BMJgu/yjUSB7ZxDxkB4zPvJNRuD/V7z9HTD9GNEyRuAdpiJy++dVyjRkW/xMfbPTkUCp0AdqdzL4L8orF7Ur9v+o3mlzKMTtmWxFhNo0dhAK4WC/jdNVKxbpV9ObG9Ew4+Hi43a7r4yxneNZWA1SikM=
+  file: $FRAMEWORK_NAME.framework.zip
+  skip_cleanup: true
+  on:
+    repo: crossroadlabs/Regex
+    tags: true
