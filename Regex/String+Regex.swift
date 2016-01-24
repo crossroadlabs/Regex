@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 public extension String {
-    var r : Regex? {
+    public var r : Regex? {
         get {
             return try? Regex(pattern: self)
         }
