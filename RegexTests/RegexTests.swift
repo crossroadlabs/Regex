@@ -27,7 +27,7 @@ class RegexTests: XCTestCase {
     let replaceAllTemplate = "$1-$2-$3"
     let replaceAllResult = "l-321321-alala"
     
-    let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand";
+    let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand"
     let namesSplitPattern = "\\s*;\\s*";
     let splitNames = ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
     
