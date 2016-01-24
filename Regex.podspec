@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CrossroadRegex'
-  s.version = '0.2'
+  s.version = '0.3'
   s.license = 'Apache 2.0'
   s.summary = 'Easy, portable and feature reach Regular Expressions for Swift'
   s.homepage = 'https://github.com/crossroadlabs/Regex'
