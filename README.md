@@ -1,5 +1,5 @@
-# Regex v0.2
-[![GitHub license](https://img.shields.io/badge/license-Apache 2.0-lightgrey.svg)](https://raw.githubusercontent.com/crossroadlabs/Regex/master/LICENSE) [![Build Status](https://travis-ci.org/crossroadlabs/Regex.svg?branch=develop)](https://travis-ci.org/crossroadlabs/Regex) [![GitHub release](https://img.shields.io/github/release/crossroadlabs/Regex.svg)](https://github.com/crossroadlabs/Regex/releases) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+# Regex
+[![GitHub license](https://img.shields.io/badge/license-Apache 2.0-lightgrey.svg)](https://raw.githubusercontent.com/crossroadlabs/Regex/develop/LICENSE) [![Build Status](https://travis-ci.org/crossroadlabs/Regex.svg?branch=develop)](https://travis-ci.org/crossroadlabs/Regex) [![GitHub release](https://img.shields.io/github/release/crossroadlabs/Regex.svg)](https://github.com/crossroadlabs/Regex/releases) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 **Regular expressions for Swift**
 
@@ -9,11 +9,11 @@
 
 Add following lines to your Cartfile:  
 
-	github "crossroadlabs/Regex" "develop"
+	github "crossroadlabs/Regex"
 
 ### Examples
 
-Hellow Regex:
+#### Hellow Regex:
 
 ```swift
 // strings can be converted to regex in Scala style .r property of a string
@@ -21,7 +21,7 @@ let digits = "(.+?)([1,2,3]*)(.*)".r?.findFirst("l321321alala")?.group(2)
 // digits is "321321" here
 ```
 
-Named groups:
+#### Named groups:
 
 ```swift
 let regex:RegexType = try Regex(pattern:"(.+?)([1,2,3]*)(.*)",
@@ -35,14 +35,14 @@ if let match = match {
 }
 ```
 
-Replace:
+#### Replace:
 
 ```swift
 let replaced = "(.+?)([1,2,3]*)(.*)".r?.replaceAll("l321321alala", replacement: "$1-$2-$3")
 //replaced is "l-321321-alala"
 ```
 
-Replace with custom replacer function:
+#### Replace with custom replacer function:
 
 ```swift
 let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll("l321321la321a") { match in
@@ -55,15 +55,39 @@ let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll("l321321la321a") { match in
 //replaced is "l321321lA321A"
 ```
 
+#### Split:
+
+In the following example, split() looks for 0 or more spaces followed by a semicolon followed by 0 or more spaces and, when found, removes the spaces from the string. nameList is the array returned as a result of split().
+
+```swift
+let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand"
+let nameList = names.split("\\s*;\\s*".r)
+//name list contains ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
+```
+
+#### Split with groups:
+
+If separator contains capturing parentheses, matched results are returned in the array.
+
+```swift
+let myString = "Hello 1 word. Sentence number 2."
+let splits = myString.split("(\\d)".r)
+//splits contains ["Hello ", "1", " word. Sentence number ", "2", "."]
+```
+
 ## Roadmap
 
-* v0.3 split; iOS and watchOS support
-* v0.4 syntactic sugar operators (like ~=)
-* v0.5 alternative PCRE based implementation (OS X, Linux)
-* v1.0 full Linux support
+* v0.3
+	* iOS and watchOS support
+	* CocoaPod
+* v0.4: syntactic sugar operators (like ~=)
+* v0.5: alternative PCRE based implementation (OS X, Linux)
+* v1.0: full Linux support
 
 ## Changelog
 
+* v0.3
+	* Split
 * v0.2
 	* Replace functions
 	* Carthage support
