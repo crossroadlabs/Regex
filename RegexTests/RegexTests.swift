@@ -129,6 +129,12 @@ class RegexTests: XCTestCase {
         XCTAssertEqual(nameList, splitNames)
     }
     
+    func testSplitWithSubgroups() {
+        let myString = "Hello 1 word. Sentence number 2."
+        let splits = myString.split("(\\d)".r)
+        XCTAssertEqual(splits, ["Hello ", "1", " word. Sentence number ", "2", "."])
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

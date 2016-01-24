@@ -155,10 +155,14 @@ public class Regex : RegexType {
         let matches = findAll(source)
         var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
         for match in matches {
+            //extract the piece before the match
             let range = StringRange(start: lastRange.endIndex, end: match.range.startIndex)
             let piece = source.substringWithRange(range)
             result.append(piece)
             lastRange = match.range
+            
+            //add subgroups
+            result.appendContentsOf(match.subgroups)
         }
         let rest = source.substringFromIndex(lastRange.endIndex)
         result.append(rest)
