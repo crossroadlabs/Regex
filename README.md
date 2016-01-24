@@ -34,6 +34,26 @@ if let match = match {
 }
 ```
 
+Replace:
+
+```swift
+let replaced = "(.+?)([1,2,3]*)(.*)".r?.replaceAll("l321321alala", replacement: "$1-$2-$3")
+//replaced is "l-321321-alala"
+```
+
+Replace with custom replacer function:
+
+```swift
+let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll("l321321la321a") { match in
+	if match.group(1) == "l" {
+		return nil
+	} else {
+		return match.matched.uppercaseString
+	}
+}
+//replaced is "l321321lA321A"
+```
+
 ## Roadmap
 
 * v0.2 replace support
