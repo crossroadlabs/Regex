@@ -20,4 +20,11 @@ public extension String {
             return try? Regex(pattern: self)
         }
     }
+    
+    public func split(regex:Regex?) -> [String] {
+        guard let regex = regex else {
+            return [self]
+        }
+        return regex.split(self)
+    }
 }

@@ -27,6 +27,10 @@ class RegexTests: XCTestCase {
     let replaceAllTemplate = "$1-$2-$3"
     let replaceAllResult = "l-321321-alala"
     
+    let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand";
+    let namesSplitPattern = "\\s*;\\s*";
+    let splitNames = ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -115,10 +119,14 @@ class RegexTests: XCTestCase {
     }
     
     func testSplit() {
-        let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand";
-        let re = "\\s*;\\s*".r!;
-        let nameList = re.split(names);
-        XCTAssertEqual(nameList, ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"])
+        let re = namesSplitPattern.r!
+        let nameList = re.split(names)
+        XCTAssertEqual(nameList, splitNames)
+    }
+    
+    func testSplitOnString() {
+        let nameList = names.split(namesSplitPattern.r)
+        XCTAssertEqual(nameList, splitNames)
     }
     
     func testExample() {
