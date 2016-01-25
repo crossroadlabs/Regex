@@ -112,8 +112,6 @@ let splits = myString.split("(\\d)".r)
 
 ## Roadmap
 
-* v0.4
-	* automated pod deployment
 * v0.5: alternative PCRE based implementation (OS X, Linux)
 * v1.0: full Linux support
 
@@ -122,6 +120,7 @@ let splits = myString.split("(\\d)".r)
 * v0.4
 	* iOS, tvOS and watchOS support
 	* Pod supports watchOS
+	* automated pod deployment
 * v0.3
 	* Split
 	* Matches
