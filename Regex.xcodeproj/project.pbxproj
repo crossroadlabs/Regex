@@ -652,6 +652,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
 				PRODUCT_NAME = "${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -672,6 +673,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
 				PRODUCT_NAME = "${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
 			};
 			name = Release;
 		};

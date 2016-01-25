@@ -48,32 +48,59 @@ public class Match : MatchType {
         return nameMap[group]! + 1
     }
     
-#if os(Linux)
+#if os(Linux) || os(OSX)
     //TODO: implement with PCRE
-#else
-    public var range:StringRange {
-        get {
-            return match.range.toStringRange(source)
-        }
-    }
     
-    public var ranges:[StringRange] {
-        get {
-            var result = Array<StringRange>()
-            for(var i:Int = 0; i < match.numberOfRanges; i++) {
-                result.append(match.rangeAtIndex(i).toStringRange(source))
+        public var range:StringRange {
+            get {
+                //self.match.
+                return match.range.toStringRange(source)
             }
-            return result
         }
-    }
     
-    public func range(atIndex:Int) -> StringRange {
-        return match.rangeAtIndex(atIndex).toStringRange(source)
-    }
+        public var ranges:[StringRange] {
+            get {
+                var result = Array<StringRange>()
+                for(var i:Int = 0; i < match.numberOfRanges; i++) {
+                    result.append(match.rangeAtIndex(i).toStringRange(source))
+                }
+                return result
+            }
+        }
     
-    public func range(byName:String) -> StringRange {
-        return match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
-    }
+        public func range(atIndex:Int) -> StringRange {
+            return match.rangeAtIndex(atIndex).toStringRange(source)
+        }
+    
+        public func range(byName:String) -> StringRange {
+            return match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
+        }
+    
+#else
+//    
+//    public var range:StringRange {
+//        get {
+//            return match.range.toStringRange(source)
+//        }
+//    }
+//    
+//    public var ranges:[StringRange] {
+//        get {
+//            var result = Array<StringRange>()
+//            for(var i:Int = 0; i < match.numberOfRanges; i++) {
+//                result.append(match.rangeAtIndex(i).toStringRange(source))
+//            }
+//            return result
+//        }
+//    }
+//    
+//    public func range(atIndex:Int) -> StringRange {
+//        return match.rangeAtIndex(atIndex).toStringRange(source)
+//    }
+//    
+//    public func range(byName:String) -> StringRange {
+//        return match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
+//    }
 #endif
     public var matched:String {
         get {

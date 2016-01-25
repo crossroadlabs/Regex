@@ -24,4 +24,11 @@
             return StringRange(start: start, end: start.advancedBy(self.length))
         }
     }
+    extension Range where Element: SignedIntegerType  {
+        func toStringRange(source:String) -> StringRange {
+            let start = source.startIndex.advancedBy(self.startIndex as! Int)
+            return StringRange(start: start, end: source.startIndex.advancedBy(self.endIndex as! Int))
+        }
+    }
+
 #endif
