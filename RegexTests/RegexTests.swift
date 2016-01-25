@@ -41,6 +41,13 @@ class RegexTests: XCTestCase {
         super.tearDown()
     }
     
+    func testBlaBla(){
+        let re : RegexType = try! Regex(pattern: "[1-3]")
+        //let res = re.findFirst("1")
+        XCTAssertNotNil(re.findFirst("1"))
+        
+    }
+    
     func testMatches() {
         XCTAssert(regex.matches(source))
         XCTAssert(source =~ regex)
@@ -51,6 +58,7 @@ class RegexTests: XCTestCase {
     }
     
     func testSimple() {
+        
         XCTAssertEqual(RegexTests.pattern.r?.findFirst(source)?.group(2), digits)
     }
     
