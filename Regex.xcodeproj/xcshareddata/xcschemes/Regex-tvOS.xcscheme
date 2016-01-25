@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-               BuildableName = "Regex.framework"
-               BlueprintName = "Regex-OSX"
+               BlueprintIdentifier = "65C529B61C5664B0002BF559"
+               BuildableName = "Regex-tvOS.framework"
+               BlueprintName = "Regex-tvOS"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,16 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "651655051C53AB2000B613AB"
-               BuildableName = "RegexTests-OSX.xctest"
-               BlueprintName = "RegexTests-OSX"
+               BlueprintIdentifier = "65C529BF1C5664B0002BF559"
+               BuildableName = "RegexTests-tvOS.xctest"
+               BlueprintName = "RegexTests-tvOS"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-OSX"
+            BlueprintIdentifier = "65C529B61C5664B0002BF559"
+            BuildableName = "Regex-tvOS.framework"
+            BlueprintName = "Regex-tvOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-OSX"
+            BlueprintIdentifier = "65C529B61C5664B0002BF559"
+            BuildableName = "Regex-tvOS.framework"
+            BlueprintName = "Regex-tvOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-OSX"
+            BlueprintIdentifier = "65C529B61C5664B0002BF559"
+            BuildableName = "Regex-tvOS.framework"
+            BlueprintName = "Regex-tvOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

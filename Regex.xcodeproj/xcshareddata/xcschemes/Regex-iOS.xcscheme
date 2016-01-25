@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65C529861C565EB8002BF559"
-               BuildableName = "Regex-iOS.framework"
+               BuildableName = "Regex.framework"
                BlueprintName = "Regex-iOS"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65C529861C565EB8002BF559"
-            BuildableName = "Regex-iOS.framework"
+            BuildableName = "Regex.framework"
             BlueprintName = "Regex-iOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65C529861C565EB8002BF559"
-            BuildableName = "Regex-iOS.framework"
+            BuildableName = "Regex.framework"
             BlueprintName = "Regex-iOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65C529861C565EB8002BF559"
-            BuildableName = "Regex-iOS.framework"
+            BuildableName = "Regex.framework"
             BlueprintName = "Regex-iOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>

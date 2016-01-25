@@ -16,6 +16,7 @@ before_deploy:
 script:
 - xcodebuild test -project Regex.xcodeproj -scheme Regex-OSX
 - xcodebuild test -project Regex.xcodeproj -scheme Regex-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
+- xcodebuild test -project Regex.xcodeproj -scheme Regex-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
 notifications:
   email: false
 deploy:
