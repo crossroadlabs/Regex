@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-               BuildableName = "Regex.framework"
-               BlueprintName = "Regex"
+               BuildableName = "Regex-OSX.framework"
+               BlueprintName = "Regex-OSX"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "651655051C53AB2000B613AB"
-               BuildableName = "RegexTests.xctest"
-               BlueprintName = "RegexTests"
+               BuildableName = "RegexTests-OSX.xctest"
+               BlueprintName = "RegexTests-OSX"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex"
+            BuildableName = "Regex-OSX.framework"
+            BlueprintName = "Regex-OSX"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex"
+            BuildableName = "Regex-OSX.framework"
+            BlueprintName = "Regex-OSX"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "651654FB1C53AB2000B613AB"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex"
+            BuildableName = "Regex-OSX.framework"
+            BlueprintName = "Regex-OSX"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

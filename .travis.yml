@@ -14,7 +14,8 @@ before_deploy:
   - carthage build --no-skip-current
   - carthage archive $FRAMEWORK_NAME
 script:
-- xcodebuild test -project Regex.xcodeproj -scheme Regex
+- xcodebuild test -project Regex.xcodeproj -scheme Regex-OSX
+- xcodebuild test -project Regex.xcodeproj -scheme Regex-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
 notifications:
   email: false
 deploy:

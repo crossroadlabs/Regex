@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		651655001C53AB2000B613AB /* Regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 651654FF1C53AB2000B613AB /* Regex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		651655071C53AB2000B613AB /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 651654FC1C53AB2000B613AB /* Regex.framework */; };
 		6516550C1C53AB2000B613AB /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516550B1C53AB2000B613AB /* RegexTests.swift */; };
 		651655171C53AB3F00B613AB /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655161C53AB3F00B613AB /* Regex.swift */; };
@@ -16,6 +15,14 @@
 		651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
 		651655221C53DAD200B613AB /* FoundationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* FoundationUtils.swift */; };
 		651655241C53DB1300B613AB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
+		65C529911C565EB9002BF559 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C529871C565EB8002BF559 /* Regex.framework */; };
+		65C5299E1C5660D2002BF559 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516550B1C53AB2000B613AB /* RegexTests.swift */; };
+		65C5299F1C5660DD002BF559 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655161C53AB3F00B613AB /* Regex.swift */; };
+		65C529A01C5660E1002BF559 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551D1C53C05C00B613AB /* Match.swift */; };
+		65C529A11C5660E4002BF559 /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
+		65C529A21C5660E6002BF559 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655181C53ABC500B613AB /* String+Regex.swift */; };
+		65C529A31C5660E9002BF559 /* FoundationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* FoundationUtils.swift */; };
+		65C529A41C5660EC002BF559 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,13 +33,19 @@
 			remoteGlobalIDString = 651654FB1C53AB2000B613AB;
 			remoteInfo = Regex;
 		};
+		65C529921C565EB9002BF559 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 651654F31C53AB1F00B613AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65C529861C565EB8002BF559;
+			remoteInfo = Regex;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		651654FC1C53AB2000B613AB /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		651654FF1C53AB2000B613AB /* Regex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Regex.h; sourceTree = "<group>"; };
 		651655011C53AB2000B613AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		651655061C53AB2000B613AB /* RegexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		651655061C53AB2000B613AB /* RegexTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RegexTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6516550B1C53AB2000B613AB /* RegexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTests.swift; sourceTree = "<group>"; };
 		6516550D1C53AB2000B613AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		651655161C53AB3F00B613AB /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
@@ -41,6 +54,8 @@
 		6516551F1C53CCAC00B613AB /* MatchSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSequence.swift; sourceTree = "<group>"; };
 		651655211C53DAD200B613AB /* FoundationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundationUtils.swift; sourceTree = "<group>"; };
 		651655231C53DB1300B613AB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		65C529871C565EB8002BF559 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65C529901C565EB9002BF559 /* RegexTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RegexTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +71,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				651655071C53AB2000B613AB /* Regex.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C529831C565EB8002BF559 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C5298D1C565EB9002BF559 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C529911C565EB9002BF559 /* Regex.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				651654FC1C53AB2000B613AB /* Regex.framework */,
-				651655061C53AB2000B613AB /* RegexTests.xctest */,
+				651655061C53AB2000B613AB /* RegexTests-OSX.xctest */,
+				65C529871C565EB8002BF559 /* Regex.framework */,
+				65C529901C565EB9002BF559 /* RegexTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,7 +115,6 @@
 		651654FE1C53AB2000B613AB /* Regex */ = {
 			isa = PBXGroup;
 			children = (
-				651654FF1C53AB2000B613AB /* Regex.h */,
 				651655011C53AB2000B613AB /* Info.plist */,
 				651655161C53AB3F00B613AB /* Regex.swift */,
 				6516551D1C53C05C00B613AB /* Match.swift */,
@@ -111,16 +142,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				651655001C53AB2000B613AB /* Regex.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C529841C565EB8002BF559 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		651654FB1C53AB2000B613AB /* Regex */ = {
+		651654FB1C53AB2000B613AB /* Regex-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 651655101C53AB2000B613AB /* Build configuration list for PBXNativeTarget "Regex" */;
+			buildConfigurationList = 651655101C53AB2000B613AB /* Build configuration list for PBXNativeTarget "Regex-OSX" */;
 			buildPhases = (
 				651654F71C53AB2000B613AB /* Sources */,
 				651654F81C53AB2000B613AB /* Frameworks */,
@@ -131,14 +168,14 @@
 			);
 			dependencies = (
 			);
-			name = Regex;
+			name = "Regex-OSX";
 			productName = Regex;
 			productReference = 651654FC1C53AB2000B613AB /* Regex.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		651655051C53AB2000B613AB /* RegexTests */ = {
+		651655051C53AB2000B613AB /* RegexTests-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 651655131C53AB2000B613AB /* Build configuration list for PBXNativeTarget "RegexTests" */;
+			buildConfigurationList = 651655131C53AB2000B613AB /* Build configuration list for PBXNativeTarget "RegexTests-OSX" */;
 			buildPhases = (
 				651655021C53AB2000B613AB /* Sources */,
 				651655031C53AB2000B613AB /* Frameworks */,
@@ -149,9 +186,45 @@
 			dependencies = (
 				651655091C53AB2000B613AB /* PBXTargetDependency */,
 			);
-			name = RegexTests;
+			name = "RegexTests-OSX";
 			productName = RegexTests;
-			productReference = 651655061C53AB2000B613AB /* RegexTests.xctest */;
+			productReference = 651655061C53AB2000B613AB /* RegexTests-OSX.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		65C529861C565EB8002BF559 /* Regex-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C529981C565EB9002BF559 /* Build configuration list for PBXNativeTarget "Regex-iOS" */;
+			buildPhases = (
+				65C529821C565EB8002BF559 /* Sources */,
+				65C529831C565EB8002BF559 /* Frameworks */,
+				65C529841C565EB8002BF559 /* Headers */,
+				65C529851C565EB8002BF559 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Regex-iOS";
+			productName = Regex;
+			productReference = 65C529871C565EB8002BF559 /* Regex.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		65C5298F1C565EB9002BF559 /* RegexTests-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C5299B1C565EB9002BF559 /* Build configuration list for PBXNativeTarget "RegexTests-iOS" */;
+			buildPhases = (
+				65C5298C1C565EB9002BF559 /* Sources */,
+				65C5298D1C565EB9002BF559 /* Frameworks */,
+				65C5298E1C565EB9002BF559 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65C529931C565EB9002BF559 /* PBXTargetDependency */,
+			);
+			name = "RegexTests-iOS";
+			productName = RegexTests;
+			productReference = 65C529901C565EB9002BF559 /* RegexTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -170,6 +243,12 @@
 					651655051C53AB2000B613AB = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					65C529861C565EB8002BF559 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					65C5298F1C565EB9002BF559 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 651654F61C53AB2000B613AB /* Build configuration list for PBXProject "Regex" */;
@@ -184,8 +263,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				651654FB1C53AB2000B613AB /* Regex */,
-				651655051C53AB2000B613AB /* RegexTests */,
+				651654FB1C53AB2000B613AB /* Regex-OSX */,
+				651655051C53AB2000B613AB /* RegexTests-OSX */,
+				65C529861C565EB8002BF559 /* Regex-iOS */,
+				65C5298F1C565EB9002BF559 /* RegexTests-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +280,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		651655041C53AB2000B613AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C529851C565EB8002BF559 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C5298E1C565EB9002BF559 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,13 +324,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65C529821C565EB8002BF559 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C529A11C5660E4002BF559 /* MatchSequence.swift in Sources */,
+				65C5299F1C5660DD002BF559 /* Regex.swift in Sources */,
+				65C529A21C5660E6002BF559 /* String+Regex.swift in Sources */,
+				65C529A31C5660E9002BF559 /* FoundationUtils.swift in Sources */,
+				65C529A01C5660E1002BF559 /* Match.swift in Sources */,
+				65C529A41C5660EC002BF559 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65C5298C1C565EB9002BF559 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C5299E1C5660D2002BF559 /* RegexTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		651655091C53AB2000B613AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 651654FB1C53AB2000B613AB /* Regex */;
+			target = 651654FB1C53AB2000B613AB /* Regex-OSX */;
 			targetProxy = 651655081C53AB2000B613AB /* PBXContainerItemProxy */;
+		};
+		65C529931C565EB9002BF559 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65C529861C565EB8002BF559 /* Regex-iOS */;
+			targetProxy = 65C529921C565EB9002BF559 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -340,7 +461,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Regex;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -360,7 +481,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Regex;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -387,6 +508,74 @@
 			};
 			name = Release;
 		};
+		65C529991C565EB9002BF559 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Regex/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
+				PRODUCT_NAME = Regex;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65C5299A1C565EB9002BF559 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Regex/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
+				PRODUCT_NAME = Regex;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65C5299C1C565EB9002BF559 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RegexTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		65C5299D1C565EB9002BF559 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RegexTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -399,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		651655101C53AB2000B613AB /* Build configuration list for PBXNativeTarget "Regex" */ = {
+		651655101C53AB2000B613AB /* Build configuration list for PBXNativeTarget "Regex-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				651655111C53AB2000B613AB /* Debug */,
@@ -408,7 +597,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		651655131C53AB2000B613AB /* Build configuration list for PBXNativeTarget "RegexTests" */ = {
+		651655131C53AB2000B613AB /* Build configuration list for PBXNativeTarget "RegexTests-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				651655141C53AB2000B613AB /* Debug */,
@@ -416,6 +605,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		65C529981C565EB9002BF559 /* Build configuration list for PBXNativeTarget "Regex-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C529991C565EB9002BF559 /* Debug */,
+				65C5299A1C565EB9002BF559 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		65C5299B1C565EB9002BF559 /* Build configuration list for PBXNativeTarget "RegexTests-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C5299C1C565EB9002BF559 /* Debug */,
+				65C5299D1C565EB9002BF559 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
