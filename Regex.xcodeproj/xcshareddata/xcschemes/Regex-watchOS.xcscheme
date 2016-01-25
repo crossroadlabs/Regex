@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65C529D91C5669D6002BF559"
-               BuildableName = "Regex-watchOS.framework"
+               BuildableName = "Regex.framework"
                BlueprintName = "Regex-watchOS"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65C529D91C5669D6002BF559"
-            BuildableName = "Regex-watchOS.framework"
+            BuildableName = "Regex.framework"
             BlueprintName = "Regex-watchOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65C529D91C5669D6002BF559"
-            BuildableName = "Regex-watchOS.framework"
+            BuildableName = "Regex.framework"
             BlueprintName = "Regex-watchOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
