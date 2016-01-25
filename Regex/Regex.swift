@@ -14,8 +14,6 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-//TODO: implement replace
-//TODO: implement split
 //TODO: implement with PCRE
 //TODO: implement sintactic sugar operators
 
