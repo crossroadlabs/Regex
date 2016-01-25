@@ -17,6 +17,7 @@ script:
 - xcodebuild test -project Regex.xcodeproj -scheme Regex-OSX
 - xcodebuild test -project Regex.xcodeproj -scheme Regex-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
 - xcodebuild test -project Regex.xcodeproj -scheme Regex-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
+- xcodebuild build -project Regex.xcodeproj -scheme Regex-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
 notifications:
   email: false
 deploy:

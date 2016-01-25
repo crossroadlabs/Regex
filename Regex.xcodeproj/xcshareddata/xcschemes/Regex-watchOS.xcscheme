@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65C529B61C5664B0002BF559"
-               BuildableName = "Regex.framework"
-               BlueprintName = "Regex-tvOS"
+               BlueprintIdentifier = "65C529D91C5669D6002BF559"
+               BuildableName = "Regex-watchOS.framework"
+               BlueprintName = "Regex-watchOS"
                ReferencedContainer = "container:Regex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65C529BF1C5664B0002BF559"
-               BuildableName = "RegexTests-tvOS.xctest"
-               BlueprintName = "RegexTests-tvOS"
-               ReferencedContainer = "container:Regex.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65C529B61C5664B0002BF559"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-tvOS"
-            ReferencedContainer = "container:Regex.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65C529B61C5664B0002BF559"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-tvOS"
+            BlueprintIdentifier = "65C529D91C5669D6002BF559"
+            BuildableName = "Regex-watchOS.framework"
+            BlueprintName = "Regex-watchOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65C529B61C5664B0002BF559"
-            BuildableName = "Regex.framework"
-            BlueprintName = "Regex-tvOS"
+            BlueprintIdentifier = "65C529D91C5669D6002BF559"
+            BuildableName = "Regex-watchOS.framework"
+            BlueprintName = "Regex-watchOS"
             ReferencedContainer = "container:Regex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
