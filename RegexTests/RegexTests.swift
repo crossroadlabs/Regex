@@ -144,6 +144,26 @@ class RegexTests: XCTestCase {
         XCTAssertEqual(splits, ["Hello ", "1", " word. Sentence number ", "2", "."])
     }
     
+    func testNonExistingGroup() {
+        let PATH_REGEXP:Regex = [
+            // Match escaped characters that would otherwise appear in future matches.
+            // This allows the user to escape special characters that won't transform.
+            "(\\\\.)",
+            // Match Express-style parameters and un-named parameters with a prefix
+            // and optional suffixes. Matches appear as:
+            //
+            // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+            // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+            // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+            "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))"
+            ].joinWithSeparator("|").r!
+        
+        let match = PATH_REGEXP.findFirst("/:test(\\d+)?")!
+        
+        XCTAssertNil(match.group(1))
+        XCTAssertNotNil(match.group(2))
+    }
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

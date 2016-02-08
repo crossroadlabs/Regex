@@ -18,16 +18,16 @@ public protocol MatchType {
     var source:String {get}
     
     var range:StringRange {get}
-    var ranges:[StringRange] {get}
+    var ranges:[StringRange?] {get}
     
-    func range(atIndex:Int) -> StringRange
-    func range(byName:String) -> StringRange
+    func range(atIndex:Int) -> StringRange?
+    func range(byName:String) -> StringRange?
     
     var matched:String {get}
-    var subgroups:[String] {get}
+    var subgroups:[String?] {get}
     
-    func group(atIndex:Int) -> String
-    func group(byName:String) -> String
+    func group(atIndex:Int) -> String?
+    func group(byName:String) -> String?
 }
 
 public class Match : MatchType {
@@ -53,48 +53,58 @@ public class Match : MatchType {
 #else
     public var range:StringRange {
         get {
-            return match.range.toStringRange(source)
+            //here it never throws, because otherwise it will not match
+            return try! match.range.toStringRange(source)
         }
     }
     
-    public var ranges:[StringRange] {
+    public var ranges:[StringRange?] {
         get {
-            var result = Array<StringRange>()
+            var result = Array<StringRange?>()
             for(var i:Int = 0; i < match.numberOfRanges; i++) {
-                result.append(match.rangeAtIndex(i).toStringRange(source))
+                //subrange can be empty
+                let stringRange = try? match.rangeAtIndex(i).toStringRange(source)
+                result.append(stringRange)
             }
             return result
         }
     }
     
-    public func range(atIndex:Int) -> StringRange {
-        return match.rangeAtIndex(atIndex).toStringRange(source)
+    public func range(atIndex:Int) -> StringRange? {
+        //subrange can be empty
+        return try? match.rangeAtIndex(atIndex).toStringRange(source)
     }
     
-    public func range(byName:String) -> StringRange {
-        return match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
+    public func range(byName:String) -> StringRange? {
+        //subrange can be empty
+        return try? match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
     }
 #endif
     public var matched:String {
         get {
-            return group(0)
+            //zero group is always there, otherwise there is no match
+            return group(0)!
         }
     }
     
-    public var subgroups:[String] {
+    public var subgroups:[String?] {
         get {
             return ranges.suffixFrom(1).map { range in
-                source.substringWithRange(range)
+                range.map { range in
+                    source.substringWithRange(range)
+                }
             }
         }
     }
     
-    public func group(atIndex:Int) -> String {
+    public func group(atIndex:Int) -> String? {
         let range = self.range(atIndex)
-        return source.substringWithRange(range)
+        return range.map { range in
+            source.substringWithRange(range)
+        }
     }
     
-    public func group(byName:String) -> String {
+    public func group(byName:String) -> String? {
         return self.group(groupIndex(byName))
     }
 }
