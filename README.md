@@ -121,7 +121,8 @@ let splits = myString.split("(\\d)".r)
 * v1.0: full Linux support
 
 ## Changelog
-
+* v0.4.1
+	* support for optionally present groups
 * v0.4
 	* iOS, tvOS and watchOS support
 	* Pod supports watchOS
