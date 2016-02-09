@@ -1,6 +1,11 @@
 # Regex
 
-[![GitHub license](https://img.shields.io/badge/license-Apache 2.0-lightgrey.svg)](https://raw.githubusercontent.com/crossroadlabs/Regex/master/LICENSE) [![Build Status](https://travis-ci.org/crossroadlabs/Regex.svg?branch=master)](https://travis-ci.org/crossroadlabs/Regex) [![GitHub release](https://img.shields.io/github/release/crossroadlabs/Regex.svg)](https://github.com/crossroadlabs/Regex/releases) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![CocoaPods version](https://img.shields.io/cocoapods/v/CrossroadRegex.svg)](https://cocoapods.org/pods/CrossroadRegex) ![Platform OS X | iOS | tvOS | watchOS](https://img.shields.io/badge/platform-OS%20X%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-orange.svg)
+[![GitHub license](https://img.shields.io/badge/license-Apache 2.0-lightgrey.svg)](https://raw.githubusercontent.com/crossroadlabs/Regex/master/LICENSE)
+[![Build Status](https://travis-ci.org/crossroadlabs/Regex.svg?branch=master)](https://travis-ci.org/crossroadlabs/Regex)
+[![GitHub release](https://img.shields.io/github/release/crossroadlabs/Regex.svg)](https://github.com/crossroadlabs/Regex/releases)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods version](https://img.shields.io/cocoapods/v/CrossroadRegex.svg)](https://cocoapods.org/pods/CrossroadRegex)
+![Platform OS X | iOS | tvOS | watchOS](https://img.shields.io/badge/platform-OS%20X%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-orange.svg)
 
 ## Advanced regular expressions for Swift
 
@@ -116,7 +121,8 @@ let splits = myString.split("(\\d)".r)
 * v1.0: full Linux support
 
 ## Changelog
-
+* v0.4.1
+	* support for optionally present groups
 * v0.4
 	* iOS, tvOS and watchOS support
 	* Pod supports watchOS

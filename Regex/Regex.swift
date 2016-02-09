@@ -169,7 +169,11 @@ public class Regex : RegexType {
             lastRange = match.range
             
             //add subgroups
-            result.appendContentsOf(match.subgroups)
+            result.appendContentsOf(match.subgroups.filter { subgroup in
+                subgroup != nil
+            }.map { subgroup in
+                subgroup!
+            })
         }
         let rest = source.substringFromIndex(lastRange.endIndex)
         result.append(rest)

@@ -18,8 +18,16 @@
     //here we use NSRegularExpression
     import Foundation
     
+    enum InvalidRangeError : ErrorType {
+        case Error
+    }
+    
     extension NSRange {
-        func toStringRange(source:String) -> StringRange {
+        func toStringRange(source:String) throws -> StringRange {
+            let len = source.characters.count
+            if self.location >= len || self.location + self.length > len {
+                throw InvalidRangeError.Error
+            }
             let start = source.startIndex.advancedBy(self.location)
             return StringRange(start: start, end: start.advancedBy(self.length))
         }
