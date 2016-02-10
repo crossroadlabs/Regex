@@ -143,3 +143,7 @@ let splits = myString.split("(\\d)".r)
 To get started, <a href="https://www.clahub.com/agreements/crossroadlabs/Regex">sign the Contributor License Agreement</a>.
 
 ## [![Crossroad Labs](http://i.imgur.com/iRlxgOL.png?1) by Crossroad Labs](http://www.crossroadlabs.xyz/)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/crossroadlabs/regex/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
