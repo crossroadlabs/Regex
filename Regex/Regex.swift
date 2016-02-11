@@ -69,7 +69,6 @@ public class Regex : RegexType {
     private static func compile(pattern:String) throws -> CompiledPattern {
         var ec = U_ZERO_ERROR
         let utext = try ICUText(string: pattern)
-        print("Test string: \(try utext.toString())")
         let pattern = uregex_openUText_56(utext.icu, UREGEX_CASE_INSENSITIVE.rawValue, nil, &ec)
         if ec != U_ZERO_ERROR {
             throw RegexError.CompilationError(errorCode:Int(ec.rawValue))
