@@ -660,10 +660,7 @@
 				INFOPLIST_FILE = Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/opt/icu4c/lib,
-					/usr/local/Cellar/icu4c/56.1/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/icu4c/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
 				PRODUCT_NAME = "${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
@@ -686,10 +683,7 @@
 				INFOPLIST_FILE = Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/opt/icu4c/lib,
-					/usr/local/Cellar/icu4c/56.1/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /usr/local/opt/icu4c/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
 				PRODUCT_NAME = "${PROJECT_NAME}";
 				SKIP_INSTALL = YES;
