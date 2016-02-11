@@ -1,4 +1,4 @@
-//===--- FoundationUtils.swift --------------------------------------------===//
+//===--- module.map --------------------------------------------------------===//
 //Copyright (c) 2016 Daniel Leping (dileping)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +14,11 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-#if !os(Linux)
-import Foundation
-#endif
-    
-enum InvalidRangeError : ErrorType {
-    case Error
-}
-
-extension GroupRange {
-    func toStringRange(source:String) throws -> StringRange {
-        let len = source.characters.count
-        if self.location >= len || self.location + self.length > len {
-            throw InvalidRangeError.Error
-        }
-        let start = source.startIndex.advancedBy(self.location)
-        return StringRange(start: start, end: start.advancedBy(self.length))
-    }
+module CIcuRegex [system] [extern_c] {
+    header "uconfig_local.h"
+    header "/usr/local/opt/icu4c/include/unicode/utext.h"
+    header "/usr/local/opt/icu4c/include/unicode/uregex.h"
+	link "icui18n"
+	link "icuuc"
+	export *
 }
