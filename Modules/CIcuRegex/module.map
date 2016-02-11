@@ -18,7 +18,7 @@ module CIcuRegex [system] [extern_c] {
     header "uconfig_local.h"
     header "/usr/local/opt/icu4c/include/unicode/utext.h"
     header "/usr/local/opt/icu4c/include/unicode/uregex.h"
-	link "icui18n"
-	link "icuuc"
-	export *
+    link "icui18n"
+    link "icuuc"
+    export *
 }
