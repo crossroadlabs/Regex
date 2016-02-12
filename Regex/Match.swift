@@ -48,6 +48,9 @@ public class Match : MatchType {
         return nameMap[group]! + 1
     }
     
+#if os(Linux)
+    //TODO: implement with PCRE
+#else
     public var range:StringRange {
         get {
             //here it never throws, because otherwise it will not match
@@ -76,7 +79,7 @@ public class Match : MatchType {
         //subrange can be empty
         return try? match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
     }
-
+#endif
     public var matched:String {
         get {
             //zero group is always there, otherwise there is no match

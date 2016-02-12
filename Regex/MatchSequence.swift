@@ -34,6 +34,7 @@
         /// A type that represents a subsequence of some of the elements.
         
     #if os(OSX)
+        
         public func generate() -> Generator {
             return anyGenerator {
                 var ec = U_ZERO_ERROR
