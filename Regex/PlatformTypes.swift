@@ -161,7 +161,6 @@
             destroyBuffer()
         }
     }
-    
 #else
     //here we use NSRegularExpression
     import Foundation
