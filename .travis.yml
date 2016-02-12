@@ -9,6 +9,7 @@ before_install:
   - brew unlink carthage
   - brew install carthage
   - brew link carthage
+  - brew install icu4c
 before_script:
   # bootstrap the dependencies for the project
   # you can remove if you don't have dependencies

@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/CIcuRegex"]
+	path = Carthage/Checkouts/CIcuRegex
+	url = https://github.com/crossroadlabs/CIcuRegex.git

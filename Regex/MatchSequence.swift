@@ -14,10 +14,11 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-#if os(Linux)
+#if os(OSX)
+    import CIcuRegex
 #else
     import Foundation
-    
+#endif
     public class MatchSequence : SequenceType {
         let source:String
         let context:CompiledMatchContext
@@ -31,6 +32,20 @@
         
         public typealias Generator = AnyGenerator<Match>
         /// A type that represents a subsequence of some of the elements.
+        
+    #if os(OSX)
+        public func generate() -> Generator {
+            return anyGenerator {
+                var ec = U_ZERO_ERROR
+                if uregex_findNext_56(self.context.icu, &ec) != 0 {
+                    let compiledMatch = CompiledPatternMatch.fromIcuMatch(self.context)
+                    return Match(source: self.source, match: compiledMatch!, groupNames: self.groupNames)
+                } else {
+                    return nil
+                }
+            }
+        }
+    #else
         public func generate() -> Generator {
             var index = context.startIndex
             
@@ -44,6 +59,5 @@
                 }
             }
         }
+    #endif
     }
-    
-#endif
