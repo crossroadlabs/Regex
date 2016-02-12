@@ -49,14 +49,14 @@
         
         static func fromIcuMatch(icuMatch: CompiledMatchContext) -> CompiledPatternMatch? {
             var ec = U_ZERO_ERROR
-            let count = uregex_groupCount_56(icuMatch.icu, &ec) + 1
+            let count = uregex_groupCount_55(icuMatch.icu, &ec) + 1
             guard ec == U_ZERO_ERROR else {
                 return nil
             }
         
             var ranges = [GroupRange]()
             for index in 0..<count {
-                let start = uregex_start_56(icuMatch.icu, Int32(index), &ec)
+                let start = uregex_start_55(icuMatch.icu, Int32(index), &ec)
                 guard ec == U_ZERO_ERROR else {
                     return nil
                 }
@@ -64,7 +64,7 @@
                     ranges.append(GroupRange(location:Int.max, length:0))
                     continue
                 }
-                let end = uregex_end_56(icuMatch.icu, Int32(index), &ec)
+                let end = uregex_end_55(icuMatch.icu, Int32(index), &ec)
                 guard ec == U_ZERO_ERROR else {
                     return nil
                 }
@@ -89,7 +89,7 @@
         }
         
         deinit {
-            uregex_close_56(pattern)
+            uregex_close_55(pattern)
         }
         
         var icu: COpaquePointer {
@@ -117,7 +117,7 @@
                 memcpy(buffer, data.baseAddress, data.count)
                 return UnsafeMutableBufferPointer<UInt8>(start:buffer, count:data.count)
             }
-            uText = utext_openUTF8_56(nil, UnsafePointer<Int8>(buffer.baseAddress), Int64(buffer.count-1), &ec)
+            uText = utext_openUTF8_55(nil, UnsafePointer<Int8>(buffer.baseAddress), Int64(buffer.count-1), &ec)
             guard ec == U_ZERO_ERROR else {
                 destroyBuffer()
                 throw RegexError.CompilationError(errorCode: Int(ec.rawValue))
@@ -137,14 +137,14 @@
         
         func toString() throws -> String {
             var ec = U_ZERO_ERROR
-            var size = utext_extract_56(uText, 0, Int64.max, nil, 0, &ec) + 1
+            var size = utext_extract_55(uText, 0, Int64.max, nil, 0, &ec) + 1
             guard ec == U_ZERO_ERROR || ec == U_BUFFER_OVERFLOW_ERROR else {
                 throw RegexError.CompilationError(errorCode: Int(ec.rawValue))
             }
             ec = U_ZERO_ERROR
             let bufSize = Int(size)
             let buf = UnsafeMutablePointer<UInt16>.alloc(bufSize)
-            size = utext_extract_56(uText, 0, Int64(size), buf, size, &ec)
+            size = utext_extract_55(uText, 0, Int64(size), buf, size, &ec)
             guard ec == U_ZERO_ERROR else {
                 throw RegexError.CompilationError(errorCode: Int(ec.rawValue))
             }
@@ -156,7 +156,7 @@
         
         deinit {
             if uText != nil {
-                utext_close_56(uText)
+                utext_close_55(uText)
             }
             destroyBuffer()
         }

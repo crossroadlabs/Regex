@@ -37,7 +37,7 @@
         public func generate() -> Generator {
             return anyGenerator {
                 var ec = U_ZERO_ERROR
-                if uregex_findNext_56(self.context.icu, &ec) != 0 {
+                if uregex_findNext_55(self.context.icu, &ec) != 0 {
                     let compiledMatch = CompiledPatternMatch.fromIcuMatch(self.context)
                     return Match(source: self.source, match: compiledMatch!, groupNames: self.groupNames)
                 } else {

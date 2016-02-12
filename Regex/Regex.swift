@@ -68,7 +68,7 @@ public class Regex : RegexType {
     private static func compile(pattern:String) throws -> CompiledPattern {
         var ec = U_ZERO_ERROR
         let utext = try ICUText(string: pattern)
-        let pattern = uregex_openUText_56(utext.icu, UREGEX_CASE_INSENSITIVE.rawValue, nil, &ec)
+        let pattern = uregex_openUText_55(utext.icu, UREGEX_CASE_INSENSITIVE.rawValue, nil, &ec)
         if ec != U_ZERO_ERROR {
             throw RegexError.CompilationError(errorCode:Int(ec.rawValue))
         }
@@ -81,19 +81,19 @@ public class Regex : RegexType {
             exit(1)
         }
         var ec = U_ZERO_ERROR
-        let context = uregex_clone_56(matcher.icu, &ec)
+        let context = uregex_clone_55(matcher.icu, &ec)
         guard ec == U_ZERO_ERROR else {
             print("Error on copying of ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
         guard let utext = try? ICUText(string:source) else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Error on converting to UText")
             exit(1)
         }
-        uregex_setUText_56(context, utext.icu, &ec)
+        uregex_setUText_55(context, utext.icu, &ec)
         guard ec == U_ZERO_ERROR else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Can't set string to ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
@@ -110,33 +110,33 @@ public class Regex : RegexType {
             exit(1)
         }
         var ec = U_ZERO_ERROR
-        let context = uregex_clone_56(matcher.icu, &ec)
+        let context = uregex_clone_55(matcher.icu, &ec)
         guard ec == U_ZERO_ERROR else {
             print("Error on copying of ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
         guard let from = try? ICUText(string:source) else {
             print("Error on converting to UText")
-            uregex_close_56(context)
+            uregex_close_55(context)
             exit(1)
         }
-        uregex_setUText_56(context, from.icu, &ec)
+        uregex_setUText_55(context, from.icu, &ec)
         guard ec == U_ZERO_ERROR else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Can't set string to ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
         
         guard let replace = try? ICUText(string: replacement) else {
             print("Error on converting to UText")
-            uregex_close_56(context)
+            uregex_close_55(context)
             exit(1)
         }
         
-        let result = uregex_replaceAllUText_56(context, replace.icu, nil, &ec)
+        let result = uregex_replaceAllUText_55(context, replace.icu, nil, &ec)
         
         guard ec == U_ZERO_ERROR else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Can't call replace all \(ec) ")
             exit(ec.rawValue)
         }
@@ -145,7 +145,7 @@ public class Regex : RegexType {
         if resultString == nil {
             resultString = source
         }
-        uregex_close_56(context)
+        uregex_close_55(context)
         return resultString!
     }
     
@@ -155,33 +155,33 @@ public class Regex : RegexType {
             exit(1)
         }
         var ec = U_ZERO_ERROR
-        let context = uregex_clone_56(matcher.icu, &ec)
+        let context = uregex_clone_55(matcher.icu, &ec)
         guard ec == U_ZERO_ERROR else {
             print("Error on copying of ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
         guard let from = try? ICUText(string:source) else {
             print("Error on converting to UText")
-            uregex_close_56(context)
+            uregex_close_55(context)
             exit(1)
         }
-        uregex_setUText_56(context, from.icu, &ec)
+        uregex_setUText_55(context, from.icu, &ec)
         guard ec == U_ZERO_ERROR else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Can't set string to ICU regex object \(ec) ")
             exit(ec.rawValue)
         }
         
         guard let replace = try? ICUText(string:replacement) else {
             print("Error on converting to UText")
-            uregex_close_56(context)
+            uregex_close_55(context)
             exit(1)
         }
         
-        let result = uregex_replaceFirstUText_56(context, replace.icu, nil, &ec)
+        let result = uregex_replaceFirstUText_55(context, replace.icu, nil, &ec)
         
         guard ec == U_ZERO_ERROR else {
-            uregex_close_56(context)
+            uregex_close_55(context)
             print("Can't call replace all \(ec) ")
             exit(ec.rawValue)
         }
@@ -190,7 +190,7 @@ public class Regex : RegexType {
         if resultString == nil {
             resultString = source
         }
-        uregex_close_56(context)
+        uregex_close_55(context)
         return resultString!
     }
     
