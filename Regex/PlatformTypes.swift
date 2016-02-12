@@ -16,6 +16,7 @@
 
 #if os(Linux)
     import CIcuRegex
+    import Glibc
     
     typealias CompiledMatchContext = CompiledPattern
     
