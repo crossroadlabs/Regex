@@ -58,7 +58,7 @@ public class Match : MatchType {
     public var ranges:[StringRange?] {
         get {
             var result = Array<StringRange?>()
-            for(var i:Int = 0; i < match.numberOfRanges; i++) {
+            for i in 0..<match.numberOfRanges {
                 //subrange can be empty
                 let stringRange = try? match.rangeAtIndex(i).toStringRange(source)
                 result.append(stringRange)

@@ -14,10 +14,11 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 #if os(Linux)
     import CIcuRegex
     import Glibc
-    import Foundation
     
     typealias CompiledMatchContext = CompiledPattern
     
@@ -165,8 +166,6 @@
     }
 #else
     //here we use NSRegularExpression
-    import Foundation
-    
     typealias CompiledPattern = NSRegularExpression
     typealias CompiledMatchContext = [NSTextCheckingResult]
     typealias CompiledPatternMatch = NSTextCheckingResult

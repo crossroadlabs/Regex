@@ -14,15 +14,11 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-//TODO: implement with PCRE
-//TODO: implement sintactic sugar operators
+import Foundation
 
 #if os(Linux)
     import CIcuRegex
     import Glibc
-    import Foundation
-#else
-    import Foundation
 #endif
 
 //makes it easier to maintain two implementations

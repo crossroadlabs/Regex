@@ -14,9 +14,7 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-#if !os(Linux)
 import Foundation
-#endif
     
 enum InvalidRangeError : ErrorType {
     case Error
