@@ -20,6 +20,7 @@
 #if os(Linux)
     import CIcuRegex
     import Glibc
+    import Foundation
 #else
     import Foundation
 #endif
