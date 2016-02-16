@@ -33,7 +33,7 @@ public class MatchSequence : SequenceType {
     public func generate() -> Generator {
         var index = context.startIndex
             
-        return AnyGenerator {
+        return anyGenerator {
             if self.context.endIndex > index {
                 let result = Match(source: self.source, match: self.context[index], groupNames: self.groupNames)
                 index = index.advancedBy(1)
