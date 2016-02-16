@@ -16,10 +16,6 @@
 
 import Foundation
 
-#if os(Linux)
-    import CIcuRegex
-#endif
-
 public class MatchSequence : SequenceType {
     let source:String
     let context:CompiledMatchContext
@@ -34,23 +30,10 @@ public class MatchSequence : SequenceType {
     public typealias Generator = AnyGenerator<Match>
     /// A type that represents a subsequence of some of the elements.
         
-#if os(Linux)
-    public func generate() -> Generator {
-        return AnyGenerator {
-            var ec = U_ZERO_ERROR
-            if uregex_findNext_55(self.context.icu, &ec) != 0 {
-                let compiledMatch = CompiledPatternMatch.fromIcuMatch(self.context)
-                return Match(source: self.source, match: compiledMatch!, groupNames: self.groupNames)
-            } else {
-                return nil
-            }
-        }
-    }
-#else
     public func generate() -> Generator {
         var index = context.startIndex
             
-        return anyGenerator {
+        return AnyGenerator {
             if self.context.endIndex > index {
                 let result = Match(source: self.source, match: self.context[index], groupNames: self.groupNames)
                 index = index.advancedBy(1)
@@ -60,5 +43,4 @@ public class MatchSequence : SequenceType {
             }
         }
     }
-    #endif
 }
