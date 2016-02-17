@@ -21,10 +21,6 @@ let package = Package(
     targets: [
         Target(
             name: "Regex"
-        ),
-        Target(
-            name: "RegexTests",
-            dependencies: [.Target(name:"Regex")]
-        ),
+        )
     ]
 )

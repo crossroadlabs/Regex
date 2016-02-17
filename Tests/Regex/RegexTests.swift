@@ -30,25 +30,6 @@ class RegexTests: XCTestCase {
     let names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand"
     let namesSplitPattern = "\\s*;\\s*";
     let splitNames = ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
-
-    var allTests : [(String, () throws -> Void)] {
-        return [
-            ("testMatches", testMatches),
-            ("testSimple", testSimple),
-            ("testLetter", testLetter),
-            ("testDigits", testDigits),
-            ("testRest", testRest),
-            ("testFirstMatch", testFirstMatch),
-            ("testReplaceAll", testReplaceAll),
-            ("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
-            ("testReplaceFirst", testReplaceFirst),
-            ("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
-            ("testSplit", testSplit),
-            ("testSplitOnString", testSplitOnString),
-            ("testSplitWithSubgroups", testSplitWithSubgroups),
-            ("testNonExistingGroup", testNonExistingGroup)
-        ]
-    }
     
     func testMatches() {
         XCTAssert(regex.matches(source))
@@ -173,3 +154,27 @@ class RegexTests: XCTestCase {
         XCTAssertNotNil(match.group(2))
     }
 }
+
+#if os(Linux)
+extension RegexTests : XCTestCaseProvider {
+    var allTests : [(String, () throws -> Void)] {
+        return [
+            ("testMatches", testMatches),
+            ("testSimple", testSimple),
+            ("testLetter", testLetter),
+            ("testDigits", testDigits),
+            ("testRest", testRest),
+            ("testFirstMatch", testFirstMatch),
+            ("testReplaceAll", testReplaceAll),
+            ("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
+            ("testReplaceFirst", testReplaceFirst),
+            ("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
+            ("testSplit", testSplit),
+            ("testSplitOnString", testSplitOnString),
+            ("testSplitWithSubgroups", testSplitWithSubgroups),
+            ("testNonExistingGroup", testNonExistingGroup)
+        ]
+    }
+}
+#endif
+
