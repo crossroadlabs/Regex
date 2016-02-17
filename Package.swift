@@ -1,4 +1,4 @@
-//===--- Utils.swift ------------------------------------------------------===//
+//===--- Package.swift ----------------------------------------------------===//
 //Copyright (c) 2016 Daniel Leping (dileping)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,18 +14,17 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-public typealias StringRange = Range<String.Index>
+import PackageDescription
 
-extension SequenceType where Generator.Element : Hashable {
-    var indexHash:Dictionary<Generator.Element, Int> {
-        get {
-            var result = Dictionary<Generator.Element, Int>()
-            var index = 0
-            for e in self {
-                result[e] = index
-                index += 1
-            }
-            return result
-        }
-    }
-}
+let package = Package(
+    name: "Regex",
+    targets: [
+        Target(
+            name: "Regex"
+        ),
+        Target(
+            name: "RegexTests",
+            dependencies: [.Target(name:"Regex")]
+        ),
+    ]
+)
