@@ -23,7 +23,7 @@ extension SequenceType where Generator.Element : Hashable {
             var index = 0
             for e in self {
                 result[e] = index
-                index++
+                index += 1
             }
             return result
         }

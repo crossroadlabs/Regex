@@ -1,4 +1,4 @@
-//===--- GroupRangeUtils.swift --------------------------------------------===//
+//===--- Package.swift ----------------------------------------------------===//
 //Copyright (c) 2016 Daniel Leping (dileping)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,17 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-import Foundation
-    
-enum InvalidRangeError : ErrorType {
-    case Error
-}
+import PackageDescription
 
-extension GroupRange {
-    func toStringRange(source:String) throws -> StringRange {
-        let len = source.characters.count
-        if self.location < 0 || self.location >= len || self.location + self.length > len {
-            throw InvalidRangeError.Error
-        }
-        let start = source.startIndex.advancedBy(self.location)
-        return StringRange(start: start, end: start.advancedBy(self.length))
-    }
-}
+let package = Package(
+    name: "Regex",
+    targets: [
+        Target(
+            name: "Regex"
+        ),
+        Target(
+            name: "RegexTests",
+            dependencies: [.Target(name:"Regex")]
+        ),
+    ]
+)

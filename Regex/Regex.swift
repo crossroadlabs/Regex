@@ -14,14 +14,7 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-//TODO: implement with PCRE
-//TODO: implement sintactic sugar operators
-
-#if os(Linux)
-    import CIcuRegex
-#else
-    import Foundation
-#endif
+import Foundation
 
 //makes it easier to maintain two implementations
 public protocol RegexType {
@@ -64,137 +57,6 @@ public class Regex : RegexType {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
     
-#if os(Linux)
-    private static func compile(pattern:String) throws -> CompiledPattern {
-        var ec = U_ZERO_ERROR
-        let utext = try ICUText(string: pattern)
-        let pattern = uregex_openUText_55(utext.icu, UREGEX_CASE_INSENSITIVE.rawValue, nil, &ec)
-        if ec != U_ZERO_ERROR {
-            throw RegexError.CompilationError(errorCode:Int(ec.rawValue))
-        }
-        return CompiledPattern(icu:pattern, text: utext)
-    }
-    
-    public func findAll(source:String) -> MatchSequence {
-        guard let matcher = compiled else {
-            print("ICU regex object are nill")
-            exit(1)
-        }
-        var ec = U_ZERO_ERROR
-        let context = uregex_clone_55(matcher.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            print("Error on copying of ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        guard let utext = try? ICUText(string:source) else {
-            uregex_close_55(context)
-            print("Error on converting to UText")
-            exit(1)
-        }
-        uregex_setUText_55(context, utext.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            uregex_close_55(context)
-            print("Can't set string to ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        return MatchSequence(source: source, context: CompiledPattern(icu:context, text:utext), groupNames: groupNames)
-    }
-    
-    public func findFirst(source:String) -> Match? {
-        return findAll(source).generate().next()
-    }
-    
-    public func replaceAll(source:String, replacement:String) -> String {
-        guard let matcher = compiled else {
-            print("ICU regex object are nill")
-            exit(1)
-        }
-        var ec = U_ZERO_ERROR
-        let context = uregex_clone_55(matcher.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            print("Error on copying of ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        guard let from = try? ICUText(string:source) else {
-            print("Error on converting to UText")
-            uregex_close_55(context)
-            exit(1)
-        }
-        uregex_setUText_55(context, from.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            uregex_close_55(context)
-            print("Can't set string to ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        
-        guard let replace = try? ICUText(string: replacement) else {
-            print("Error on converting to UText")
-            uregex_close_55(context)
-            exit(1)
-        }
-        
-        let result = uregex_replaceAllUText_55(context, replace.icu, nil, &ec)
-        
-        guard ec == U_ZERO_ERROR else {
-            uregex_close_55(context)
-            print("Can't call replace all \(ec) ")
-            exit(ec.rawValue)
-        }
-        
-        var resultString = try? ICUText(icu:result).toString()
-        if resultString == nil {
-            resultString = source
-        }
-        uregex_close_55(context)
-        return resultString!
-    }
-    
-    public func replaceFirst(source:String, replacement:String) -> String {
-        guard let matcher = compiled else {
-            print("ICU regex object are nill")
-            exit(1)
-        }
-        var ec = U_ZERO_ERROR
-        let context = uregex_clone_55(matcher.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            print("Error on copying of ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        guard let from = try? ICUText(string:source) else {
-            print("Error on converting to UText")
-            uregex_close_55(context)
-            exit(1)
-        }
-        uregex_setUText_55(context, from.icu, &ec)
-        guard ec == U_ZERO_ERROR else {
-            uregex_close_55(context)
-            print("Can't set string to ICU regex object \(ec) ")
-            exit(ec.rawValue)
-        }
-        
-        guard let replace = try? ICUText(string:replacement) else {
-            print("Error on converting to UText")
-            uregex_close_55(context)
-            exit(1)
-        }
-        
-        let result = uregex_replaceFirstUText_55(context, replace.icu, nil, &ec)
-        
-        guard ec == U_ZERO_ERROR else {
-            uregex_close_55(context)
-            print("Can't call replace all \(ec) ")
-            exit(ec.rawValue)
-        }
-        
-        var resultString = try? ICUText(icu:result).toString()
-        if resultString == nil {
-            resultString = source
-        }
-        uregex_close_55(context)
-        return resultString!
-    }
-    
-#else
     private static func compile(pattern:String) throws -> CompiledPattern {
         //pass options
         return try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
@@ -228,7 +90,6 @@ public class Regex : RegexType {
             self.compiled!.replacementStringForResult(match.match, inString: source, offset: 0, template: replacement)
         }
     }
-#endif
 
     private func replaceMatches<T: SequenceType where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
         var result = ""
