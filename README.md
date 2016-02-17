@@ -115,6 +115,10 @@ let splits = myString.split("(\\d)".r)
 //splits contains ["Hello ", "1", " word. Sentence number ", "2", "."]
 ```
 
+## Goals
+
+Regex framework was mainly introduced to fulfill the needs of [Swift Express](https://github.com/crossroadlabs/Express) - web application server side framework for Swift. Still we hope it will be useful for everybody else.
+
 ## Roadmap
 
 * v0.5: alternative PCRE based implementation (OS X, Linux)
