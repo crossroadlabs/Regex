@@ -37,7 +37,8 @@ matrix:
           tags: true
     - script:
         # build (yes for now swift-build should be like this) 
-        - `which swift-build`
+        - export SBCMD=`which swift-build`
+        - $SBCMD
         # test
         - swift test
       sudo: required
