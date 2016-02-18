@@ -14,8 +14,7 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
-//TODO: implement with PCRE
-//TODO: implement sintactic sugar operators
+import Foundation
 
 //makes it easier to maintain two implementations
 public protocol RegexType {
@@ -38,22 +37,6 @@ public protocol RegexType {
     func split(source:String) -> [String]
 }
 
-// later make OS X to work via pcre as well (should be faster)
-#if os(Linux)
-    
-    typealias CompiledPattern = Void
-    typealias CompiledMatchContext = Void
-    typealias CompiledPatternMatch = Void
-    
-#else
-    //here we use NSRegularExpression
-    import Foundation
-    
-    typealias CompiledPattern = NSRegularExpression
-    typealias CompiledMatchContext = [NSTextCheckingResult]
-    typealias CompiledPatternMatch = NSTextCheckingResult
-#endif
-
 public class Regex : RegexType {
     public let pattern:String
     public let groupNames:[String]
@@ -73,18 +56,6 @@ public class Regex : RegexType {
     public required convenience init(pattern:String, groupNames:String...) throws {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
-    
-#if os(Linux)
-    
-    private static func compile(pattern:String) throws -> CompiledPattern {
-        throw NSFoundationNotImplemented
-    }
-    
-    public func findAll(source:String) -> MatchSequence {
-        throw NSFoundationNotImplemented
-    }
-    
-#else
     
     private static func compile(pattern:String) throws -> CompiledPattern {
         //pass options
@@ -119,8 +90,7 @@ public class Regex : RegexType {
             self.compiled!.replacementStringForResult(match.match, inString: source, offset: 0, template: replacement)
         }
     }
-    
-#endif
+
     private func replaceMatches<T: SequenceType where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
         var result = ""
         var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
