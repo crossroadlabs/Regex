@@ -37,7 +37,7 @@ matrix:
           tags: true
     - script:
         # build (yes for now swift-build should be like this)
-        - swift-build
+        - `which swift-build`
         # test
         - swift test
       sudo: required
