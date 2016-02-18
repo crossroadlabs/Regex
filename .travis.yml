@@ -36,7 +36,7 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
-        # build (yes for now swift-build should be like this)
+        # build (yes for now swift-build should be like this) 
         - `which swift-build`
         # test
         - swift test
