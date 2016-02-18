@@ -19,7 +19,7 @@
 Add the following dependency to your [Package.swift](https://github.com/apple/swift-package-manager/blob/master/Documentation/Package.swift.md):
 
 ```swift
-.Package(url: "https://github.com/ypopovych/Regex.git", majorVersion: 1)
+.Package(url: "https://github.com/crossroadlabs/Regex.git", majorVersion: 0)
 ```
 
 Run ```swift build``` and build your app. Package manager is supported on OS X, but it's still recommended to be used on Linux only.
@@ -135,6 +135,9 @@ Regex framework was mainly introduced to fulfill the needs of [Swift Express](ht
 * v1.0: stable release (once we will see that no issues are coming)
 
 ## Changelog
+
+* v0.5.1
+	* Minor linux build related fixes
 * v0.5
 	* package manager support
 	* full linux support 🐧
