@@ -36,13 +36,10 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
-        # make aliases (yes for now swift-build should be like this)
-        - alias swiftb="swift-build"
-        - alias swiftt="swift test"
-        # build
-        - swiftb
+        # build (yes for now swift-build should be like this)
+        - swift-build
         # test
-        - swiftt
+        - swift test
       sudo: required
       dist: trusty
       language: generic
