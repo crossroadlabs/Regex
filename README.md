@@ -1,17 +1,30 @@
+[![by Crossroad Labs](./header.png)](http://www.crossroadlabs.xyz/)
+
 # Regex
 
+![🐧 linux: ready](https://img.shields.io/badge/%F0%9F%90%A7%20linux-ready-red.svg)
 [![GitHub license](https://img.shields.io/badge/license-Apache 2.0-lightgrey.svg)](https://raw.githubusercontent.com/crossroadlabs/Regex/master/LICENSE)
 [![Build Status](https://travis-ci.org/crossroadlabs/Regex.svg?branch=master)](https://travis-ci.org/crossroadlabs/Regex)
 [![GitHub release](https://img.shields.io/github/release/crossroadlabs/Regex.svg)](https://github.com/crossroadlabs/Regex/releases)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods version](https://img.shields.io/cocoapods/v/CrossroadRegex.svg)](https://cocoapods.org/pods/CrossroadRegex)
-![Platform OS X | iOS | tvOS | watchOS](https://img.shields.io/badge/platform-OS%20X%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-orange.svg)
+![Platform OS X | iOS | tvOS | watchOS | Linux](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-orange.svg)
 
 ## Advanced regular expressions for Swift
 
 ## Getting started
 
 ### Installation
+
+#### [Package Manager](https://swift.org/package-manager/)
+
+Add the following dependency to your [Package.swift](https://github.com/apple/swift-package-manager/blob/master/Documentation/Package.swift.md):
+
+```swift
+.Package(url: "https://github.com/crossroadlabs/Regex.git", majorVersion: 0)
+```
+
+Run ```swift build``` and build your app. Package manager is supported on OS X, but it's still recommended to be used on Linux only.
 
 #### [CocoaPods](http://cocoapods.org/)
 Add the following to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html):
@@ -115,12 +128,21 @@ let splits = myString.split("(\\d)".r)
 //splits contains ["Hello ", "1", " word. Sentence number ", "2", "."]
 ```
 
+## Goals
+
+Regex framework was mainly introduced to fulfill the needs of [Swift Express](https://github.com/crossroadlabs/Express) - web application server side framework for Swift. Still we hope it will be useful for everybody else.
+
 ## Roadmap
 
-* v0.5: alternative PCRE based implementation (OS X, Linux)
-* v1.0: full Linux support
+* v1.0: stable release (once we will see that no issues are coming)
 
 ## Changelog
+
+* v0.5.1
+	* Minor linux build related fixes
+* v0.5
+	* package manager support
+	* full linux support 🐧
 * v0.4.1
 	* support for optionally present groups
 * v0.4

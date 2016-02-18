@@ -31,16 +31,6 @@ class RegexTests: XCTestCase {
     let namesSplitPattern = "\\s*;\\s*";
     let splitNames = ["Harry Trump", "Fred Barney", "Helen Rigby", "Bill Abel", "Chris Hand"]
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testMatches() {
         XCTAssert(regex.matches(source))
         XCTAssert(source =~ regex)
@@ -54,7 +44,7 @@ class RegexTests: XCTestCase {
         XCTAssertEqual(RegexTests.pattern.r?.findFirst(source)?.group(2), digits)
     }
     
-    func testGroup(group:String, reference:String) {
+    func _testGroup(group:String, reference:String) {
         let matches = regex.findAll(source)
         for match in matches {
             let value = match.group(group)
@@ -63,15 +53,15 @@ class RegexTests: XCTestCase {
     }
     
     func testLetter() {
-        testGroup("letter", reference: letter)
+        _testGroup("letter", reference: letter)
     }
     
     func testDigits() {
-        testGroup("digits", reference: digits)
+        _testGroup("digits", reference: digits)
     }
     
     func testRest() {
-        testGroup("rest", reference: rest)
+        _testGroup("rest", reference: rest)
     }
     
     func testFirstMatch() {
@@ -163,17 +153,28 @@ class RegexTests: XCTestCase {
         XCTAssertNil(match.group(1))
         XCTAssertNotNil(match.group(2))
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
+
+#if os(Linux)
+extension RegexTests : XCTestCaseProvider {
+    var allTests : [(String, () throws -> Void)] {
+        return [
+            ("testMatches", testMatches),
+            ("testSimple", testSimple),
+            ("testLetter", testLetter),
+            ("testDigits", testDigits),
+            ("testRest", testRest),
+            ("testFirstMatch", testFirstMatch),
+            ("testReplaceAll", testReplaceAll),
+            ("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
+            ("testReplaceFirst", testReplaceFirst),
+            ("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
+            ("testSplit", testSplit),
+            ("testSplitOnString", testSplitOnString),
+            ("testSplitWithSubgroups", testSplitWithSubgroups),
+            ("testNonExistingGroup", testNonExistingGroup)
+        ]
+    }
+}
+#endif
+
