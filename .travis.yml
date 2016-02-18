@@ -36,6 +36,9 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
+        - env | grep PATH
+        - which swift-build
+        - which swift-test
         - swift build
         - swift test
       sudo: required
