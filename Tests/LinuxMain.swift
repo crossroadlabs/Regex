@@ -1,4 +1,4 @@
-//===--- main.swift -------------------------------------------------------===//
+//===--- LinuxMain.swift ---------------------------------------------------===//
 //Copyright (c) 2016 Daniel Leping (dileping)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,8 @@
 //===----------------------------------------------------------------------===//
 
 import XCTest
+
+@testable import Regextest
 
 XCTMain([
 	RegexTests(),
