@@ -1,35 +1,52 @@
-language: objective-c
-osx_image: xcode7.2
 env:
-  global: 
-    - FRAMEWORK_NAME=Regex
-    - secure: hsSJ4btmCIbNjAPyAOZvCAUUbupx9Obo0YIXkrQ/iteC4oWRv0g4TMh9Ie/zg9Cdn8P6QOlV2waoG4ZdCymW08/MASK5+Z+uRqAuAExF2l0NllbVTymEDKHkzGdId9EN4thj10TXrsq8kfTWg8O1As3r2Nl/H2lBmDK49DHZVU2cNl9EbgmALYS7CoZ2LwM/TnJgSvUB4l0yzPyz4veDNAgRvQ9iMXN1/gHsemZdcxrd9q3ce53+PRap2z9NUGQrpAefXCLjN8M8aKHExgr90aUxGz4DoHm+pRppMqFo9hIjEi0WQc+ikD3ExchxQH6LCCdTF20L5L0Sxj3AzhUsojDtB5zG9Rc8O/1UjzbcuHbdr0PC+0mSFuQzYsG009Zg1i6moeattmQOC/F/QYp/cXdlHT9K9T4dqh62Wp9lU/CeigJ6orKR9NgBuxEDOsObzNVoiRsqBn4fEOE2b+24XB7D8u4Twc7koRB1gG96JUFNWm5pSmM1WDzTJIlHTcxiU4iHMV/19mWnzJhYTLSXhXOhG1lO2FddeRlkKCuklWqcKvWWr6FnFA2uFxp17hM6YfVsvhDQiJ3Xd/byuNIVgkDuL80Jo/v7dkM8tElYeJsRGiRkZLtkOlIiRnWYTeFclNNSzJ14Ub/MT5W6wfEm/nqeY2G0w50Peu362XL2rFs=
-before_install:
-  - brew update
-  - brew unlink carthage
-  - brew install carthage
-  - brew link carthage
-before_script:
-  # bootstrap the dependencies for the project
-  # you can remove if you don't have dependencies
-  # - carthage bootstrap
-before_deploy:
-  - carthage build --no-skip-current
-  - carthage archive $FRAMEWORK_NAME
-  - pod trunk push CrossroadRegex.podspec
-script:
-- xcodebuild test -project Regex.xcodeproj -scheme Regex-OSX
-- xcodebuild test -project Regex.xcodeproj -scheme Regex-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
-- xcodebuild test -project Regex.xcodeproj -scheme Regex-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
-- xcodebuild build -project Regex.xcodeproj -scheme Regex-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
+  global:
+    - MODULE_NAME=Regex
+matrix:
+  include:
+    - script:
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
+        - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
+      os: osx
+      osx_image: xcode7.2
+      language: objective-c
+      env:
+        global:
+          - secure: hsSJ4btmCIbNjAPyAOZvCAUUbupx9Obo0YIXkrQ/iteC4oWRv0g4TMh9Ie/zg9Cdn8P6QOlV2waoG4ZdCymW08/MASK5+Z+uRqAuAExF2l0NllbVTymEDKHkzGdId9EN4thj10TXrsq8kfTWg8O1As3r2Nl/H2lBmDK49DHZVU2cNl9EbgmALYS7CoZ2LwM/TnJgSvUB4l0yzPyz4veDNAgRvQ9iMXN1/gHsemZdcxrd9q3ce53+PRap2z9NUGQrpAefXCLjN8M8aKHExgr90aUxGz4DoHm+pRppMqFo9hIjEi0WQc+ikD3ExchxQH6LCCdTF20L5L0Sxj3AzhUsojDtB5zG9Rc8O/1UjzbcuHbdr0PC+0mSFuQzYsG009Zg1i6moeattmQOC/F/QYp/cXdlHT9K9T4dqh62Wp9lU/CeigJ6orKR9NgBuxEDOsObzNVoiRsqBn4fEOE2b+24XB7D8u4Twc7koRB1gG96JUFNWm5pSmM1WDzTJIlHTcxiU4iHMV/19mWnzJhYTLSXhXOhG1lO2FddeRlkKCuklWqcKvWWr6FnFA2uFxp17hM6YfVsvhDQiJ3Xd/byuNIVgkDuL80Jo/v7dkM8tElYeJsRGiRkZLtkOlIiRnWYTeFclNNSzJ14Ub/MT5W6wfEm/nqeY2G0w50Peu362XL2rFs=
+      before_install:
+        - brew update
+        - brew unlink carthage
+        - brew install carthage
+        - brew link carthage
+      before_script:
+        # bootstrap the dependencies for the project
+        # you can remove if you don't have dependencies
+        # - carthage bootstrap
+      before_deploy:
+        - carthage build --no-skip-current
+        - carthage archive $MODULE_NAME
+        - pod trunk push CrossroadRegex.podspec
+      deploy:
+        provider: releases
+        api_key:
+          secure: bln+wxsxX4fV0egcGEnF4VJpQBBos+ZqqnO8j88HVeVqTVKjrcnICalowX8nxwX6KhXqnuZNZWacc4bl4bLbIlAns1EgxhsR/N0qeMnp0SpSasBUSulWSaC8R4G7I6hxtScxZhh3BtZbJq3iYMGNj27LhpKaTpXGWxk4YOWmZEm19v8vUrXBI7qPYLRbnlHXx8DwOC3vjotSlIMyNGBlmC/npZ3A3QH2CLZSW8seXEhSlTUzbQ9gY5nNs7/rjmDhkRnNtEnvEuZdUix5SuCD5WO7VMYY7+Y+O3XyGjeIrd22B04DXyL70XrfTjbFGaQAt7uRYXWbd9M4ONo762Ee5boRNCJKolD6hVzUp0eRY3cLZgGIoZDMqUXEX5N4ZF1PbULKyEWGfavB7kzLx1kw4P6unYJW5gZR3blreij+eaN9HAVGNzf++c7vGhbwiE+zsoRZEiriEtii/hRZZ//czmeiFn7t0TQo/PozEu9lSaRSeGsUXseX12lWg9VCAYADvVV1PIIkb/FfQ76WRtP8BMJgu/yjUSB7ZxDxkB4zPvJNRuD/V7z9HTD9GNEyRuAdpiJy++dVyjRkW/xMfbPTkUCp0AdqdzL4L8orF7Ur9v+o3mlzKMTtmWxFhNo0dhAK4WC/jdNVKxbpV9ObG9Ew4+Hi43a7r4yxneNZWA1SikM=
+        file: $MODULE_NAME.framework.zip
+        skip_cleanup: true
+        on:
+          repo: crossroadlabs/Regex
+          tags: true
+    - script: swift build
+      sudo: required
+      dist: trusty
+      language: generic
+      before_install:
+        - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+        - cd ..
+        - export SWIFT_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a
+        - wget https://swift.org/builds/development/ubuntu1404/$SWIFT_VERSION/$SWIFT_VERSION-ubuntu14.04.tar.gz
+        - tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
+        - export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
+        - cd $MODULE_NAME
 notifications:
   email: false
-deploy:
-  provider: releases
-  api_key:
-    secure: bln+wxsxX4fV0egcGEnF4VJpQBBos+ZqqnO8j88HVeVqTVKjrcnICalowX8nxwX6KhXqnuZNZWacc4bl4bLbIlAns1EgxhsR/N0qeMnp0SpSasBUSulWSaC8R4G7I6hxtScxZhh3BtZbJq3iYMGNj27LhpKaTpXGWxk4YOWmZEm19v8vUrXBI7qPYLRbnlHXx8DwOC3vjotSlIMyNGBlmC/npZ3A3QH2CLZSW8seXEhSlTUzbQ9gY5nNs7/rjmDhkRnNtEnvEuZdUix5SuCD5WO7VMYY7+Y+O3XyGjeIrd22B04DXyL70XrfTjbFGaQAt7uRYXWbd9M4ONo762Ee5boRNCJKolD6hVzUp0eRY3cLZgGIoZDMqUXEX5N4ZF1PbULKyEWGfavB7kzLx1kw4P6unYJW5gZR3blreij+eaN9HAVGNzf++c7vGhbwiE+zsoRZEiriEtii/hRZZ//czmeiFn7t0TQo/PozEu9lSaRSeGsUXseX12lWg9VCAYADvVV1PIIkb/FfQ76WRtP8BMJgu/yjUSB7ZxDxkB4zPvJNRuD/V7z9HTD9GNEyRuAdpiJy++dVyjRkW/xMfbPTkUCp0AdqdzL4L8orF7Ur9v+o3mlzKMTtmWxFhNo0dhAK4WC/jdNVKxbpV9ObG9Ew4+Hi43a7r4yxneNZWA1SikM=
-  file: $FRAMEWORK_NAME.framework.zip
-  skip_cleanup: true
-  on:
-    repo: crossroadlabs/Regex
-    tags: true
