@@ -36,7 +36,12 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
+        # make aliases (yes for now swift-build should be like this)
+        - alias swiftb="swift-build"
+        - alias swiftt="swift test"
+        # build
         - swiftb
+        # test
         - swiftt
       sudo: required
       dist: trusty
@@ -56,9 +61,6 @@ matrix:
         - export SWIFT_BUILD_PATH=`pwd`
         - export PATH=$SWIFT_BUILD_PATH/.build/debug:$PATH
         - cd ..
-        # make aliases (yes for now swift-build should be like this)
-        - alias swiftb="swift-build"
-        - alias swiftt="swift test"
         # get back home
         - cd $MODULE_NAME
 notifications:
