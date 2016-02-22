@@ -36,11 +36,7 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
-        # build (yes for now swift-build should be like this) 
-        - export SBCMD=`which swift-build`
-        - $SBCMD
-        # test
-        - swift test
+        - ./build test
       sudo: required
       dist: trusty
       language: generic
@@ -59,7 +55,10 @@ matrix:
         - export SWIFT_BUILD_PATH=`pwd`
         - export PATH=$SWIFT_BUILD_PATH/.build/debug:$PATH
         - cd ..
-        # get back home
+        # get crossroad build script
+        - wget https://raw.githubusercontent.com/crossroadlabs/utils/master/build
+        - chmod +x build
+	# get back home
         - cd $MODULE_NAME
 notifications:
   email: false
