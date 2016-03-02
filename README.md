@@ -12,6 +12,14 @@
 
 ## Advanced regular expressions for Swift
 
+## Goals
+
+[<img align="left" src="https://raw.githubusercontent.com/crossroadlabs/Express/master/logo-full.png" hspace="20" height=128>](https://github.com/crossroadlabs/Express) Regex library was mainly introduced to fulfill the needs of [Swift Express](https://github.com/crossroadlabs/Express) - web application server side framework for Swift.
+
+Still we hope it will be useful for everybody else.
+
+[Happy regexing ;)](#examples)
+
 ## Getting started
 
 ### Installation
@@ -127,10 +135,6 @@ let myString = "Hello 1 word. Sentence number 2."
 let splits = myString.split("(\\d)".r)
 //splits contains ["Hello ", "1", " word. Sentence number ", "2", "."]
 ```
-
-## Goals
-
-Regex framework was mainly introduced to fulfill the needs of [Swift Express](https://github.com/crossroadlabs/Express) - web application server side framework for Swift. Still we hope it will be useful for everybody else.
 
 ## Roadmap
 
