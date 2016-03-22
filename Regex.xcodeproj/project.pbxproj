@@ -694,7 +694,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Regex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/opt/icu4c/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -706,7 +705,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Tests/Regex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/opt/icu4c/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
