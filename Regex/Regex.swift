@@ -93,9 +93,9 @@ public class Regex : RegexType {
 
     private func replaceMatches<T: SequenceType where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
         var result = ""
-        var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
+        var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
-            result += source.substringWithRange(Range(start: lastRange.endIndex, end:match.range.startIndex))
+            result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
             if let replacement = replacer(match) {
                 result += replacement
             } else {
@@ -130,10 +130,10 @@ public class Regex : RegexType {
     public func split(source:String) -> [String] {
         var result = Array<String>()
         let matches = findAll(source)
-        var lastRange:StringRange = StringRange(start: source.startIndex, end: source.startIndex)
+        var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
             //extract the piece before the match
-            let range = StringRange(start: lastRange.endIndex, end: match.range.startIndex)
+            let range = lastRange.endIndex ..< match.range.startIndex
             let piece = source.substringWithRange(range)
             result.append(piece)
             lastRange = match.range

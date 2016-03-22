@@ -27,6 +27,6 @@ extension GroupRange {
             throw InvalidRangeError.Error
         }
         let start = source.startIndex.advancedBy(self.location)
-        return StringRange(start: start, end: start.advancedBy(self.length))
+        return start ..< start.advancedBy(self.length)
     }
 }
