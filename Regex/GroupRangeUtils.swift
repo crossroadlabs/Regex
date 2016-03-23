@@ -15,8 +15,9 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
+import Boilerplate
     
-enum InvalidRangeError : ErrorType {
+enum InvalidRangeError : ErrorProtocol {
     case Error
 }
 
@@ -26,7 +27,13 @@ extension GroupRange {
         if self.location < 0 || self.location >= len || self.location + self.length > len {
             throw InvalidRangeError.Error
         }
-        let start = source.startIndex.advancedBy(self.location)
-        return start ..< start.advancedBy(self.length)
+        #if swift(>=3.0)
+            let start = source.startIndex.advanced(by: self.location)
+            let end = start.advanced(by: self.length)
+        #else
+            let start = source.startIndex.advancedBy(self.location)
+            let end = start.advancedBy(self.length)
+        #endif
+        return start ..< end
     }
 }

@@ -94,7 +94,11 @@ class RegexTests: XCTestCase {
             if match.group(1) == "l" {
                 return nil
             } else {
-                return match.matched.uppercaseString
+                #if swift(>=3.0)
+                    return match.matched.uppercased()
+                #else
+                    return match.matched.uppercaseString
+                #endif
             }
         }
         XCTAssertEqual("l321321lA321A", replaced)
@@ -107,7 +111,11 @@ class RegexTests: XCTestCase {
     
     func testReplaceFirstWithReplacer() {
         let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
-            return match.matched.uppercaseString
+            #if swift(>=3.0)
+                return match.matched.uppercased()
+            #else
+                return match.matched.uppercaseString
+            #endif
         }
         XCTAssertEqual("L321321La321a", replaced1)
         
@@ -135,7 +143,7 @@ class RegexTests: XCTestCase {
     }
     
     func testNonExistingGroup() {
-        let PATH_REGEXP:Regex = [
+        let PATH_REGEXPS = [
             // Match escaped characters that would otherwise appear in future matches.
             // This allows the user to escape special characters that won't transform.
             "(\\\\.)",
@@ -146,7 +154,13 @@ class RegexTests: XCTestCase {
             // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
             // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
             "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))"
-            ].joinWithSeparator("|").r!
+            ]
+        
+        #if swift(>=3.0)
+            let PATH_REGEXP:Regex = PATH_REGEXPS.joined(separator: "|").r!
+        #else
+            let PATH_REGEXP:Regex = PATH_REGEXPS.joinWithSeparator("|").r!
+        #endif
         
         let match = PATH_REGEXP.findFirst("/:test(\\d+)?")!
         

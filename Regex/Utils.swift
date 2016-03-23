@@ -14,18 +14,36 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
+import Boilerplate
+
 public typealias StringRange = Range<String.Index>
 
-extension SequenceType where Generator.Element : Hashable {
-    var indexHash:Dictionary<Generator.Element, Int> {
-        get {
-            var result = Dictionary<Generator.Element, Int>()
-            var index = 0
-            for e in self {
-                result[e] = index
-                index += 1
+#if swift(>=3.0)
+    extension Sequence where Iterator.Element : Hashable {
+        var indexHash:Dictionary<Iterator.Element, Int> {
+            get {
+                var result = Dictionary<Iterator.Element, Int>()
+                var index = 0
+                for e in self {
+                    result[e] = index
+                    index += 1
+                }
+                return result
             }
-            return result
         }
     }
-}
+#else
+    extension Sequence where Generator.Element : Hashable {
+        var indexHash:Dictionary<Generator.Element, Int> {
+            get {
+                var result = Dictionary<Generator.Element, Int>()
+                var index = 0
+                for e in self {
+                    result[e] = index
+                    index += 1
+                }
+                return result
+            }
+        }
+    }
+#endif
