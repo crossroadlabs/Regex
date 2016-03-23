@@ -143,7 +143,7 @@ class RegexTests: XCTestCase {
     }
     
     func testNonExistingGroup() {
-        let PATH_REGEXPS = [
+        let PATH_REGEXP = [
             // Match escaped characters that would otherwise appear in future matches.
             // This allows the user to escape special characters that won't transform.
             "(\\\\.)",
@@ -154,13 +154,7 @@ class RegexTests: XCTestCase {
             // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
             // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
             "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))"
-            ]
-        
-        #if swift(>=3.0)
-            let PATH_REGEXP:Regex = PATH_REGEXPS.joined(separator: "|").r!
-        #else
-            let PATH_REGEXP:Regex = PATH_REGEXPS.joinWithSeparator("|").r!
-        #endif
+            ].joined(separator: "|").r!
         
         let match = PATH_REGEXP.findFirst("/:test(\\d+)?")!
         

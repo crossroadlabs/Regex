@@ -15,6 +15,7 @@
 		651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
 		651655221C53DAD200B613AB /* GroupRangeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* GroupRangeUtils.swift */; };
 		651655241C53DB1300B613AB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
+		65A922581CA3115700D40D22 /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F46D521CA2F1940035D171 /* Boilerplate.framework */; };
 		65A9B6351CA30661006E2237 /* Boilerplate.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65F46D521CA2F1940035D171 /* Boilerplate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A9B6361CA30661006E2237 /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65F46D541CA2F1940035D171 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65C529911C565EB9002BF559 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C529871C565EB8002BF559 /* Regex.framework */; };
@@ -141,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				651655071C53AB2000B613AB /* Regex.framework in Frameworks */,
+				65A922581CA3115700D40D22 /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +809,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Tests/Regex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
@@ -818,6 +824,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Tests/Regex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;

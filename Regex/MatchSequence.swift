@@ -48,11 +48,9 @@ public class MatchSequence : Sequence {
         return Iterator {
             if self.context.endIndex > index {
                 let result = Match(source: self.source, match: self.context[index], groupNames: self.groupNames)
-                #if swift(>=3.0)
-                    index = index.advanced(by: 1)
-                #else
-                    index = index.advancedBy(1)
-                #endif
+                
+                index = index.advanced(by: 1)
+                
                 return result
             } else {
                 return nil

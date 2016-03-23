@@ -113,22 +113,40 @@ public class Regex : RegexType {
             #endif
         }
     }
-
-    private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
-        var result = ""
-        var lastRange:StringRange = source.startIndex ..< source.startIndex
-        for match in matches {
-            result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
-            if let replacement = replacer(match) {
-                result += replacement
-            } else {
-                result += source.substringWithRange(match.range)
+    
+    #if swift(>=3.0)
+        private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
+            var result = ""
+            var lastRange:StringRange = source.startIndex ..< source.startIndex
+            for match in matches {
+                result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
+                if let replacement = replacer(match) {
+                    result += replacement
+                } else {
+                    result += source.substringWithRange(match.range)
+                }
+                lastRange = match.range
             }
-            lastRange = match.range
+            result += source.substringFromIndex(lastRange.endIndex)
+            return result
         }
-        result += source.substringFromIndex(lastRange.endIndex)
-        return result
-    }
+    #else
+        private func replaceMatches<T: Sequence where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
+            var result = ""
+            var lastRange:StringRange = source.startIndex ..< source.startIndex
+            for match in matches {
+                result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
+                if let replacement = replacer(match) {
+                    result += replacement
+                } else {
+                    result += source.substringWithRange(match.range)
+                }
+                lastRange = match.range
+            }
+            result += source.substringFromIndex(lastRange.endIndex)
+            return result
+        }
+    #endif
     
     public func matches(source:String) -> Bool {
         guard let _ = findFirst(source) else {
