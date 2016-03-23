@@ -94,11 +94,7 @@ class RegexTests: XCTestCase {
             if match.group(1) == "l" {
                 return nil
             } else {
-                #if swift(>=3.0)
-                    return match.matched.uppercased()
-                #else
-                    return match.matched.uppercaseString
-                #endif
+                return match.matched.uppercased()
             }
         }
         XCTAssertEqual("l321321lA321A", replaced)
@@ -111,11 +107,7 @@ class RegexTests: XCTestCase {
     
     func testReplaceFirstWithReplacer() {
         let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
-            #if swift(>=3.0)
-                return match.matched.uppercased()
-            #else
-                return match.matched.uppercaseString
-            #endif
+            return match.matched.uppercased()
         }
         XCTAssertEqual("L321321La321a", replaced1)
         

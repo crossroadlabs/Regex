@@ -119,15 +119,15 @@ public class Regex : RegexType {
             var result = ""
             var lastRange:StringRange = source.startIndex ..< source.startIndex
             for match in matches {
-                result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
+                result += source.substring(with: lastRange.endIndex ..< match.range.startIndex)
                 if let replacement = replacer(match) {
                     result += replacement
                 } else {
-                    result += source.substringWithRange(match.range)
+                    result += source.substring(with: match.range)
                 }
                 lastRange = match.range
             }
-            result += source.substringFromIndex(lastRange.endIndex)
+            result += source.substring(from: lastRange.endIndex)
             return result
         }
     #else
@@ -175,7 +175,7 @@ public class Regex : RegexType {
         for match in matches {
             //extract the piece before the match
             let range = lastRange.endIndex ..< match.range.startIndex
-            let piece = source.substringWithRange(range)
+            let piece = source.substring(with: range)
             result.append(piece)
             lastRange = match.range
             
@@ -186,13 +186,9 @@ public class Regex : RegexType {
             }
             
             //add subgroups
-            #if swift(>=3.0)
-                result.append(contentsOf: subgroups)
-            #else
-                result.appendContentsOf(subgroups)
-            #endif
+            result.append(contentsOf: subgroups)
         }
-        let rest = source.substringFromIndex(lastRange.endIndex)
+        let rest = source.substring(from: lastRange.endIndex)
         result.append(rest)
         return result
     }

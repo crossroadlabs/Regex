@@ -14,9 +14,20 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 import Boilerplate
 
 public typealias StringRange = Range<String.Index>
+
+#if swift(>=3.0)
+#else
+    extension NSTextCheckingResult {
+        public func range(at idx: Int) -> NSRange {
+            return rangeAtIndex(idx)
+        }
+    }
+#endif
 
 #if swift(>=3.0)
     extension Sequence where Iterator.Element : Hashable {
