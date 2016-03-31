@@ -20,7 +20,7 @@ import Boilerplate
 
 public typealias StringRange = Range<String.Index>
 
-#if swift(>=3.0)
+#if swift(>=3.0) && !os(Linux)
 #else
     extension NSTextCheckingResult {
         public func range(at idx: Int) -> NSRange {
