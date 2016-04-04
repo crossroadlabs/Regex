@@ -54,7 +54,7 @@ matrix:
         # - export SWIFT_BUILD_PATH=`pwd`
         # - export PATH=$SWIFT_BUILD_PATH/.build/debug:$PATH
         - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
-        - cd ..
+        # - cd ..
         # get back home
         - cd $MODULE_NAME
         # get crossroad build script
