@@ -94,7 +94,7 @@ class RegexTests: XCTestCase {
             if match.group(1) == "l" {
                 return nil
             } else {
-                return match.matched.uppercaseString
+                return match.matched.uppercased()
             }
         }
         XCTAssertEqual("l321321lA321A", replaced)
@@ -107,7 +107,7 @@ class RegexTests: XCTestCase {
     
     func testReplaceFirstWithReplacer() {
         let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
-            return match.matched.uppercaseString
+            return match.matched.uppercased()
         }
         XCTAssertEqual("L321321La321a", replaced1)
         
@@ -135,7 +135,7 @@ class RegexTests: XCTestCase {
     }
     
     func testNonExistingGroup() {
-        let PATH_REGEXP:Regex = [
+        let PATH_REGEXP = [
             // Match escaped characters that would otherwise appear in future matches.
             // This allows the user to escape special characters that won't transform.
             "(\\\\.)",
@@ -146,7 +146,7 @@ class RegexTests: XCTestCase {
             // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
             // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
             "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))"
-            ].joinWithSeparator("|").r!
+            ].joined(separator: "|").r!
         
         let match = PATH_REGEXP.findFirst("/:test(\\d+)?")!
         
@@ -156,25 +156,24 @@ class RegexTests: XCTestCase {
 }
 
 #if os(Linux)
-extension RegexTests : XCTestCaseProvider {
-    var allTests : [(String, () throws -> Void)] {
-        return [
-            ("testMatches", testMatches),
-            ("testSimple", testSimple),
-            ("testLetter", testLetter),
-            ("testDigits", testDigits),
-            ("testRest", testRest),
-            ("testFirstMatch", testFirstMatch),
-            ("testReplaceAll", testReplaceAll),
-            ("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
-            ("testReplaceFirst", testReplaceFirst),
-            ("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
-            ("testSplit", testSplit),
-            ("testSplitOnString", testSplitOnString),
-            ("testSplitWithSubgroups", testSplitWithSubgroups),
-            ("testNonExistingGroup", testNonExistingGroup)
-        ]
-    }
+extension RegexTests {
+	static var allTests : [(String, RegexTests -> () throws -> Void)] {
+		return [
+			("testMatches", testMatches),
+			("testSimple", testSimple),
+			("testLetter", testLetter),
+			("testDigits", testDigits),
+			("testRest", testRest),
+			("testFirstMatch", testFirstMatch),
+			("testReplaceAll", testReplaceAll),
+			("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
+			("testReplaceFirst", testReplaceFirst),
+			("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
+			("testSplit", testSplit),
+			("testSplitOnString", testSplitOnString),
+			("testSplitWithSubgroups", testSplitWithSubgroups),
+			("testNonExistingGroup", testNonExistingGroup),
+		]
+	}
 }
 #endif
-

@@ -9,19 +9,18 @@ matrix:
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
         - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
       os: osx
-      osx_image: xcode7.2
+      osx_image: xcode7.3
       language: objective-c
       env:
         - secure: hsSJ4btmCIbNjAPyAOZvCAUUbupx9Obo0YIXkrQ/iteC4oWRv0g4TMh9Ie/zg9Cdn8P6QOlV2waoG4ZdCymW08/MASK5+Z+uRqAuAExF2l0NllbVTymEDKHkzGdId9EN4thj10TXrsq8kfTWg8O1As3r2Nl/H2lBmDK49DHZVU2cNl9EbgmALYS7CoZ2LwM/TnJgSvUB4l0yzPyz4veDNAgRvQ9iMXN1/gHsemZdcxrd9q3ce53+PRap2z9NUGQrpAefXCLjN8M8aKHExgr90aUxGz4DoHm+pRppMqFo9hIjEi0WQc+ikD3ExchxQH6LCCdTF20L5L0Sxj3AzhUsojDtB5zG9Rc8O/1UjzbcuHbdr0PC+0mSFuQzYsG009Zg1i6moeattmQOC/F/QYp/cXdlHT9K9T4dqh62Wp9lU/CeigJ6orKR9NgBuxEDOsObzNVoiRsqBn4fEOE2b+24XB7D8u4Twc7koRB1gG96JUFNWm5pSmM1WDzTJIlHTcxiU4iHMV/19mWnzJhYTLSXhXOhG1lO2FddeRlkKCuklWqcKvWWr6FnFA2uFxp17hM6YfVsvhDQiJ3Xd/byuNIVgkDuL80Jo/v7dkM8tElYeJsRGiRkZLtkOlIiRnWYTeFclNNSzJ14Ub/MT5W6wfEm/nqeY2G0w50Peu362XL2rFs=
       before_install:
         - brew update
-        - brew unlink carthage
-        - brew install carthage
-        - brew link carthage
+        - brew outdated carthage || brew upgrade carthage
+        # - brew outdated xctool || brew upgrade xctool
       before_script:
         # bootstrap the dependencies for the project
         # you can remove if you don't have dependencies
-        # - carthage bootstrap
+        - carthage bootstrap
       before_deploy:
         - carthage build --no-skip-current
         - carthage archive $MODULE_NAME
@@ -44,17 +43,11 @@ matrix:
         # install original swift distribution
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
-        - export SWIFT_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a
+        - export SWIFT_VERSION="swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a"
         - wget https://swift.org/builds/development/ubuntu1404/$SWIFT_VERSION/$SWIFT_VERSION-ubuntu14.04.tar.gz
         - tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
         - export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
-        # install latest package manager with `swift-test`
-        - git clone https://github.com/apple/swift-package-manager
-        - cd swift-package-manager
-        - Utilities/bootstrap
-        - export SWIFT_BUILD_PATH=`pwd`
-        - export PATH=$SWIFT_BUILD_PATH/.build/debug:$PATH
-        - cd ..
+        - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
         # get back home
         - cd $MODULE_NAME
         # get crossroad build script
