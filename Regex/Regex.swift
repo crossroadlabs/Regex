@@ -60,23 +60,13 @@ public class Regex : RegexType {
     
     private static func compile(pattern:String) throws -> CompiledPattern {
         //pass options
-        #if swift(>=3.0)
-            let options = NSRegularExpressionOptions.caseInsensitive
-        #else
-            let options = NSRegularExpressionOptions.CaseInsensitive
-        #endif
-        
-        return try NSRegularExpression(pattern: pattern, options: options)
+        return try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.caseInsensitive)
     }
     
     public func findAll(source:String) -> MatchSequence {
         let options = NSMatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
-        #if swift(>=3.0)
-            let context = compiled?.matches(in: source, options: options, range: range)
-        #else
-            let context = compiled?.matchesInString(source, options: options, range: range)
-        #endif
+        let context = compiled?.matches(in: source, options: options, range: range)
         //hard unwrap of context, because the instance would not exist without it
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
     }
@@ -84,11 +74,7 @@ public class Regex : RegexType {
     public func findFirst(source:String) -> Match? {
         let options = NSMatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
-        #if swift(>=3.0)
-            let match = compiled?.firstMatch(in: source, options: options, range: range)
-        #else
-            let match = compiled?.firstMatchInString(source, options: options, range: range)
-        #endif
+        let match = compiled?.firstMatch(in: source, options: options, range: range)
         return match.map { match in
             Match(source: source, match: match, groupNames: groupNames)
         }
@@ -97,23 +83,17 @@ public class Regex : RegexType {
     public func replaceAll(source:String, replacement:String) -> String {
         let options = NSMatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
-        #if swift(>=3.0)
-            return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
-        #else
-            return compiled!.stringByReplacingMatchesInString(source, options: options, range: range, withTemplate: replacement)
-        #endif
+        
+        return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
     
     public func replaceFirst(source:String, replacement:String) -> String {
         return replaceFirst(source) { match in
-            #if swift(>=3.0)
-                return self.compiled!.replacementString(for: match.match, in: source, offset: 0, template: replacement)
-            #else
-                return self.compiled!.replacementStringForResult(match.match, inString: source, offset: 0, template: replacement)
-            #endif
+            return self.compiled!.replacementString(for: match.match, in: source, offset: 0, template: replacement)
         }
     }
     
+    // Both functions the same. But in swift we can't ifdef only function declaration.
     #if swift(>=3.0)
         private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
             var result = ""
@@ -135,15 +115,15 @@ public class Regex : RegexType {
             var result = ""
             var lastRange:StringRange = source.startIndex ..< source.startIndex
             for match in matches {
-                result += source.substringWithRange(lastRange.endIndex ..< match.range.startIndex)
+                result += source.substring(with: lastRange.endIndex ..< match.range.startIndex)
                 if let replacement = replacer(match) {
                     result += replacement
                 } else {
-                    result += source.substringWithRange(match.range)
+                    result += source.substring(with: match.range)
                 }
                 lastRange = match.range
             }
-            result += source.substringFromIndex(lastRange.endIndex)
+            result += source.substring(from: lastRange.endIndex)
             return result
         }
     #endif

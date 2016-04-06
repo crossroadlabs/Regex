@@ -16,8 +16,8 @@
 
 import XCTest
 
-@testable import Regextest
+@testable import RegexTestSuite
 
 XCTMain([
-	RegexTests(),
+	testCase(RegexTests.allTests),
 ])
