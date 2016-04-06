@@ -21,15 +21,9 @@ matrix:
         # bootstrap the dependencies for the project
         # you can remove if you don't have dependencies
         - carthage bootstrap
-      before_deploy:
-        - carthage build --no-skip-current
-        - carthage archive $MODULE_NAME
-        - pod trunk push CrossroadRegex.podspec
       deploy:
-        provider: releases
-        api_key:
-          secure: bln+wxsxX4fV0egcGEnF4VJpQBBos+ZqqnO8j88HVeVqTVKjrcnICalowX8nxwX6KhXqnuZNZWacc4bl4bLbIlAns1EgxhsR/N0qeMnp0SpSasBUSulWSaC8R4G7I6hxtScxZhh3BtZbJq3iYMGNj27LhpKaTpXGWxk4YOWmZEm19v8vUrXBI7qPYLRbnlHXx8DwOC3vjotSlIMyNGBlmC/npZ3A3QH2CLZSW8seXEhSlTUzbQ9gY5nNs7/rjmDhkRnNtEnvEuZdUix5SuCD5WO7VMYY7+Y+O3XyGjeIrd22B04DXyL70XrfTjbFGaQAt7uRYXWbd9M4ONo762Ee5boRNCJKolD6hVzUp0eRY3cLZgGIoZDMqUXEX5N4ZF1PbULKyEWGfavB7kzLx1kw4P6unYJW5gZR3blreij+eaN9HAVGNzf++c7vGhbwiE+zsoRZEiriEtii/hRZZ//czmeiFn7t0TQo/PozEu9lSaRSeGsUXseX12lWg9VCAYADvVV1PIIkb/FfQ76WRtP8BMJgu/yjUSB7ZxDxkB4zPvJNRuD/V7z9HTD9GNEyRuAdpiJy++dVyjRkW/xMfbPTkUCp0AdqdzL4L8orF7Ur9v+o3mlzKMTtmWxFhNo0dhAK4WC/jdNVKxbpV9ObG9Ew4+Hi43a7r4yxneNZWA1SikM=
-        file: $MODULE_NAME.framework.zip
+        provider: script
+        script: pod trunk push CrossroadRegex.podspec
         skip_cleanup: true
         on:
           repo: crossroadlabs/Regex
@@ -43,18 +37,11 @@ matrix:
         # install original swift distribution
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
-        - export SWIFT_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-03-16-a
+        - export SWIFT_VERSION="swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a"
         - wget https://swift.org/builds/development/ubuntu1404/$SWIFT_VERSION/$SWIFT_VERSION-ubuntu14.04.tar.gz
         - tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
         - export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
-        # install latest package manager with `swift-test`
-        - git clone https://github.com/apple/swift-package-manager
-        - cd swift-package-manager
-        - Utilities/bootstrap
-        - export SWIFT_BUILD_PATH=`pwd`
-        - export PATH=$SWIFT_BUILD_PATH/.build/debug:$PATH
         - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
-        - cd ..
         # get back home
         - cd $MODULE_NAME
         # get crossroad build script
