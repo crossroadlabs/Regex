@@ -14,6 +14,8 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 public protocol MatchType {
     var source:String {get}
     
@@ -60,7 +62,9 @@ public class Match : MatchType {
             var result = Array<StringRange?>()
             for i in 0..<match.numberOfRanges {
                 //subrange can be empty
-                let stringRange = try? match.rangeAtIndex(i).toStringRange(source)
+                
+                let stringRange = try? match.range(at: i).toStringRange(source)
+                
                 result.append(stringRange)
             }
             return result
@@ -68,13 +72,12 @@ public class Match : MatchType {
     }
     
     public func range(atIndex:Int) -> StringRange? {
-        //subrange can be empty
-        return try? match.rangeAtIndex(atIndex).toStringRange(source)
+        return try? match.range(at: atIndex).toStringRange(source)
     }
     
     public func range(byName:String) -> StringRange? {
         //subrange can be empty
-        return try? match.rangeAtIndex(groupIndex(byName)).toStringRange(source)
+        return try? match.range(at: groupIndex(byName)).toStringRange(source)
     }
 
     public var matched:String {
@@ -86,9 +89,11 @@ public class Match : MatchType {
     
     public var subgroups:[String?] {
         get {
-            return ranges.suffixFrom(1).map { range in
+            
+            let subRanges = ranges.suffix(from: 1)
+            return subRanges.map { range in
                 range.map { range in
-                    source.substringWithRange(range)
+                    source.substring(with: range)
                 }
             }
         }
@@ -97,7 +102,7 @@ public class Match : MatchType {
     public func group(atIndex:Int) -> String? {
         let range = self.range(atIndex)
         return range.map { range in
-            source.substringWithRange(range)
+            source.substring(with: range)
         }
     }
     
