@@ -156,25 +156,24 @@ class RegexTests: XCTestCase {
 }
 
 #if os(Linux)
-extension RegexTests : XCTestCaseProvider {
-    var allTests : [(String, () throws -> Void)] {
-        return [
-            ("testMatches", testMatches),
-            ("testSimple", testSimple),
-            ("testLetter", testLetter),
-            ("testDigits", testDigits),
-            ("testRest", testRest),
-            ("testFirstMatch", testFirstMatch),
-            ("testReplaceAll", testReplaceAll),
-            ("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
-            ("testReplaceFirst", testReplaceFirst),
-            ("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
-            ("testSplit", testSplit),
-            ("testSplitOnString", testSplitOnString),
-            ("testSplitWithSubgroups", testSplitWithSubgroups),
-            ("testNonExistingGroup", testNonExistingGroup)
-        ]
-    }
+extension RegexTests {
+	static var allTests : [(String, RegexTests -> () throws -> Void)] {
+		return [
+			("testMatches", testMatches),
+			("testSimple", testSimple),
+			("testLetter", testLetter),
+			("testDigits", testDigits),
+			("testRest", testRest),
+			("testFirstMatch", testFirstMatch),
+			("testReplaceAll", testReplaceAll),
+			("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
+			("testReplaceFirst", testReplaceFirst),
+			("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
+			("testSplit", testSplit),
+			("testSplitOnString", testSplitOnString),
+			("testSplitWithSubgroups", testSplitWithSubgroups),
+			("testNonExistingGroup", testNonExistingGroup),
+		]
+	}
 }
 #endif
-
