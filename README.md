@@ -52,6 +52,10 @@ github "crossroadlabs/Regex"
 
 Run `carthage update` and follow the steps as described in Carthage's [README](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
 
+#### Manually
+1. Download and drop ```/Regex``` folder in your project.  
+2. Congratulations! 
+
 ### Examples
 
 #### Hello Regex:
