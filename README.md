@@ -142,6 +142,8 @@ let splits = myString.split("(\\d)".r)
 
 ## Changelog
 
+* v0.6
+	* Swift 3.0 support
 * v0.5.1
 	* Minor linux build related fixes
 * v0.5
