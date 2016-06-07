@@ -21,6 +21,8 @@ import Boilerplate
 public protocol RegexType {
     init(pattern:String, groupNames:[String]) throws
     init(pattern:String, groupNames:String...) throws
+    init(pattern:String, options:RegexOptions, groupNames:[String]) throws
+    init(pattern:String, options:RegexOptions, groupNames:String...) throws
     
     var pattern:String {get}
     var groupNames:[String] {get}
@@ -43,24 +45,32 @@ public class Regex : RegexType {
     public let groupNames:[String]
     private let compiled:CompiledPattern?
     
-    public required init(pattern:String, groupNames:[String]) throws {
+    public required init(pattern:String, options:RegexOptions, groupNames:[String]) throws {
         self.pattern = pattern
         self.groupNames = groupNames
         do {
-            self.compiled = try self.dynamicType.compile(pattern)
+            self.compiled = try self.dynamicType.compile(pattern, options: options)
         } catch let e {
             self.compiled = nil
             throw e
         }
     }
     
-    public required convenience init(pattern:String, groupNames:String...) throws {
+    public required convenience init(pattern:String, options:RegexOptions, groupNames:String...) throws {
+        try self.init(pattern:pattern, options: options, groupNames:groupNames)
+    }
+    
+    public required convenience init(pattern: String, groupNames: [String]) throws {
+        try self.init(pattern:pattern, options: .defaultOptions, groupNames:groupNames)
+    }
+    
+    public required convenience init(pattern: String, groupNames: String...) throws {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
     
-    private static func compile(pattern:String) throws -> CompiledPattern {
+    private static func compile(pattern:String, options:RegexOptions) throws -> CompiledPattern {
         //pass options
-        return try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.caseInsensitive)
+        return try NSRegularExpression(pattern: pattern, options: options.ns)
     }
     
     public func findAll(source:String) -> MatchSequence {

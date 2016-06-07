@@ -15,6 +15,10 @@
 		651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516551F1C53CCAC00B613AB /* MatchSequence.swift */; };
 		651655221C53DAD200B613AB /* GroupRangeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* GroupRangeUtils.swift */; };
 		651655241C53DB1300B613AB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
+		6558DA641D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
+		6558DA651D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
+		6558DA661D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
+		6558DA671D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
 		65A918611CA33B220015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; };
 		65A918621CA33B290015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; };
 		65A918641CA33D400015722B /* Boilerplate.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -134,6 +138,7 @@
 		6516551F1C53CCAC00B613AB /* MatchSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchSequence.swift; sourceTree = "<group>"; };
 		651655211C53DAD200B613AB /* GroupRangeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRangeUtils.swift; sourceTree = "<group>"; };
 		651655231C53DB1300B613AB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		6558DA631D0742F000989628 /* RegexOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexOptions.swift; sourceTree = "<group>"; };
 		65A918491CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
 		65A9184C1CA33B0B0015722B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 		65A9184F1CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
@@ -242,6 +247,7 @@
 			children = (
 				651655011C53AB2000B613AB /* Info.plist */,
 				651655161C53AB3F00B613AB /* Regex.swift */,
+				6558DA631D0742F000989628 /* RegexOptions.swift */,
 				6516551D1C53C05C00B613AB /* Match.swift */,
 				6516551F1C53CCAC00B613AB /* MatchSequence.swift */,
 				651655181C53ABC500B613AB /* String+Regex.swift */,
@@ -587,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6558DA641D0742F000989628 /* RegexOptions.swift in Sources */,
 				651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */,
 				651655191C53ABC500B613AB /* String+Regex.swift in Sources */,
 				651655171C53AB3F00B613AB /* Regex.swift in Sources */,
@@ -610,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6558DA651D0742F000989628 /* RegexOptions.swift in Sources */,
 				65C529A11C5660E4002BF559 /* MatchSequence.swift in Sources */,
 				96D1547F1C6CE42E00F9A981 /* PlatformTypes.swift in Sources */,
 				65C5299F1C5660DD002BF559 /* Regex.swift in Sources */,
@@ -633,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6558DA661D0742F000989628 /* RegexOptions.swift in Sources */,
 				65C529D01C566573002BF559 /* MatchSequence.swift in Sources */,
 				96D154801C6CE42F00F9A981 /* PlatformTypes.swift in Sources */,
 				65C529CE1C56656D002BF559 /* Regex.swift in Sources */,
@@ -656,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6558DA671D0742F000989628 /* RegexOptions.swift in Sources */,
 				65C529E41C566A25002BF559 /* MatchSequence.swift in Sources */,
 				96D154811C6CE43000F9A981 /* PlatformTypes.swift in Sources */,
 				65C529E21C566A25002BF559 /* Regex.swift in Sources */,
