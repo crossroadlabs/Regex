@@ -33,7 +33,14 @@ public struct RegexOptions : OptionSet {
     public static let none:RegexOptions = []
 }
 
-extension NSRegularExpressionOptions : Hashable {
+//keep it. Unfortunately Swift 2.2 can not use RegularExpression.Options in extension somehow
+#if swift(>=3.0)
+    private typealias RegularExpressionOptions = RegularExpression.Options
+#else
+    private typealias RegularExpressionOptions = NSRegularExpressionOptions
+#endif
+
+extension RegularExpressionOptions : Hashable {
     public var hashValue: Int {
         get {
             return Int(rawValue)
@@ -49,21 +56,21 @@ extension RegexOptions : Hashable {
     }
 }
 
-private let nsToRegexOptionsMap:Dictionary<NSRegularExpressionOptions, RegexOptions> = [
-    .CaseInsensitive:.caseInsensitive,
-    .AllowCommentsAndWhitespace:.allowCommentsAndWhitespace,
-    .IgnoreMetacharacters:.ignoreMetacharacters,
-    .DotMatchesLineSeparators:.dotMatchesLineSeparators,
-    .AnchorsMatchLines:.anchorsMatchLines,
-    .UseUnixLineSeparators:.useUnixLineSeparators,
-    .UseUnicodeWordBoundaries:.useUnicodeWordBoundaries]
+private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptions> = [
+    .caseInsensitive:.caseInsensitive,
+    .allowCommentsAndWhitespace:.allowCommentsAndWhitespace,
+    .ignoreMetacharacters:.ignoreMetacharacters,
+    .dotMatchesLineSeparators:.dotMatchesLineSeparators,
+    .anchorsMatchLines:.anchorsMatchLines,
+    .useUnixLineSeparators:.useUnixLineSeparators,
+    .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, NSRegularExpressionOptions> = nsToRegexOptionsMap.map { (key, value) in
+private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.map { (key, value) in
         (value, key)
     }^
 
 public extension RegexOptions {
-    public var ns:NSRegularExpressionOptions {
+    public var ns:RegularExpression.Options {
         get {
             let nsSeq = regexToNSOptionsMap.filter { (regex, _) in
                 self.contains(regex)
@@ -71,12 +78,12 @@ public extension RegexOptions {
                 ns
             }
             
-            return NSRegularExpressionOptions(nsSeq)
+            return RegularExpression.Options(nsSeq)
         }
     }
 }
 
-public extension NSRegularExpressionOptions {
+public extension RegularExpressionOptions {
     public var regex:RegexOptions {
         get {
             let regexSeq = nsToRegexOptionsMap.filter { (ns, _) in

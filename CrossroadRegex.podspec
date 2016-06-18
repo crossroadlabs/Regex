@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Regex/*.swift'
   
-  s.dependency 'Boilerplate', '~> 0.1'
+  s.dependency 'Boilerplate', '~> 0.2'
 
   s.requires_arc = true
 end

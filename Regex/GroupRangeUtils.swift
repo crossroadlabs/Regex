@@ -22,14 +22,14 @@ enum InvalidRangeError : ErrorProtocol {
 }
 
 extension GroupRange {
-    func toStringRange(source:String) throws -> StringRange {
+    func asRange(ofString source:String) throws -> StringRange {
         let len = source.characters.count
         if self.location < 0 || self.location >= len || self.location + self.length > len {
             throw InvalidRangeError.Error
         }
         
-        let start = source.startIndex.advanced(by: self.location)
-        let end = start.advanced(by: self.length)
+        let start = source.index(source.startIndex, offsetBy: self.location)
+        let end = source.index(start, offsetBy: self.length)
         
         return start ..< end
     }

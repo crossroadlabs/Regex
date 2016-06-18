@@ -19,5 +19,5 @@ import PackageDescription
 let package = Package(
     name: "Regex",
     targets: [Target(name: "Regex")],
-    dependencies: [.Package(url: "https://github.com/crossroadlabs/Boilerplate.git", majorVersion: 0)]
+    dependencies: [.Package(url: "https://github.com/crossroadlabs/Boilerplate.git", majorVersion: 0, minor: 2)]
 )

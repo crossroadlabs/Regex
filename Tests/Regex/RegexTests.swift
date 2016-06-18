@@ -41,36 +41,36 @@ class RegexTests: XCTestCase {
     }
     
     func testSimple() {
-        XCTAssertEqual(RegexTests.pattern.r?.findFirst(source)?.group(2), digits)
+        XCTAssertEqual(RegexTests.pattern.r?.findFirst(in: source)?.group(at: 2), digits)
     }
     
-    func _testGroup(group:String, reference:String) {
-        let matches = regex.findAll(source)
+    func _test(group name:String, reference:String) {
+        let matches = regex.findAll(in: source)
         for match in matches {
-            let value = match.group(group)
+            let value = match.group(named: name)
             XCTAssertEqual(value, reference)
         }
     }
     
     func testLetter() {
-        _testGroup("letter", reference: letter)
+        _test(group: "letter", reference: letter)
     }
     
     func testDigits() {
-        _testGroup("digits", reference: digits)
+        _test(group: "digits", reference: digits)
     }
     
     func testRest() {
-        _testGroup("rest", reference: rest)
+        _test(group: "rest", reference: rest)
     }
     
     func testFirstMatch() {
-        let match = regex.findFirst(source)
+        let match = regex.findFirst(in: source)
         XCTAssertNotNil(match)
         if let match = match {
-            XCTAssertEqual(letter, match.group("letter"))
-            XCTAssertEqual(digits, match.group("digits"))
-            XCTAssertEqual(rest, match.group("rest"))
+            XCTAssertEqual(letter, match.group(named: "letter"))
+            XCTAssertEqual(digits, match.group(named: "digits"))
+            XCTAssertEqual(rest, match.group(named: "rest"))
             
             XCTAssertEqual(source, match.matched)
             
@@ -85,13 +85,13 @@ class RegexTests: XCTestCase {
     }
     
     func testReplaceAll() {
-        let replaced = regex.replaceAll(source, replacement: replaceAllTemplate)
+        let replaced = regex.replaceAll(in: source, with: replaceAllTemplate)
         XCTAssertEqual(replaceAllResult, replaced)
     }
     
     func testReplaceAllWithReplacer() {
-        let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll("l321321la321a") { match in
-            if match.group(1) == "l" {
+        let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll(in: "l321321la321a") { match in
+            if match.group(at: 1) == "l" {
                 return nil
             } else {
                 return match.matched.uppercased()
@@ -101,17 +101,17 @@ class RegexTests: XCTestCase {
     }
     
     func testReplaceFirst() {
-        let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a", replacement: "$1-$2-$3-")
+        let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst(in: "l321321la321a", with: "$1-$2-$3-")
         XCTAssertEqual("l-321321-l-a321a", replaced)
     }
     
     func testReplaceFirstWithReplacer() {
-        let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
+        let replaced1 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst(in: "l321321la321a") { match in
             return match.matched.uppercased()
         }
         XCTAssertEqual("L321321La321a", replaced1)
         
-        let replaced2 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst("l321321la321a") { match in
+        let replaced2 = "(.+?)([1,2,3]+)(.+?)".r?.replaceFirst(in: "l321321la321a") { match in
             return nil
         }
         XCTAssertEqual("l321321la321a", replaced2)
@@ -124,13 +124,13 @@ class RegexTests: XCTestCase {
     }
     
     func testSplitOnString() {
-        let nameList = names.split(namesSplitPattern.r)
+        let nameList = names.split(using: namesSplitPattern.r)
         XCTAssertEqual(nameList, splitNames)
     }
     
     func testSplitWithSubgroups() {
         let myString = "Hello 1 word. Sentence number 2."
-        let splits = myString.split("(\\d)".r)
+        let splits = myString.split(using: "(\\d)".r)
         XCTAssertEqual(splits, ["Hello ", "1", " word. Sentence number ", "2", "."])
     }
     
@@ -148,10 +148,10 @@ class RegexTests: XCTestCase {
             "([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))"
             ].joined(separator: "|").r!
         
-        let match = PATH_REGEXP.findFirst("/:test(\\d+)?")!
+        let match = PATH_REGEXP.findFirst(in: "/:test(\\d+)?")!
         
-        XCTAssertNil(match.group(1))
-        XCTAssertNotNil(match.group(2))
+        XCTAssertNil(match.group(at: 1))
+        XCTAssertNotNil(match.group(at: 2))
     }
 }
 

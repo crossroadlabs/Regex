@@ -27,17 +27,17 @@ public protocol RegexType {
     var pattern:String {get}
     var groupNames:[String] {get}
     
-    func matches(source:String) -> Bool
+    func matches(_ source:String) -> Bool
     
-    func findAll(source:String) -> MatchSequence
-    func findFirst(source:String) -> Match?
+    func findAll(in source:String) -> MatchSequence
+    func findFirst(in source:String) -> Match?
     
-    func replaceAll(source:String, replacement:String) -> String
-    func replaceAll(source:String, replacer:Match -> String?) -> String
-    func replaceFirst(source:String, replacement:String) -> String
-    func replaceFirst(source:String, replacer:Match -> String?) -> String
+    func replaceAll(in source:String, with replacement:String) -> String
+    func replaceAll(in source:String, using replacer:(Match) -> String?) -> String
+    func replaceFirst(in source:String, with replacement:String) -> String
+    func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String
     
-    func split(source:String) -> [String]
+    func split(_ source:String) -> [String]
 }
 
 public class Regex : RegexType {
@@ -49,7 +49,7 @@ public class Regex : RegexType {
         self.pattern = pattern
         self.groupNames = groupNames
         do {
-            self.compiled = try self.dynamicType.compile(pattern, options: options)
+            self.compiled = try self.dynamicType.compile(pattern: pattern, options: options)
         } catch let e {
             self.compiled = nil
             throw e
@@ -68,21 +68,21 @@ public class Regex : RegexType {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
     
-    private static func compile(pattern:String, options:RegexOptions) throws -> CompiledPattern {
+    private static func compile(pattern pattern:String, options:RegexOptions) throws -> CompiledPattern {
         //pass options
-        return try NSRegularExpression(pattern: pattern, options: options.ns)
+        return try RegularExpression(pattern: pattern, options: options.ns)
     }
     
-    public func findAll(source:String) -> MatchSequence {
-        let options = NSMatchingOptions(rawValue: 0)
+    public func findAll(in source:String) -> MatchSequence {
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
         let context = compiled?.matches(in: source, options: options, range: range)
         //hard unwrap of context, because the instance would not exist without it
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
     }
     
-    public func findFirst(source:String) -> Match? {
-        let options = NSMatchingOptions(rawValue: 0)
+    public func findFirst(in source:String) -> Match? {
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
         let match = compiled?.firstMatch(in: source, options: options, range: range)
         return match.map { match in
@@ -90,26 +90,26 @@ public class Regex : RegexType {
         }
     }
     
-    public func replaceAll(source:String, replacement:String) -> String {
-        let options = NSMatchingOptions(rawValue: 0)
+    public func replaceAll(in source:String, with replacement:String) -> String {
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
         
         return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
     
-    public func replaceFirst(source:String, replacement:String) -> String {
-        return replaceFirst(source) { match in
+    public func replaceFirst(in source:String, with replacement:String) -> String {
+        return replaceFirst(in: source) { match in
             return self.compiled!.replacementString(for: match.match, in: source, offset: 0, template: replacement)
         }
     }
     
     // Both functions the same. But in swift we can't ifdef only function declaration.
     #if swift(>=3.0)
-        private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
+        private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(in source:String, matches:T, using replacer:(Match) -> String?) -> String {
             var result = ""
             var lastRange:StringRange = source.startIndex ..< source.startIndex
             for match in matches {
-                result += source.substring(with: lastRange.endIndex ..< match.range.startIndex)
+                result += source.substring(with: lastRange.upperBound ..< match.range.lowerBound)
                 if let replacement = replacer(match) {
                     result += replacement
                 } else {
@@ -117,11 +117,11 @@ public class Regex : RegexType {
                 }
                 lastRange = match.range
             }
-            result += source.substring(from: lastRange.endIndex)
+            result += source.substring(from: lastRange.upperBound)
             return result
         }
     #else
-        private func replaceMatches<T: Sequence where T.Generator.Element : Match>(source:String, matches:T, replacer:Match -> String?) -> String {
+        private func replaceMatches<T: Sequence where T.Generator.Element : Match>(in source:String, matches:T, using replacer:Match -> String?) -> String {
             var result = ""
             var lastRange:StringRange = source.startIndex ..< source.startIndex
             for match in matches {
@@ -138,33 +138,33 @@ public class Regex : RegexType {
         }
     #endif
     
-    public func matches(source:String) -> Bool {
-        guard let _ = findFirst(source) else {
+    public func matches(_ source:String) -> Bool {
+        guard let _ = findFirst(in: source) else {
             return false
         }
         return true
     }
     
-    public func replaceAll(source:String, replacer:Match -> String?) -> String {
-        let matches = findAll(source)
-        return replaceMatches(source, matches: matches, replacer: replacer)
+    public func replaceAll(in source:String, using replacer:(Match) -> String?) -> String {
+        let matches = findAll(in: source)
+        return replaceMatches(in: source, matches: matches, using: replacer)
     }
     
-    public func replaceFirst(source:String, replacer:Match -> String?) -> String {
+    public func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String {
         var matches = Array<Match>()
-        if let match = findFirst(source) {
+        if let match = findFirst(in: source) {
             matches.append(match)
         }
-        return replaceMatches(source, matches: matches, replacer: replacer)
+        return replaceMatches(in: source, matches: matches, using: replacer)
     }
     
-    public func split(source:String) -> [String] {
+    public func split(_ source:String) -> [String] {
         var result = Array<String>()
-        let matches = findAll(source)
+        let matches = findAll(in: source)
         var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
             //extract the piece before the match
-            let range = lastRange.endIndex ..< match.range.startIndex
+            let range = lastRange.upperBound ..< match.range.lowerBound
             let piece = source.substring(with: range)
             result.append(piece)
             lastRange = match.range
@@ -178,7 +178,7 @@ public class Regex : RegexType {
             //add subgroups
             result.append(contentsOf: subgroups)
         }
-        let rest = source.substring(from: lastRange.endIndex)
+        let rest = source.substring(from: lastRange.upperBound)
         result.append(rest)
         return result
     }

@@ -29,6 +29,9 @@ import Foundation
     }
     
     public extension NSRegularExpression {
+        public typealias Options = NSRegularExpressionOptions
+        public typealias MatchingOptions = NSMatchingOptions
+        
         public func matches(in string: String, options: NSMatchingOptions, range: NSRange) -> [NSTextCheckingResult] {
             return self.matchesInString(string, options: options, range: range)
         }
@@ -45,5 +48,8 @@ import Foundation
             return self.stringByReplacingMatchesInString(string, options: options, range: range, withTemplate: templ)
         }
     }
+    
+    public typealias RegularExpression = NSRegularExpression
+    public typealias TextCheckingResult = NSTextCheckingResult
 #endif
 
