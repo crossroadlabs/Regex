@@ -34,7 +34,7 @@ public struct RegexOptions : OptionSet {
 }
 
 //keep it. Unfortunately Swift 2.2 can not use RegularExpression.Options in extension somehow
-#if swift(>=3.0)
+#if swift(>=3.0) && !os(Linux)
     private typealias RegularExpressionOptions = RegularExpression.Options
 #else
     private typealias RegularExpressionOptions = NSRegularExpressionOptions

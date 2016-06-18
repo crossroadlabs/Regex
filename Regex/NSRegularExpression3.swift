@@ -16,7 +16,7 @@
 
 import Foundation
 
-#if swift(>=3.0) && !os(Linux)
+#if swift(>=3.0)
 #else
     public extension NSRegularExpressionOptions {
         public static var caseInsensitive = NSRegularExpressionOptions.CaseInsensitive
@@ -48,7 +48,15 @@ import Foundation
             return self.stringByReplacingMatchesInString(string, options: options, range: range, withTemplate: templ)
         }
     }
-    
+#endif
+
+#if swift(>=3.0) && !os(Linux)
+#else
+    public extension NSRegularExpression {
+        public typealias Options = NSRegularExpressionOptions
+        public typealias MatchingOptions = NSMatchingOptions
+    }
+
     public typealias RegularExpression = NSRegularExpression
     public typealias TextCheckingResult = NSTextCheckingResult
 #endif
