@@ -35,6 +35,22 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
+        - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
+        - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
+      os: osx
+      osx_image: xcode8
+      language: objective-c
+      before_install:
+        - brew update
+        - brew outdated carthage || brew upgrade carthage
+        # - brew outdated xctool || brew upgrade xctool
+      before_script:
+        # bootstrap the dependencies for the project
+        # you can remove if you don't have dependencies
+        - carthage bootstrap
+    - script:
         - swift build && swift test
       sudo: required
       dist: trusty
