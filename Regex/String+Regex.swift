@@ -21,7 +21,7 @@ public extension String {
         }
     }
     
-    public func split(regex:RegexType?) -> [String] {
+    public func split(using regex:RegexType?) -> [String] {
         guard let regex = regex else {
             return [self]
         }
