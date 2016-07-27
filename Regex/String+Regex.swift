@@ -109,8 +109,8 @@ public func !~(source:String, pattern:String) -> Bool {
 /**
  * Operator is used by switch keyword in constructions like following:
  * switch str {
- *   case "\d*".r: print("has digit")
- *   case "\.*".r: print("has dot")
+ *   case "\\d+".r: print("has digit")
+ *   case "[a-z]+".r: print("has letter")
  *   default: print("nothing")
  * }
  *
