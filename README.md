@@ -146,6 +146,9 @@ let splits = myString.split(using: "(\\d)".r)
 
 ## Changelog
 
+* v0.8
+	* Added documentation
+	* Integration with Swift built in Pattern Matching (aka `switch/case`)
 * v0.7
 	* Support of Swift 3.0 preview 1
 	* Regex options support (like case sensetivity)
