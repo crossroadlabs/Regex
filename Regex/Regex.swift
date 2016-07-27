@@ -40,11 +40,28 @@ public protocol RegexType {
     func split(_ source:String) -> [String]
 }
 
+/**
+ * Regular Expression
+ */
 public class Regex : RegexType {
+    /**
+     * Pattern used to create this Regex
+     */
     public let pattern:String
+    
+    /**
+     * Group names that will be used for named patter matching. Are supplied in a constructor.
+     */
     public let groupNames:[String]
     private let compiled:CompiledPattern?
     
+    /**
+     * Main constructor. Can through an error.
+     
+     - parameter pattern: A pattern to be used with Regex
+     - parameter options: RegexOptions, i.e. case sensitivity, etc.
+     - parameter groupNames: Group names to be used for matching
+     */
     public required init(pattern:String, options:RegexOptions, groupNames:[String]) throws {
         self.pattern = pattern
         self.groupNames = groupNames
@@ -56,14 +73,34 @@ public class Regex : RegexType {
         }
     }
     
+    /**
+     * Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     
+     - parameter pattern: A pattern to be used with Regex
+     - parameter options: RegexOptions, i.e. case sensitivity, etc.
+     - parameter groupNames: Group names to be used for matching
+     */
     public required convenience init(pattern:String, options:RegexOptions, groupNames:String...) throws {
         try self.init(pattern:pattern, options: options, groupNames:groupNames)
     }
     
+    /**
+     * Constructor, same as main, more lightweight (omits options). Can through an error.
+     
+     - parameter pattern: A pattern to be used with Regex
+     - parameter groupNames: Group names to be used for matching
+     */
     public required convenience init(pattern: String, groupNames: [String]) throws {
         try self.init(pattern:pattern, options: .defaultOptions, groupNames:groupNames)
     }
     
+    /**
+     * Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
+     * Can through an error.
+     
+     - parameter pattern: A pattern to be used with Regex
+     - parameter groupNames: Group names to be used for matching
+     */
     public required convenience init(pattern: String, groupNames: String...) throws {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
@@ -73,6 +110,12 @@ public class Regex : RegexType {
         return try RegularExpression(pattern: pattern, options: options.ns)
     }
     
+    /**
+     * Finds all the matches in the supplied string
+     
+     - parameter source: String to be matched to the pattern
+     - returns: A sequense of found matches. Can be empty if nothing was found.
+     */
     public func findAll(in source:String) -> MatchSequence {
         let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
@@ -81,6 +124,12 @@ public class Regex : RegexType {
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
     }
     
+    /**
+     * Returns the first match in the supplied string
+     
+     - parameter source: String to be matched to the pattern
+     - returns: The match. Can be .none if nothing was found
+     */
     public func findFirst(in source:String) -> Match? {
         let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
@@ -90,6 +139,13 @@ public class Regex : RegexType {
         }
     }
     
+    /**
+     * Replaces all occurances of the pattern using supplied replacement String.
+     
+     - parameter source: String to be matched to the pattern
+     - parameter replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - returns: A string, where all the occurances of the pattern were replaced.
+     */
     public func replaceAll(in source:String, with replacement:String) -> String {
         let options = RegularExpression.MatchingOptions(rawValue: 0)
         let range = NSRange(location: 0, length: source.characters.count)
@@ -97,6 +153,13 @@ public class Regex : RegexType {
         return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
     
+    /**
+     * Replaces first occurance of the pattern using supplied replacement String.
+     
+     - parameter source: String to be matched to the pattern
+     - parameter replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - returns: A string, where the first occurance of the pattern was replaced.
+     */
     public func replaceFirst(in source:String, with replacement:String) -> String {
         return replaceFirst(in: source) { match in
             return self.compiled!.replacementString(for: match.match, in: source, offset: 0, template: replacement)
@@ -138,6 +201,12 @@ public class Regex : RegexType {
         }
     #endif
     
+    /**
+     * Checks is supplied string matches the pattern.
+     
+     - parameter source: String to be matched to the pattern
+     - returns: True if the source matches, false otherwise.
+     */
     public func matches(_ source:String) -> Bool {
         guard let _ = findFirst(in: source) else {
             return false
@@ -145,11 +214,25 @@ public class Regex : RegexType {
         return true
     }
     
+    /**
+     * Replaces all occurances of the pattern using supplied replacer function.
+     
+     - parameter source: String to be matched to the pattern
+     - parameter replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - returns: A string, where all the occurances of the pattern were replaced
+     */
     public func replaceAll(in source:String, using replacer:(Match) -> String?) -> String {
         let matches = findAll(in: source)
         return replaceMatches(in: source, matches: matches, using: replacer)
     }
     
+    /**
+     * Replaces the first occurance of the pattern using supplied replacer function.
+     
+     - parameter source: String to be matched to the pattern
+     - parameter replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - returns: A string, where the first occurance of the pattern was replaced
+     */
     public func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String {
         var matches = Array<Match>()
         if let match = findFirst(in: source) {
@@ -158,6 +241,13 @@ public class Regex : RegexType {
         return replaceMatches(in: source, matches: matches, using: replacer)
     }
     
+    /**
+     * Splits the content of supplied string by pattern.
+     * In case the pattern contains subgroups, they are added to the resulting array as well.
+     
+     - parameter source: String to be split
+     - returns: Array of pieces of the string split with the pattern delimeter.
+     */
     public func split(_ source:String) -> [String] {
         var result = Array<String>()
         let matches = findAll(in: source)
