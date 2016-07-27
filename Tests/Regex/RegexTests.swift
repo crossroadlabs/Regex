@@ -40,6 +40,24 @@ class RegexTests: XCTestCase {
         XCTAssertFalse(source !~ RegexTests.pattern)
     }
     
+    func testSwitch() {
+        let exp1 = self.expectationWithDescription("alpha works")
+        switch letter {
+            case "\\d".r: XCTFail("letter should not match a digit")
+            case "[a-z]".r: exp1.fulfill()
+            default: XCTFail("letter should have matched alpha")
+        }
+        
+        let exp2 = self.expectationWithDescription("alpha works")
+        switch digits {
+            case "[a-z]+".r: XCTFail("digits should not match letters")
+            case "[A-Z]+".r: XCTFail("digits should not match capital letters")
+            default: exp2.fulfill()
+        }
+        
+        self.waitForExpectationsWithTimeout(0, handler: nil)
+    }
+    
     func testSimple() {
         XCTAssertEqual(RegexTests.pattern.r?.findFirst(in: source)?.group(at: 2), digits)
     }

@@ -105,3 +105,18 @@ public func !~(source:String, regex:RegexType?) -> Bool {
 public func !~(source:String, pattern:String) -> Bool {
     return !(source =~ pattern.r)
 }
+
+/**
+ * Operator is used by switch keyword in constructions like following:
+ * switch str {
+ *   case "\d*".r: print("has digit")
+ *   case "\.*".r: print("has dot")
+ *   default: print("nothing")
+ * }
+ *
+ 
+ - returns: True if matches, false otherwise.
+ */
+public func ~=(regex:RegexType?, source:String) -> Bool {
+    return source =~ regex
+}
