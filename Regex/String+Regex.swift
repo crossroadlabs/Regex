@@ -14,13 +14,26 @@
 //limitations under the License.
 //===----------------------------------------------------------------------===//
 
+/**
+ * Adds Regex extensions to the String.
+ */
 public extension String {
+    /**
+     * Creates a regex using this string as a pattern. Can return nil if pattern is invalid.
+     */
     public var r : Regex? {
         get {
             return try? Regex(pattern: self)
         }
     }
     
+    /**
+     * An inverse alias to Regex.split
+     * 
+     
+     - parameter regex: Regex to split the string with
+     - returns: An array. See Regex.split for more details.
+     */
     public func split(using regex:RegexType?) -> [String] {
         guard let regex = regex else {
             return [self]
@@ -32,6 +45,15 @@ public extension String {
 infix operator =~ {associativity left precedence 140}
 infix operator !~ {associativity left precedence 140}
 
+/**
+ * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*".r
+ * See Regex.matches for more details.
+ *
+ 
+ - parameter source: String to match.
+ - parameter regex: Regex to match the string with.
+ - returns: True if matches, false otherwise.
+ */
 public func =~(source:String, regex:RegexType?) -> Bool {
     guard let matches = regex?.matches(source) else {
         return false
@@ -39,14 +61,47 @@ public func =~(source:String, regex:RegexType?) -> Bool {
     return matches
 }
 
+/**
+ * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ * See Regex.matches for more details.
+ *
+ * Regex is automaticall created from the second string.
+ *
+ 
+ - parameter source: String to match.
+ - parameter regex: Pattern string to match the string with.
+ - returns: True if matches, false otherwise.
+ */
 public func =~(source:String, pattern:String) -> Bool {
     return source =~ pattern.r
 }
 
+/**
+ * Sintactic sugar for pattern matching. Used as "ABC" !~ ".*".r
+ * See Regex.matches for more details.
+ * Basically is negation of =~ operator.
+ *
+ 
+ - parameter source: String to match.
+ - parameter regex: Regex to match the string with.
+ - returns: False if matches, true otherwise.
+ */
 public func !~(source:String, regex:RegexType?) -> Bool {
     return !(source =~ regex)
 }
 
+/**
+ * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ * See Regex.matches for more details.
+ * Basically is negation of =~ operator.
+ *
+ * Regex is automaticall created from the second string.
+ *
+ 
+ - parameter source: String to match.
+ - parameter regex: Pattern string to match the string with.
+ - returns: False if matches, true otherwise.
+ */
 public func !~(source:String, pattern:String) -> Bool {
     return !(source =~ pattern.r)
 }
