@@ -68,7 +68,7 @@ public class Regex : RegexType {
         try self.init(pattern:pattern, groupNames:groupNames)
     }
     
-    private static func compile(pattern pattern:String, options:RegexOptions) throws -> CompiledPattern {
+    private static func compile(pattern:String, options:RegexOptions) throws -> CompiledPattern {
         //pass options
         return try RegularExpression(pattern: pattern, options: options.ns)
     }
