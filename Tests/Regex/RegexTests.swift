@@ -157,7 +157,7 @@ class RegexTests: XCTestCase {
 
 #if os(Linux)
 extension RegexTests {
-	static var allTests : [(String, RegexTests -> () throws -> Void)] {
+	static var allTests : [(String, (RegexTests) -> () throws -> Void)] {
 		return [
 			("testMatches", testMatches),
 			("testSimple", testSimple),
