@@ -18,30 +18,30 @@ import Foundation
 
 #if swift(>=3.0)
 #else
-    public extension NSRegularExpressionOptions {
-        public static var caseInsensitive = NSRegularExpressionOptions.CaseInsensitive
-        public static var allowCommentsAndWhitespace = NSRegularExpressionOptions.AllowCommentsAndWhitespace
-        public static var ignoreMetacharacters = NSRegularExpressionOptions.IgnoreMetacharacters
-        public static var dotMatchesLineSeparators = NSRegularExpressionOptions.DotMatchesLineSeparators
-        public static var anchorsMatchLines = NSRegularExpressionOptions.AnchorsMatchLines
-        public static var useUnixLineSeparators = NSRegularExpressionOptions.UseUnixLineSeparators
-        public static var useUnicodeWordBoundaries = NSRegularExpressionOptions.UseUnicodeWordBoundaries
+    extension NSRegularExpressionOptions {
+        static var caseInsensitive = NSRegularExpressionOptions.CaseInsensitive
+        static var allowCommentsAndWhitespace = NSRegularExpressionOptions.AllowCommentsAndWhitespace
+        static var ignoreMetacharacters = NSRegularExpressionOptions.IgnoreMetacharacters
+        static var dotMatchesLineSeparators = NSRegularExpressionOptions.DotMatchesLineSeparators
+        static var anchorsMatchLines = NSRegularExpressionOptions.AnchorsMatchLines
+        static var useUnixLineSeparators = NSRegularExpressionOptions.UseUnixLineSeparators
+        static var useUnicodeWordBoundaries = NSRegularExpressionOptions.UseUnicodeWordBoundaries
     }
     
-    public extension NSRegularExpression {
-        public func matches(in string: String, options: NSMatchingOptions, range: NSRange) -> [NSTextCheckingResult] {
+    extension NSRegularExpression {
+        func matches(in string: String, options: NSMatchingOptions, range: NSRange) -> [NSTextCheckingResult] {
             return self.matchesInString(string, options: options, range: range)
         }
         
-        public func firstMatch(in string: String, options: NSMatchingOptions, range: NSRange) -> NSTextCheckingResult? {
+        func firstMatch(in string: String, options: NSMatchingOptions, range: NSRange) -> NSTextCheckingResult? {
             return self.firstMatchInString(string, options: options, range: range)
         }
         
-        public func replacementString(for result: NSTextCheckingResult, in string: String, offset: Int, template templ: String) -> String {
+        func replacementString(for result: NSTextCheckingResult, in string: String, offset: Int, template templ: String) -> String {
             return self.replacementStringForResult(result, inString: string, offset: offset, template: templ)
         }
         
-        public func stringByReplacingMatches(in string: String, options: NSMatchingOptions, range: NSRange, withTemplate templ: String) -> String {
+        func stringByReplacingMatches(in string: String, options: NSMatchingOptions, range: NSRange, withTemplate templ: String) -> String {
             return self.stringByReplacingMatchesInString(string, options: options, range: range, withTemplate: templ)
         }
     }
@@ -49,12 +49,12 @@ import Foundation
 
 #if swift(>=3.0) && !os(Linux)
 #else
-    public extension NSRegularExpression {
-        public typealias Options = NSRegularExpressionOptions
-        public typealias MatchingOptions = NSMatchingOptions
+    extension NSRegularExpression {
+        typealias Options = NSRegularExpressionOptions
+        typealias MatchingOptions = NSMatchingOptions
     }
 
-    public typealias RegularExpression = NSRegularExpression
-    public typealias TextCheckingResult = NSTextCheckingResult
+    typealias RegularExpression = NSRegularExpression
+    typealias TextCheckingResult = NSTextCheckingResult
 #endif
 

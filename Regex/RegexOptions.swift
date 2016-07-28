@@ -69,8 +69,8 @@ private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Optio
         (value, key)
     }^
 
-public extension RegexOptions {
-    public var ns:RegularExpression.Options {
+extension RegexOptions {
+    var ns:RegularExpression.Options {
         get {
             let nsSeq = regexToNSOptionsMap.filter { (regex, _) in
                 self.contains(regex)

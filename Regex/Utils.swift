@@ -23,7 +23,7 @@ public typealias StringRange = Range<String.Index>
 #if swift(>=3.0)
 #else
     extension NSTextCheckingResult {
-        public func range(at idx: Int) -> NSRange {
+        func range(at idx: Int) -> NSRange {
             return rangeAtIndex(idx)
         }
     }
