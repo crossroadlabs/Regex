@@ -34,7 +34,7 @@ public extension String {
      - parameter regex: Regex to split the string with
      - returns: An array. See Regex.split for more details.
      */
-    public func split(using regex:RegexType?) -> [String] {
+    public func split(using regex:RegexProtocol?) -> [String] {
         guard let regex = regex else {
             return [self]
         }
@@ -54,7 +54,7 @@ infix operator !~ {associativity left precedence 140}
  - parameter regex: Regex to match the string with.
  - returns: True if matches, false otherwise.
  */
-public func =~(source:String, regex:RegexType?) -> Bool {
+public func =~(source:String, regex:RegexProtocol?) -> Bool {
     guard let matches = regex?.matches(source) else {
         return false
     }
@@ -86,7 +86,7 @@ public func =~(source:String, pattern:String) -> Bool {
  - parameter regex: Regex to match the string with.
  - returns: False if matches, true otherwise.
  */
-public func !~(source:String, regex:RegexType?) -> Bool {
+public func !~(source:String, regex:RegexProtocol?) -> Bool {
     return !(source =~ regex)
 }
 
@@ -117,6 +117,6 @@ public func !~(source:String, pattern:String) -> Bool {
  
  - returns: True if matches, false otherwise.
  */
-public func ~=(regex:RegexType?, source:String) -> Bool {
+public func ~=(regex:RegexProtocol?, source:String) -> Bool {
     return source =~ regex
 }

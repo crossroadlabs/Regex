@@ -17,16 +17,67 @@
 import Foundation
 import Boilerplate
 
-//makes it easier to maintain two implementations
-public protocol RegexType {
+/**
+ * Regular Expression protocol
+ *
+ * Makes it easier to maintain two implementations
+ */
+public protocol RegexProtocol {
+    /**
+     Constructor, same as main, more lightweight (omits options). Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, groupNames:[String]) throws
+    
+    /**
+     Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
+     Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, groupNames:String...) throws
+    
+    /**
+     Main constructor. Can throw an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, options:RegexOptions, groupNames:[String]) throws
+    
+    /**
+     Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, options:RegexOptions, groupNames:String...) throws
     
+    /**
+     * Pattern used to create this Regex
+     */
     var pattern:String {get}
+    
+    /**
+     * Group names that will be used for named patter matching. Are supplied in a constructor.
+     */
     var groupNames:[String] {get}
     
+    /**
+     * Checks is supplied string matches the pattern.
+     
+     - parameter source: String to be matched to the pattern
+     - returns: True if the source matches, false otherwise.
+     */
     func matches(_ source:String) -> Bool
     
     func findAll(in source:String) -> MatchSequence
@@ -43,7 +94,7 @@ public protocol RegexType {
 /**
  * Regular Expression
  */
-public class Regex : RegexType {
+public class Regex : RegexProtocol {
     /**
      * Pattern used to create this Regex
      */
@@ -56,11 +107,12 @@ public class Regex : RegexType {
     private let compiled:CompiledPattern?
     
     /**
-     * Main constructor. Can through an error.
+     Main constructor. Can throw an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter options: RegexOptions, i.e. case sensitivity, etc.
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
      */
     public required init(pattern:String, options:RegexOptions, groupNames:[String]) throws {
         self.pattern = pattern
@@ -74,32 +126,35 @@ public class Regex : RegexType {
     }
     
     /**
-     * Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     Constructor, same as main, but group names can be supplied as var args. Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter options: RegexOptions, i.e. case sensitivity, etc.
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern:String, options:RegexOptions, groupNames:String...) throws {
         try self.init(pattern:pattern, options: options, groupNames:groupNames)
     }
     
     /**
-     * Constructor, same as main, more lightweight (omits options). Can through an error.
+     Constructor, same as main, more lightweight (omits options). Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern: String, groupNames: [String]) throws {
         try self.init(pattern:pattern, options: .defaultOptions, groupNames:groupNames)
     }
     
     /**
-     * Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
-     * Can through an error.
+     Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
+     Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern: String, groupNames: String...) throws {
         try self.init(pattern:pattern, groupNames:groupNames)

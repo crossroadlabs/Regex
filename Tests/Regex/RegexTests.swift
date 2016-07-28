@@ -34,7 +34,7 @@ import XCTest
 
 class RegexTests: XCTestCase {
     static let pattern:String = "(.+?)([1,2,3]*)(.*)"
-    let regex:RegexType = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
+    let regex:RegexProtocol = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
     let source = "l321321alala"
     let letter = "l"
     let digits = "321321"
