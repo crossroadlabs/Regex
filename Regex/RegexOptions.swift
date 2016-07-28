@@ -129,8 +129,8 @@ extension RegexOptions {
     }
 }
 
-public extension RegularExpressionOptions {
-    public var regex:RegexOptions {
+extension RegularExpressionOptions {
+    var regex:RegexOptions {
         get {
             let regexSeq = nsToRegexOptionsMap.filter { (ns, _) in
                 self.contains(ns)
