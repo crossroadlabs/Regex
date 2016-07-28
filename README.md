@@ -78,6 +78,45 @@ Operator `!~` returns `true` if expression does **NOT** match:
 //both return false
 ```
 
+#### Swift Pattern Matching (aka `switch` keyword)
+
+Regex provides very deep integration with Swift and can be used with the switch keyword in the following way:
+
+```swift
+let letter = "a"
+let digit = "1"
+let other = "!"
+
+//you just put your string is a regular Swift's switch to match to regular expressions
+switch letter {
+	//note .r after the string literal of the pattern
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+
+switch digit {
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+
+switch other {
+	//note .r after the string literal of the pattern
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+```
+
+The output of the code obove will be:
+
+```
+letter
+digit
+bizarre symbol
+```
+
 #### Accessing groups:
 
 ```swift
