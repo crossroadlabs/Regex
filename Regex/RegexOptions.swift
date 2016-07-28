@@ -17,20 +17,66 @@
 import Foundation
 import Boilerplate
 
+/**
+ Options that can be used to modify the default Regex behaviour.
+ Can be user while the Regex is constructed.
+ 
+ - see: Regex.init
+ */
 public struct RegexOptions : OptionSet {
+    /**
+     Required by OptionSet protocol. Can be used to obtain integer value of a flag set
+    */
     public let rawValue: UInt
     
+    /**
+     Required by OptionSet protocol.
+     Can be used for construction of OptionSet from integer based flags.
+     
+     - see: rawValue
+    */
     public init(rawValue: UInt) { self.rawValue = rawValue }
     
-    public static let caseInsensitive = RegexOptions(rawValue: 1) /* Match letters in the pattern independent of case. */
-    public static let allowCommentsAndWhitespace = RegexOptions(rawValue: 2) /* Ignore whitespace and #-prefixed comments in the pattern. */
-    public static let ignoreMetacharacters = RegexOptions(rawValue: 4) /* Treat the entire pattern as a literal string. */
-    public static let dotMatchesLineSeparators = RegexOptions(rawValue: 8) /* Allow . to match any character, including line separators. */
-    public static let anchorsMatchLines = RegexOptions(rawValue: 16) /* Allow ^ and $ to match the start and end of lines. */
-    public static let useUnixLineSeparators = RegexOptions(rawValue: 32) /* Treat only \n as a line separator (otherwise, all standard line separators are used). */
-    public static let useUnicodeWordBoundaries = RegexOptions(rawValue: 64) /* Use Unicode TR#29 to specify word boundaries (otherwise, traditional regular expression word boundaries are used). */
-    public static let defaultOptions:RegexOptions = [caseInsensitive]
-    public static let none:RegexOptions = []
+    /**
+     * Match letters in the pattern independent of case.
+     */
+    public static let caseInsensitive = RegexOptions(rawValue: 1)
+    
+    /**
+     * Ignore whitespace and #-prefixed comments in the pattern.
+     */
+    public static let allowCommentsAndWhitespace = RegexOptions(rawValue: 2)
+    
+    /**
+     * Treat the entire pattern as a literal string.
+     */
+    public static let ignoreMetacharacters = RegexOptions(rawValue: 4)
+    
+    /**
+     * Allow . to match any character, including line separators.
+     */
+    public static let dotMatchesLineSeparators = RegexOptions(rawValue: 8)
+    
+    /**
+     * Allow ^ and $ to match the start and end of lines.
+     */
+    public static let anchorsMatchLines = RegexOptions(rawValue: 16)
+    
+    /**
+     * Treat only \n as a line separator (otherwise, all standard line separators are used).
+     */
+    public static let useUnixLineSeparators = RegexOptions(rawValue: 32)
+    
+    /**
+     * Use Unicode TR#29 to specify word boundaries (otherwise, traditional regular expression word boundaries are used).
+     */
+    public static let useUnicodeWordBoundaries = RegexOptions(rawValue: 64)
+    
+    
+    /**
+     * Options used by default in Regex
+     */
+    public static let `default`:RegexOptions = [caseInsensitive]
 }
 
 //keep it. Unfortunately Swift 2.2 can not use RegularExpression.Options in extension somehow

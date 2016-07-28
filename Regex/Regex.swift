@@ -204,7 +204,7 @@ public class Regex : RegexProtocol {
        - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern: String, groupNames: [String]) throws {
-        try self.init(pattern:pattern, options: .defaultOptions, groupNames:groupNames)
+        try self.init(pattern:pattern, options: .`default`, groupNames:groupNames)
     }
     
     /**
