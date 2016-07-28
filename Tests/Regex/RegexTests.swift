@@ -17,6 +17,21 @@
 import XCTest
 @testable import Regex
 
+#if swift(>=3.0)
+#else
+    extension XCTestCase {
+        @objc(expectation:)
+        func expectation(withDescription description: String) -> XCTestExpectation {
+            return self.expectationWithDescription(description)
+        }
+        
+        @objc(waitForExpectations:handler:)
+        public func waitForExpectations(withTimeout timeout: NSTimeInterval, handler: XCWaitCompletionHandler? = nil) {
+            self.waitForExpectationsWithTimeout(timeout, handler: handler)
+        }
+    }
+#endif
+
 class RegexTests: XCTestCase {
     static let pattern:String = "(.+?)([1,2,3]*)(.*)"
     let regex:RegexType = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
@@ -41,21 +56,21 @@ class RegexTests: XCTestCase {
     }
     
     func testSwitch() {
-        let exp1 = self.expectationWithDescription("alpha works")
+        let exp1 = self.expectation(withDescription: "alpha works")
         switch letter {
             case "\\d".r: XCTFail("letter should not match a digit")
             case "[a-z]".r: exp1.fulfill()
             default: XCTFail("letter should have matched alpha")
         }
         
-        let exp2 = self.expectationWithDescription("alpha works")
+        let exp2 = self.expectation(withDescription: "alpha works")
         switch digits {
             case "[a-z]+".r: XCTFail("digits should not match letters")
             case "[A-Z]+".r: XCTFail("digits should not match capital letters")
             default: exp2.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(0, handler: nil)
+        self.waitForExpectations(withTimeout: 0, handler: nil)
     }
     
     func testSimple() {
