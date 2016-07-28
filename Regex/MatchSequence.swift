@@ -17,7 +17,10 @@
 import Foundation
 import Boilerplate
 
-public class MatchSequence : Sequence {
+/**
+ * Match sequence is a sequence given as a result of findAll operation.
+ */
+public class MatchSequence {
     let source:String
     let context:CompiledMatchContext
     let groupNames:[String]
@@ -27,24 +30,35 @@ public class MatchSequence : Sequence {
         self.context = context
         self.groupNames = groupNames
     }
+}
+
+/**
+ * An extension to comply with the Sequence protocol
+ */
+extension MatchSequence : Sequence {
+#if swift(>=3.0)
+    public typealias Iterator = AnyIterator<Match>
+#else
+    public typealias Generator = AnyGenerator<Match>
+    public typealias Iterator = Generator
+#endif
     
-    #if swift(>=3.0)
-        public typealias Iterator = AnyIterator<Match>
-    #else
-        public typealias Generator = AnyGenerator<Match>
-        public typealias Iterator = Generator
-    #endif
+#if swift(>=3.0)
+#else
+    /**
+     * Method is required by the Sequence protocol
+     */
+    public func generate() -> Generator {
+        return makeIterator()
+    }
+#endif
     
-    #if swift(>=3.0)
-    #else
-        public func generate() -> Generator {
-            return makeIterator()
-        }
-    #endif
-    
+    /**
+     * Method is required by the Sequence protocol
+     */
     public func makeIterator() -> Iterator {
         var index = context.startIndex
-            
+        
         return Iterator {
             if self.context.endIndex > index {
                 let result = Match(source: self.source, match: self.context[index], groupNames: self.groupNames)
