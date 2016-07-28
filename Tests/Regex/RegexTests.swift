@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 import XCTest
-@testable import Regex
+import Regex
 
 #if swift(>=3.0)
 #else
