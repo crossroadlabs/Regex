@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 /**
- * Adds Regex extensions to the String.
+ * Adds Regex extensions to String
  */
 public extension String {
     /**
@@ -28,10 +28,10 @@ public extension String {
     }
     
     /**
-     * An inverse alias to Regex.split
-     * 
+     An inverse alias to Regex.split
      
-     - parameter regex: Regex to split the string with
+     - parameters:
+       - regex: Regex to split the string with
      - returns: An array. See Regex.split for more details.
      */
     public func split(using regex:RegexProtocol?) -> [String] {
@@ -46,13 +46,13 @@ infix operator =~ {associativity left precedence 140}
 infix operator !~ {associativity left precedence 140}
 
 /**
- * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*".r
- * See Regex.matches for more details.
- *
+ Sintactic sugar for pattern matching. Used as "ABC" =~ ".*".r
  
- - parameter source: String to match.
- - parameter regex: Regex to match the string with.
- - returns: True if matches, false otherwise.
+ - see: Regex.matches for more details.
+ - parameters:
+   - source: String to match
+   - regex: Regex to match the string with
+ - returns: True if matches, false otherwise
  */
 public func =~(source:String, regex:RegexProtocol?) -> Bool {
     guard let matches = regex?.matches(source) else {
@@ -62,60 +62,63 @@ public func =~(source:String, regex:RegexProtocol?) -> Bool {
 }
 
 /**
- * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
- * See Regex.matches for more details.
- *
- * Regex is automaticall created from the second string.
- *
+ Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ Regex is automaticall created from the second string.
  
- - parameter source: String to match.
- - parameter regex: Pattern string to match the string with.
- - returns: True if matches, false otherwise.
+ - see: Regex.matches for more details
+ - parameters:
+   - source: String to match
+   - regex: Pattern string to match the string with
+ - returns: True if matches, false otherwise
  */
 public func =~(source:String, pattern:String) -> Bool {
     return source =~ pattern.r
 }
 
 /**
- * Sintactic sugar for pattern matching. Used as "ABC" !~ ".*".r
- * See Regex.matches for more details.
- * Basically is negation of =~ operator.
- *
+ Sintactic sugar for pattern matching. Used as "ABC" !~ ".*".r
+ Basically is negation of =~ operator.
  
- - parameter source: String to match.
- - parameter regex: Regex to match the string with.
- - returns: False if matches, true otherwise.
+ - see: Regex.matches for more details
+ - parameters:
+   - source: String to match
+   - regex: Regex to match the string with
+ - returns: False if matches, true otherwise
  */
 public func !~(source:String, regex:RegexProtocol?) -> Bool {
     return !(source =~ regex)
 }
 
 /**
- * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
- * See Regex.matches for more details.
- * Basically is negation of =~ operator.
- *
- * Regex is automaticall created from the second string.
- *
+ Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ Basically is negation of =~ operator.
  
- - parameter source: String to match.
- - parameter regex: Pattern string to match the string with.
- - returns: False if matches, true otherwise.
+ Regex is automaticall created from the second string.
+ 
+ - see: Regex.matches for more details
+ - parameters:
+   - source: String to match
+   - regex: Pattern string to match the string with
+ - returns: False if matches, true otherwise
  */
 public func !~(source:String, pattern:String) -> Bool {
     return !(source =~ pattern.r)
 }
 
 /**
- * Operator is used by switch keyword in constructions like following:
- * switch str {
- *   case "\\d+".r: print("has digit")
- *   case "[a-z]+".r: print("has letter")
- *   default: print("nothing")
- * }
- *
+ Operator is used by `switch` keyword in constructions like following:
  
- - returns: True if matches, false otherwise.
+ ```swift
+ switch str {
+    case "\\d+".r: print("has digit")
+    case "[a-z]+".r: print("has letter")
+    default: print("nothing")
+ }
+ ```
+ 
+ Deep integration with Swift.
+ 
+ - returns: True if matches, false otherwise
  */
 public func ~=(regex:RegexProtocol?, source:String) -> Bool {
     return source =~ regex
