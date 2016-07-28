@@ -60,10 +60,11 @@ matrix:
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
         - export SWIFT_VERSION="swift-3.0-preview-1"
-        - wget https://swift.org/builds/$SWIFT_VERSION/ubuntu1404/$SWIFT_VERSION/$SWIFT_VERSION-ubuntu14.04.tar.gz
-        - tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
-        - export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
-        - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
+        - SWIFT_VERSION_UPPER=`echo $SWIFT_VERSION | perl -n -e'/^(.*?)-([\.\d]*?)-(.*)$/; $code = uc $3; print "$1-$2-${code}"'`
+        - wget https://swift.org/builds/$SWIFT_VERSION/ubuntu1404/$SWIFT_VERSION_UPPER/$SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
+        - tar xzf $SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
+        - export PATH="${PWD}/${SWIFT_VERSION_UPPER}-ubuntu14.04/usr/bin:${PATH}"
+        - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION_UPPER}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
         # get back home
         - cd $MODULE_NAME
 notifications:
