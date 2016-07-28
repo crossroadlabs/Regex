@@ -81,12 +81,24 @@ public struct RegexOptions : OptionSet {
 
 //keep it. Unfortunately Swift 2.2 can not use RegularExpression.Options in extension somehow
 #if swift(>=3.0) && !os(Linux)
+    /**
+     * Internal implementation that can't be hidden. Skip it.
+     */
     private typealias RegularExpressionOptions = RegularExpression.Options
 #else
+    /**
+     * Internal implementation that can't be hidden. Skip it.
+     */
     private typealias RegularExpressionOptions = NSRegularExpressionOptions
 #endif
 
+/**
+ * Internal implementation that can't be hidden. Skip it.
+ */
 extension RegularExpressionOptions : Hashable {
+    /**
+     * Internal implementation that can't be hidden. Skip it.
+     */
     public var hashValue: Int {
         get {
             return Int(rawValue)
@@ -94,7 +106,13 @@ extension RegularExpressionOptions : Hashable {
     }
 }
 
+/**
+ * Allows to RegexOptions to be used as keys for Dictionaries. Required for internal implementation.
+ */
 extension RegexOptions : Hashable {
+    /**
+     * Required by Hashable
+     */
     public var hashValue: Int {
         get {
             return Int(rawValue)
