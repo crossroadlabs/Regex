@@ -36,6 +36,12 @@ Still we hope it will be useful for everybody else.
 	- [x] With groups
 - [x] String extensions
 
+## Extra
+
+Path to Regex converter is available as a separate library here: [PathToRegex](https://github.com/crossroadlabs/PathToRegex)
+
+This one allows using path patterns like `/folder/*/:file.txt` or `/route/:one/:two` to be converted to Regular Expressions and matched against strings.
+
 ## Getting started
 
 ### Installation
