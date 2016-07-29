@@ -1,5 +1,7 @@
 ## Changelog
 
+* v0.8.1
+	* Improved README
 * v0.8
 	* Added documentation
 	* Integration with Swift built in Pattern Matching (aka `switch/case`)
