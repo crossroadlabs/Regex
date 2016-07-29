@@ -20,6 +20,22 @@ Still we hope it will be useful for everybody else.
 
 [Happy regexing ;)](#examples)
 
+## Features
+
+- [x] Deep Integration with Swift
+	- [x] `=~` operator support
+	- [x] Swift Pattern Matching (aka `switch` operator) support
+- [x] Named groups
+- [x] Match checking
+- [x] Extraction/Search functions
+- [x] Replace functions
+	- [x] With a pattern
+	- [x] With custom replacing function
+- [x] Splitting with a Regular Expression
+	- [x] Simple
+	- [x] With groups
+- [x] String extensions
+
 ## Getting started
 
 ### Installation
