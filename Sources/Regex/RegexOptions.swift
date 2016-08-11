@@ -33,7 +33,12 @@ public struct RegexOptions : OptionSet {
     public static let none:RegexOptions = []
 }
 
-extension NSRegularExpression.Options : Hashable {
+//Bugfix for Xcode Beta 4
+#if !os(Linux)
+    public typealias RegularExpression = NSRegularExpression
+#endif
+
+extension RegularExpression.Options : Hashable {
     public var hashValue: Int {
         get {
             return Int(rawValue)
@@ -49,7 +54,7 @@ extension RegexOptions : Hashable {
     }
 }
 
-private let nsToRegexOptionsMap:Dictionary<NSRegularExpression.Options, RegexOptions> = [
+private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptions> = [
     .caseInsensitive:.caseInsensitive,
     .allowCommentsAndWhitespace:.allowCommentsAndWhitespace,
     .ignoreMetacharacters:.ignoreMetacharacters,
@@ -58,12 +63,12 @@ private let nsToRegexOptionsMap:Dictionary<NSRegularExpression.Options, RegexOpt
     .useUnixLineSeparators:.useUnixLineSeparators,
     .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, NSRegularExpression.Options> = nsToRegexOptionsMap.map { (key, value) in
+private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.map { (key, value) in
         (value, key)
     }^
 
 public extension RegexOptions {
-    public var ns:NSRegularExpression.Options {
+    public var ns:RegularExpression.Options {
         get {
             let nsSeq = regexToNSOptionsMap.filter { (regex, _) in
                 self.contains(regex)
@@ -71,12 +76,12 @@ public extension RegexOptions {
                 ns
             }
             
-            return NSRegularExpression.Options(nsSeq)
+            return RegularExpression.Options(nsSeq)
         }
     }
 }
 
-public extension NSRegularExpression.Options {
+public extension RegularExpression.Options {
     public var regex:RegexOptions {
         get {
             let regexSeq = nsToRegexOptionsMap.filter { (ns, _) in
