@@ -75,7 +75,7 @@ public class Match : MatchType {
             for i in 0..<match.numberOfRanges {
                 //subrange can be empty
                 
-                let stringRange = try? match.range(at: i).asRange(ofString: source)
+                let stringRange = try? match.rangeAt(i).asRange(ofString: source)
                 
                 result.append(stringRange)
             }
@@ -90,7 +90,7 @@ public class Match : MatchType {
      - returns: A range or nil if the supplied subgroup does not exist.
      */
     public func range(at index:Int) -> StringRange? {
-        return try? match.range(at: index).asRange(ofString: source)
+        return try? match.rangeAt(index).asRange(ofString: source)
     }
     
     /**
@@ -101,9 +101,9 @@ public class Match : MatchType {
      */
     public func range(named name:String) -> StringRange? {
         //subrange can be empty
-        return try? match.range(at: index(of: name)).asRange(ofString: source)
+        return try? match.rangeAt(index(of: name)).asRange(ofString: source)
     }
-
+    
     /**
      * The whole matched substring.
      */

@@ -17,7 +17,7 @@
 import Foundation
 
 //here we use NSRegularExpression
-typealias CompiledPattern = RegularExpression
-typealias CompiledMatchContext = [TextCheckingResult]
-typealias CompiledPatternMatch = TextCheckingResult
+typealias CompiledPattern = NSRegularExpression
+typealias CompiledMatchContext = [NSTextCheckingResult]
+typealias CompiledPatternMatch = NSTextCheckingResult
 typealias GroupRange = NSRange

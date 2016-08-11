@@ -28,19 +28,7 @@ public class MatchSequence : Sequence {
         self.groupNames = groupNames
     }
     
-    #if swift(>=3.0)
-        public typealias Iterator = AnyIterator<Match>
-    #else
-        public typealias Generator = AnyGenerator<Match>
-        public typealias Iterator = Generator
-    #endif
-    
-    #if swift(>=3.0)
-    #else
-        public func generate() -> Generator {
-            return makeIterator()
-        }
-    #endif
+    public typealias Iterator = AnyIterator<Match>
     
     public func makeIterator() -> Iterator {
         var index = context.startIndex

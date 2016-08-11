@@ -17,7 +17,7 @@
 import Foundation
 import Boilerplate
     
-enum InvalidRangeError : ErrorProtocol {
+enum InvalidRangeError : Error {
     case Error
 }
 

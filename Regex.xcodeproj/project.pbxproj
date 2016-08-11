@@ -53,10 +53,6 @@
 		65C529E51C566A25002BF559 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655181C53ABC500B613AB /* String+Regex.swift */; };
 		65C529E61C566A25002BF559 /* GroupRangeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655211C53DAD200B613AB /* GroupRangeUtils.swift */; };
 		65C529E71C566A25002BF559 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655231C53DB1300B613AB /* Utils.swift */; };
-		925CACD31CAD551200520601 /* NSRegularExpression3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925CACD21CAD551200520601 /* NSRegularExpression3.swift */; };
-		925CACD41CAD551200520601 /* NSRegularExpression3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925CACD21CAD551200520601 /* NSRegularExpression3.swift */; };
-		925CACD51CAD551200520601 /* NSRegularExpression3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925CACD21CAD551200520601 /* NSRegularExpression3.swift */; };
-		925CACD61CAD551200520601 /* NSRegularExpression3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925CACD21CAD551200520601 /* NSRegularExpression3.swift */; };
 		96D154781C6CE33C00F9A981 /* PlatformTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D154771C6CE33C00F9A981 /* PlatformTypes.swift */; };
 		96D1547F1C6CE42E00F9A981 /* PlatformTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D154771C6CE33C00F9A981 /* PlatformTypes.swift */; };
 		96D154801C6CE42F00F9A981 /* PlatformTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D154771C6CE33C00F9A981 /* PlatformTypes.swift */; };
@@ -152,7 +148,6 @@
 		65C529B71C5664B0002BF559 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C529C01C5664B0002BF559 /* RegexTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RegexTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C529DA1C5669D6002BF559 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		925CACD21CAD551200520601 /* NSRegularExpression3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRegularExpression3.swift; sourceTree = "<group>"; };
 		96D154771C6CE33C00F9A981 /* PlatformTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,7 +249,6 @@
 				651655211C53DAD200B613AB /* GroupRangeUtils.swift */,
 				651655231C53DB1300B613AB /* Utils.swift */,
 				96D154771C6CE33C00F9A981 /* PlatformTypes.swift */,
-				925CACD21CAD551200520601 /* NSRegularExpression3.swift */,
 			);
 			path = Regex;
 			sourceTree = "<group>";
@@ -613,7 +607,6 @@
 				651655201C53CCAC00B613AB /* MatchSequence.swift in Sources */,
 				651655191C53ABC500B613AB /* String+Regex.swift in Sources */,
 				651655171C53AB3F00B613AB /* Regex.swift in Sources */,
-				925CACD31CAD551200520601 /* NSRegularExpression3.swift in Sources */,
 				96D154781C6CE33C00F9A981 /* PlatformTypes.swift in Sources */,
 				651655221C53DAD200B613AB /* GroupRangeUtils.swift in Sources */,
 				6516551E1C53C05C00B613AB /* Match.swift in Sources */,
@@ -637,7 +630,6 @@
 				65C529A11C5660E4002BF559 /* MatchSequence.swift in Sources */,
 				96D1547F1C6CE42E00F9A981 /* PlatformTypes.swift in Sources */,
 				65C5299F1C5660DD002BF559 /* Regex.swift in Sources */,
-				925CACD41CAD551200520601 /* NSRegularExpression3.swift in Sources */,
 				65C529A21C5660E6002BF559 /* String+Regex.swift in Sources */,
 				65C529A31C5660E9002BF559 /* GroupRangeUtils.swift in Sources */,
 				65C529A01C5660E1002BF559 /* Match.swift in Sources */,
@@ -661,7 +653,6 @@
 				65C529D01C566573002BF559 /* MatchSequence.swift in Sources */,
 				96D154801C6CE42F00F9A981 /* PlatformTypes.swift in Sources */,
 				65C529CE1C56656D002BF559 /* Regex.swift in Sources */,
-				925CACD51CAD551200520601 /* NSRegularExpression3.swift in Sources */,
 				65C529D11C566577002BF559 /* String+Regex.swift in Sources */,
 				65C529D21C56657A002BF559 /* GroupRangeUtils.swift in Sources */,
 				65C529CF1C566570002BF559 /* Match.swift in Sources */,
@@ -685,7 +676,6 @@
 				65C529E41C566A25002BF559 /* MatchSequence.swift in Sources */,
 				96D154811C6CE43000F9A981 /* PlatformTypes.swift in Sources */,
 				65C529E21C566A25002BF559 /* Regex.swift in Sources */,
-				925CACD61CAD551200520601 /* NSRegularExpression3.swift in Sources */,
 				65C529E51C566A25002BF559 /* String+Regex.swift in Sources */,
 				65C529E61C566A25002BF559 /* GroupRangeUtils.swift in Sources */,
 				65C529E31C566A25002BF559 /* Match.swift in Sources */,
