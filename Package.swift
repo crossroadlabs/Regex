@@ -19,5 +19,6 @@ import PackageDescription
 let package = Package(
     name: "Regex",
     targets: [Target(name: "Regex")],
-    dependencies: [.Package(url: "https://github.com/crossroadlabs/Boilerplate.git", majorVersion: 0, minor: 2)]
+    dependencies: [.Package(url: "https://github.com/crossroadlabs/Boilerplate.git", Version(1, 0, 0, prereleaseIdentifiers: ["alpha", "1"]))],
+    exclude: ["Carthage"]
 )
