@@ -33,9 +33,12 @@ public struct RegexOptions : OptionSet {
     public static let none:RegexOptions = []
 }
 
-//Bugfix for Xcode Beta 4
 #if !os(Linux)
     public typealias RegularExpression = NSRegularExpression
+#else
+    public extension RegularExpression {
+        public typealias MatchingOptions = NSMatchingOptions
+    }
 #endif
 
 extension RegularExpression.Options : Hashable {
