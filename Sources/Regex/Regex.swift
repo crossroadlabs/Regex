@@ -107,7 +107,7 @@ public class Regex : RegexType {
     
     private static func compile(pattern:String, options:RegexOptions) throws -> CompiledPattern {
         //pass options
-        return try NSRegularExpression(pattern: pattern, options: options.ns)
+        return try RegularExpression(pattern: pattern, options: options.ns)
     }
     
     /**
@@ -117,8 +117,8 @@ public class Regex : RegexType {
      - returns: A sequense of found matches. Can be empty if nothing was found.
      */
     public func findAll(in source:String) -> MatchSequence {
-        let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = NSRange(location: 0, length: source.characters.count)
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
+        let range = GroupRange(location: 0, length: source.characters.count)
         let context = compiled?.matches(in: source, options: options, range: range)
         //hard unwrap of context, because the instance would not exist without it
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
@@ -131,8 +131,8 @@ public class Regex : RegexType {
      - returns: The match. Can be .none if nothing was found
      */
     public func findFirst(in source:String) -> Match? {
-        let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = NSRange(location: 0, length: source.characters.count)
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
+        let range = GroupRange(location: 0, length: source.characters.count)
         let match = compiled?.firstMatch(in: source, options: options, range: range)
         return match.map { match in
             Match(source: source, match: match, groupNames: groupNames)
@@ -147,8 +147,8 @@ public class Regex : RegexType {
      - returns: A string, where all the occurances of the pattern were replaced.
      */
     public func replaceAll(in source:String, with replacement:String) -> String {
-        let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = NSRange(location: 0, length: source.characters.count)
+        let options = RegularExpression.MatchingOptions(rawValue: 0)
+        let range = GroupRange(location: 0, length: source.characters.count)
         
         return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
