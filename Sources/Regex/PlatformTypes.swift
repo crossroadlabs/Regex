@@ -27,5 +27,5 @@ import Foundation
     typealias CompiledPattern = RegularExpression
     typealias CompiledMatchContext = [TextCheckingResult]
     typealias CompiledPatternMatch = TextCheckingResult
-    typealias GroupRange = Foundation.Range
+    typealias GroupRange = NSRange
 #endif
