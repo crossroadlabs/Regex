@@ -221,9 +221,9 @@
 		651654F21C53AB1F00B613AB = {
 			isa = PBXGroup;
 			children = (
-				65A918441CA33B0B0015722B /* Build */,
-				651654FE1C53AB2000B613AB /* Regex */,
-				6516550A1C53AB2000B613AB /* RegexTests */,
+				92F15ADD1D5CAA9500CDF148 /* Sources */,
+				92F15ADE1D5CAABB00CDF148 /* Tests */,
+				65A918441CA33B0B0015722B /* Frameworks */,
 				651654FD1C53AB2000B613AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -259,17 +259,17 @@
 			path = Regex;
 			sourceTree = "<group>";
 		};
-		6516550A1C53AB2000B613AB /* RegexTests */ = {
+		6516550A1C53AB2000B613AB /* RegexTestSuite */ = {
 			isa = PBXGroup;
 			children = (
 				6516550B1C53AB2000B613AB /* RegexTests.swift */,
 				6516550D1C53AB2000B613AB /* Info.plist */,
 			);
-			name = RegexTests;
-			path = Tests/Regex;
+			name = RegexTestSuite;
+			path = Regex;
 			sourceTree = "<group>";
 		};
-		65A918441CA33B0B0015722B /* Build */ = {
+		65A918441CA33B0B0015722B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				65A918451CA33B0B0015722B /* iOS */,
@@ -277,7 +277,7 @@
 				65A918531CA33B0B0015722B /* tvOS */,
 				65A9185A1CA33B0B0015722B /* watchOS */,
 			);
-			name = Build;
+			name = Frameworks;
 			path = Carthage/Build;
 			sourceTree = "<group>";
 		};
@@ -315,6 +315,22 @@
 				65A9185F1CA33B0B0015722B /* Result.framework */,
 			);
 			path = watchOS;
+			sourceTree = "<group>";
+		};
+		92F15ADD1D5CAA9500CDF148 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				651654FE1C53AB2000B613AB /* Regex */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		92F15ADE1D5CAABB00CDF148 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6516550A1C53AB2000B613AB /* RegexTestSuite */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -800,7 +816,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -826,7 +842,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -881,7 +897,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -905,7 +921,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -966,7 +982,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
@@ -989,7 +1005,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
@@ -1049,7 +1065,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;
@@ -1073,7 +1089,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
-				INFOPLIST_FILE = Regex/Info.plist;
+				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Regex;

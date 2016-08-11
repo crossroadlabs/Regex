@@ -43,7 +43,7 @@ matrix:
         # install original swift distribution
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
-        - export SWIFT_VERSION="swift-3.0-preview-2"
+        - export SWIFT_VERSION="swift-3.0-preview-4"
         - SWIFT_VERSION_UPPER=`echo $SWIFT_VERSION | perl -n -e'/^(.*?)-([\.\d]*?)-(.*)$/; $code = uc $3; print "$1-$2-${code}"'`
         - wget https://swift.org/builds/$SWIFT_VERSION/ubuntu1404/$SWIFT_VERSION_UPPER/$SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
         - tar xzf $SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
