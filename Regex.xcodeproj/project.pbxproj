@@ -342,7 +342,6 @@
 				65C5298D1C565EB9002BF559 /* Frameworks */,
 				65C5298E1C565EB9002BF559 /* Resources */,
 				65A918631CA33D2F0015722B /* Copy Frameworks */,
-				92748D9E1D5CBDD9000707CA /* Fix Xcode 8 Beta Swift Copying Bug */,
 			);
 			buildRules = (
 			);
@@ -516,23 +515,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		92748D9E1D5CBDD9000707CA /* Fix Xcode 8 Beta Swift Copying Bug */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Fix Xcode 8 Beta Swift Copying Bug";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# VERSION 1.0.4\n# Author: @madhavajay\n# This currently works for iOS and watchOS in the Simulator and Devices\n\n# Changes\n# Using ${TOOLCHAIN} in two places now\n# Added double quotes \" around paths\n# Fixed watchOS Issues\n\n# Instructions iOS\n# 1. Copy this into a new Build Phase Script for your App Target\n# 2. Add all the Frameworks you need as Input Files, internal and external\n# 3. Reset your iOS and watchOS simulators (seriously)\n\n# Screenshot: http://i.imgur.com/3dTjVcW.png\n\n# Instructions watchOS\n# 1. Same as above only you need to add the Build Phase Script and its\n#    Framework Input Files to both the Watch App and the Watch Extension.\n#    You can only add the Extension one in Xcode. So Add the Extension one,\n#    then open the .xcodeproj in a Text Editor and find the Entry you just added.\n#    Its a lot easier with Git. There will be two, changes, one like this:\n#\n#    28F65CA91D3FDC7D00043613 /* Fix Xcode 8 Beta 3 */\n#\n#    Under the WatchKit Extension buildPhases, and a second with the actual\n#    script and inputs.\n# 2. Cut and Paste the Line like above, linking the Script from the Extension\n# \t Build Phase to the WatchKit App buildPhases.\n# 3. Make a new one for the WatchKit Extension Again, either in Xcode or\n#    Text Editor.\n# 4. Reset your iOS and watchOS simulators (seriously)\n# 5. Clean deriveddata, spin around in your chair, build and shazam!\n\n# Whats happening here is the same Copy Swift standard libraries step is performed\n# on both the App and the Extension Targets. I was able to get the app running\n# with only one of these but i'm skeptical its correct as you can see Xcode\n# attempts the Copy Swift standard libraries on both Targets by default so there\n# must be a need for it.\n\n# Note, you should use the Beta 3 Toolchain, so make sure $TOOLCHAIN_DIR is resolving to:\n# /Applications/{YOUR BETA}.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain\n\n# Trouble Shooting\n# Check the Build Logs and you should see the New Step you add for each target.\n# If its working you can see the files like libswiftCore.dylib appear in the\n# Framework folders of your .app and .appex files.\n# If its not working, try putting `set` on a new line of your Build Phase Script\n# This will echo out all the Environment Variables used below and you can compare them\n# with the expected output that Xcode uses in the normal Build Step.\n# Be careful the Path Spaces are escaped by using double \" around the paths below\n# or the build paths for watchOS wont work, because they have spaces in their\n# folder names like: APPNAME WatchKit Extension and APPNAME WatchKit App\n\n# Include Frameworks\nfor i in `seq 1 ${SCRIPT_INPUT_FILE_COUNT}`; do\nNUM=`expr $i - 1`\nNEXT_FOLDER_ARG=SCRIPT_INPUT_FILE_$NUM\nINCLUDE_FRAMEWORK_FOLDER_ARGS=\"${INCLUDE_FRAMEWORK_FOLDER_ARGS} --scan-folder ${!NEXT_FOLDER_ARG}\"\ndone\n\n# Run the correct tool 🤗\n${TOOLCHAIN_DIR}/usr/bin/swift-stdlib-tool \\\n--copy --verbose --sign ${EXPANDED_CODE_SIGN_IDENTITY} \\\n--scan-executable \"${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\" \\\n--scan-folder \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\" \\\n--scan-folder \"${TARGET_BUILD_DIR}/${PLUGINS_FOLDER_PATH}\" \\\n--platform ${PLATFORM_NAME} \\\n--toolchain ${TOOLCHAIN_DIR} \\\n--destination \"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}\" \\\n--strip-bitcode --resource-destination \"${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}\" \\\n--resource-library libswiftRemoteMirror.dylib \\\n${INCLUDE_FRAMEWORK_FOLDER_ARGS}";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		651654F71C53AB2000B613AB /* Sources */ = {
