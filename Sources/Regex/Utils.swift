@@ -15,17 +15,16 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-//import Boilerplate
 
 public typealias StringRange = Range<String.Index>
 
-//#if !os(Linux)
-//    extension NSTextCheckingResult {
-//        public func range(at idx: Int) -> NSRange {
-//            return rangeAt(idx)
-//        }
-//    }
-//#endif
+#if !os(Linux)
+    extension NSTextCheckingResult {
+        public func range(at idx: Int) -> NSRange {
+            return rangeAt(idx)
+        }
+    }
+#endif
 
 extension Sequence where Iterator.Element : Hashable {
     var indexHash:Dictionary<Iterator.Element, Int> {

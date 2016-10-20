@@ -15,7 +15,6 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-//import Boilerplate
 
 public struct RegexOptions : OptionSet {
     public let rawValue: UInt

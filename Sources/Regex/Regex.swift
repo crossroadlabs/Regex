@@ -15,7 +15,6 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-//import Boilerplate
 
 //makes it easier to maintain two implementations
 public protocol RegexType {

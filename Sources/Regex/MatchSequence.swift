@@ -15,7 +15,6 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-//import Boilerplate
 
 public class MatchSequence : Sequence {
     let source:String

@@ -19,18 +19,6 @@
 		6558DA651D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
 		6558DA661D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
 		6558DA671D0742F000989628 /* RegexOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6558DA631D0742F000989628 /* RegexOptions.swift */; };
-		65A918611CA33B220015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; };
-		65A918621CA33B290015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; };
-		65A918641CA33D400015722B /* Boilerplate.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918491CA33B0B0015722B /* Boilerplate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A918651CA33D6B0015722B /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9184C1CA33B0B0015722B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A918661CA33DBC0015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9184F1CA33B0B0015722B /* Boilerplate.framework */; };
-		65A918671CA33DC10015722B /* Boilerplate.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9184F1CA33B0B0015722B /* Boilerplate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A918681CA33DC10015722B /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918511CA33B0B0015722B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A918691CA33DFB0015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918551CA33B0B0015722B /* Boilerplate.framework */; };
-		65A9186A1CA33E000015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918551CA33B0B0015722B /* Boilerplate.framework */; };
-		65A9186C1CA33E120015722B /* Boilerplate.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918551CA33B0B0015722B /* Boilerplate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A9186D1CA33E120015722B /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 65A918581CA33B0B0015722B /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65A9186E1CA33E430015722B /* Boilerplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9185D1CA33B0B0015722B /* Boilerplate.framework */; };
 		65C529911C565EB9002BF559 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C529871C565EB8002BF559 /* Regex.framework */; };
 		65C5299E1C5660D2002BF559 /* RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516550B1C53AB2000B613AB /* RegexTests.swift */; };
 		65C5299F1C5660DD002BF559 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651655161C53AB3F00B613AB /* Regex.swift */; };
@@ -90,8 +78,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65A918641CA33D400015722B /* Boilerplate.framework in Copy Frameworks */,
-				65A918651CA33D6B0015722B /* Result.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,8 +88,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65A9186C1CA33E120015722B /* Boilerplate.framework in Copy Frameworks */,
-				65A9186D1CA33E120015722B /* Result.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,8 +98,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65A918671CA33DC10015722B /* Boilerplate.framework in Copy Frameworks */,
-				65A918681CA33DC10015722B /* Result.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,14 +117,6 @@
 		651655211C53DAD200B613AB /* GroupRangeUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRangeUtils.swift; sourceTree = "<group>"; };
 		651655231C53DB1300B613AB /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6558DA631D0742F000989628 /* RegexOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexOptions.swift; sourceTree = "<group>"; };
-		65A918491CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
-		65A9184C1CA33B0B0015722B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
-		65A9184F1CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
-		65A918511CA33B0B0015722B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
-		65A918551CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
-		65A918581CA33B0B0015722B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
-		65A9185D1CA33B0B0015722B /* Boilerplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Boilerplate.framework; sourceTree = "<group>"; };
-		65A9185F1CA33B0B0015722B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 		65C529871C565EB8002BF559 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C529901C565EB9002BF559 /* RegexTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RegexTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C529B71C5664B0002BF559 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				651655071C53AB2000B613AB /* Regex.framework in Frameworks */,
-				65A918661CA33DBC0015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A918611CA33B220015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C529911C565EB9002BF559 /* Regex.framework in Frameworks */,
-				65A918621CA33B290015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A918691CA33DFB0015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +168,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C529C11C5664B0002BF559 /* Regex.framework in Frameworks */,
-				65A9186A1CA33E000015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +175,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A9186E1CA33E430015722B /* Boilerplate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +186,6 @@
 			children = (
 				92F15ADD1D5CAA9500CDF148 /* Sources */,
 				92F15ADE1D5CAABB00CDF148 /* Tests */,
-				65A918441CA33B0B0015722B /* Frameworks */,
 				651654FD1C53AB2000B613AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -253,62 +220,13 @@
 			path = Regex;
 			sourceTree = "<group>";
 		};
-		6516550A1C53AB2000B613AB /* RegexTestSuite */ = {
+		6516550A1C53AB2000B613AB /* RegexTests */ = {
 			isa = PBXGroup;
 			children = (
 				6516550B1C53AB2000B613AB /* RegexTests.swift */,
 				6516550D1C53AB2000B613AB /* Info.plist */,
 			);
-			name = RegexTestSuite;
-			path = Regex;
-			sourceTree = "<group>";
-		};
-		65A918441CA33B0B0015722B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				65A918451CA33B0B0015722B /* iOS */,
-				65A9184E1CA33B0B0015722B /* Mac */,
-				65A918531CA33B0B0015722B /* tvOS */,
-				65A9185A1CA33B0B0015722B /* watchOS */,
-			);
-			name = Frameworks;
-			path = Carthage/Build;
-			sourceTree = "<group>";
-		};
-		65A918451CA33B0B0015722B /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				65A918491CA33B0B0015722B /* Boilerplate.framework */,
-				65A9184C1CA33B0B0015722B /* Result.framework */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		65A9184E1CA33B0B0015722B /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				65A9184F1CA33B0B0015722B /* Boilerplate.framework */,
-				65A918511CA33B0B0015722B /* Result.framework */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
-		65A918531CA33B0B0015722B /* tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				65A918551CA33B0B0015722B /* Boilerplate.framework */,
-				65A918581CA33B0B0015722B /* Result.framework */,
-			);
-			path = tvOS;
-			sourceTree = "<group>";
-		};
-		65A9185A1CA33B0B0015722B /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				65A9185D1CA33B0B0015722B /* Boilerplate.framework */,
-				65A9185F1CA33B0B0015722B /* Result.framework */,
-			);
-			path = watchOS;
+			path = RegexTests;
 			sourceTree = "<group>";
 		};
 		92F15ADD1D5CAA9500CDF148 /* Sources */ = {
@@ -322,7 +240,7 @@
 		92F15ADE1D5CAABB00CDF148 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6516550A1C53AB2000B613AB /* RegexTestSuite */,
+				6516550A1C53AB2000B613AB /* RegexTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -819,10 +737,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -845,10 +759,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -866,11 +776,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,11 +787,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -901,10 +803,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -925,10 +823,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -947,11 +841,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
@@ -964,11 +854,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
@@ -986,10 +872,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1009,10 +891,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1030,11 +908,7 @@
 		65C529CA1C5664B0002BF559 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1046,11 +920,7 @@
 		65C529CB1C5664B0002BF559 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
-				INFOPLIST_FILE = Tests/Regex/Info.plist;
+				INFOPLIST_FILE = Tests/RegexTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1069,10 +939,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1093,10 +959,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
 				INFOPLIST_FILE = Sources/Regex/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
