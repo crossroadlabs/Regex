@@ -33,15 +33,13 @@ public struct RegexOptions : OptionSet {
     public static let none:RegexOptions = []
 }
 
-//#if !os(Linux)
-//    public typealias RegularExpression = NSRegularExpression
-//#else
-//    public extension RegularExpression {
-//        public typealias MatchingOptions = NSMatchingOptions
-//    }
-//#endif
-
-public typealias RegularExpression = NSRegularExpression
+#if !os(Linux)
+    public typealias RegularExpression = NSRegularExpression
+#else
+    public extension RegularExpression {
+        public typealias MatchingOptions = NSMatchingOptions
+    }
+#endif
 
 extension RegularExpression.Options : Hashable {
     public var hashValue: Int {
