@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-import Boilerplate
+//import Boilerplate
 
 public struct RegexOptions : OptionSet {
     public let rawValue: UInt
@@ -33,13 +33,15 @@ public struct RegexOptions : OptionSet {
     public static let none:RegexOptions = []
 }
 
-#if !os(Linux)
-    public typealias RegularExpression = NSRegularExpression
-#else
-    public extension RegularExpression {
-        public typealias MatchingOptions = NSMatchingOptions
-    }
-#endif
+//#if !os(Linux)
+//    public typealias RegularExpression = NSRegularExpression
+//#else
+//    public extension RegularExpression {
+//        public typealias MatchingOptions = NSMatchingOptions
+//    }
+//#endif
+
+public typealias RegularExpression = NSRegularExpression
 
 extension RegularExpression.Options : Hashable {
     public var hashValue: Int {
@@ -66,9 +68,13 @@ private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptio
     .useUnixLineSeparators:.useUnixLineSeparators,
     .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.map { (key, value) in
-        (value, key)
-    }^
+private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.map({ (key, value) in
+        return (value, key)
+    }).reduce([:], { (dict, kv) in
+        var dict = dict
+        dict[kv.0] = kv.1
+        return dict
+    })
 
 public extension RegexOptions {
     public var ns:RegularExpression.Options {

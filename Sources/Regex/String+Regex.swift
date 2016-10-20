@@ -42,8 +42,8 @@ public extension String {
     }
 }
 
-infix operator =~ {associativity left precedence 140}
-infix operator !~ {associativity left precedence 140}
+infix operator =~ : ComparisonPrecedence
+infix operator !~ : ComparisonPrecedence
 
 /**
  * Sintactic sugar for pattern matching. Used as "ABC" =~ ".*".r

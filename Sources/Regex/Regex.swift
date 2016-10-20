@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-import Boilerplate
+//import Boilerplate
 
 //makes it easier to maintain two implementations
 public protocol RegexType {
@@ -66,7 +66,7 @@ public class Regex : RegexType {
         self.pattern = pattern
         self.groupNames = groupNames
         do {
-            self.compiled = try self.dynamicType.compile(pattern: pattern, options: options)
+            self.compiled = try type(of: self).compile(pattern: pattern, options: options)
         } catch let e {
             self.compiled = nil
             throw e
@@ -166,7 +166,7 @@ public class Regex : RegexType {
         }
     }
     
-    private func replaceMatches<T: Sequence where T.Iterator.Element : Match>(in source:String, matches:T, using replacer:(Match) -> String?) -> String {
+    private func replaceMatches<T: Sequence>(in source:String, matches:T, using replacer:(Match) -> String?) -> String where T.Iterator.Element : Match {
         var result = ""
         var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
