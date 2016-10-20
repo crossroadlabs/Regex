@@ -16,8 +16,10 @@
 
 import XCTest
 
-@testable import RegexTests
+import RegexTests
 
-XCTMain([
-	testCase(RegexTests.allTests)
-])
+var tests = [XCTestCaseEntry]()
+
+tests += RegexTests.allTests()
+
+XCTMain(tests)
