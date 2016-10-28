@@ -5,11 +5,9 @@ matrix:
   include:
     - script:
         - xcodebuild build test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
-        - sleep 10
-        - xcodebuild build test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6'
-        - sleep 10
+        - xcodebuild build test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
+        - sleep 20
         - xcodebuild build test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
-        - sleep 10
         - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
       os: osx
       osx_image: xcode8
