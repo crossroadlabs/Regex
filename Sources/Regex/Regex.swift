@@ -241,8 +241,8 @@ public class Regex : RegexType {
             
             let subgroups = match.subgroups.filter { subgroup in
                 subgroup != nil
-                }.map { subgroup in
-                    subgroup!
+            }.map { subgroup in
+                subgroup!
             }
             
             //add subgroups
