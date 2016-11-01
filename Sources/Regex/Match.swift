@@ -103,7 +103,7 @@ public class Match : MatchType {
         //subrange can be empty
         return try? match.range(at: index(of: name)).asRange(ofString: source)
     }
-
+    
     /**
      * The whole matched substring.
      */
