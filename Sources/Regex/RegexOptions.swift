@@ -65,13 +65,12 @@ private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptio
     .useUnixLineSeparators:.useUnixLineSeparators,
     .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.map({ (key, value) in
-        return (value, key)
-    }).reduce([:], { (dict, kv) in
-        var dict = dict
-        dict[kv.0] = kv.1
-        return dict
-    })
+
+private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
+    var dict = dict
+    dict[kv.value] = kv.key
+    return dict
+}
 
 public extension RegexOptions {
     public var ns:RegularExpression.Options {
