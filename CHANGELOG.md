@@ -1,5 +1,7 @@
 ## Changelog
 
+* v1.0.0-alpha.1
+	* Swift 3.0 (use 0.8.1 if you still need Swift 2.x)
 * v0.8.1
 	* Improved README
 * v0.8
