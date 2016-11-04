@@ -16,33 +16,143 @@
 
 import Foundation
 
-//makes it easier to maintain two implementations
-public protocol RegexType {
+/**
+ * Regular Expression protocol
+ *
+ * Makes it easier to maintain two implementations
+ */
+public protocol RegexProtocol {
+    /**
+     Constructor, same as main, more lightweight (omits options). Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, groupNames:[String]) throws
+    
+    /**
+     Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
+     Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, groupNames:String...) throws
+    
+    /**
+     Main constructor. Can throw an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, options:RegexOptions, groupNames:[String]) throws
+    
+    /**
+     Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
+     */
     init(pattern:String, options:RegexOptions, groupNames:String...) throws
     
+    /**
+     * Pattern used to create this Regex
+     */
     var pattern:String {get}
+    
+    /**
+     * Group names that will be used for named patter matching. Are supplied in a constructor.
+     */
     var groupNames:[String] {get}
     
+    /**
+     Checks is supplied string matches the pattern.
+     
+     - parameters:
+       - source: String to be matched to the pattern
+     - returns: True if the source matches, false otherwise.
+     */
     func matches(_ source:String) -> Bool
     
+    /**
+     Finds all the matches in the supplied string
+     
+     - parameters:
+       - source: String to be matched to the pattern
+     - returns: A sequense of found matches. Can be empty if nothing was found.
+     */
     func findAll(in source:String) -> MatchSequence
+    
+    /**
+     Returns the first match in the supplied string
+     
+     - parameters:
+       - source: String to be matched to the pattern
+     - returns: The match. Can be .none if nothing was found
+     */
     func findFirst(in source:String) -> Match?
     
+    /**
+     Replaces all occurances of the pattern using supplied replacement String.
+     
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - returns: A string, where all the occurances of the pattern were replaced.
+     */
     func replaceAll(in source:String, with replacement:String) -> String
+    
+    /**
+     Replaces all occurances of the pattern using supplied replacer function.
+     
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - returns: A string, where all the occurances of the pattern were replaced
+     */
     func replaceAll(in source:String, using replacer:(Match) -> String?) -> String
+    
+    /**
+     Replaces first occurance of the pattern using supplied replacement String.
+     
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - returns: A string, where the first occurance of the pattern was replaced.
+     */
     func replaceFirst(in source:String, with replacement:String) -> String
+    
+    /**
+     Replaces the first occurance of the pattern using supplied replacer function.
+     
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - returns: A string, where the first occurance of the pattern was replaced
+     */
     func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String
     
+    /**
+     Splits the content of supplied string by pattern.
+     In case the pattern contains subgroups, they are added to the resulting array as well.
+     
+     - parameters:
+       - source: String to be split
+     - returns: Array of pieces of the string split with the pattern delimeter.
+     */
     func split(_ source:String) -> [String]
 }
 
 /**
  * Regular Expression
  */
-public class Regex : RegexType {
+public class Regex : RegexProtocol {
     /**
      * Pattern used to create this Regex
      */
@@ -55,11 +165,12 @@ public class Regex : RegexType {
     private let compiled:CompiledPattern?
     
     /**
-     * Main constructor. Can through an error.
+     Main constructor. Can throw an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter options: RegexOptions, i.e. case sensitivity, etc.
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
      */
     public required init(pattern:String, options:RegexOptions, groupNames:[String]) throws {
         self.pattern = pattern
@@ -73,32 +184,35 @@ public class Regex : RegexType {
     }
     
     /**
-     * Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     Constructor, same as main, but group names can be supplied as var args. Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter options: RegexOptions, i.e. case sensitivity, etc.
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - options: RegexOptions, i.e. case sensitivity, etc.
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern:String, options:RegexOptions, groupNames:String...) throws {
         try self.init(pattern:pattern, options: options, groupNames:groupNames)
     }
     
     /**
-     * Constructor, same as main, more lightweight (omits options). Can through an error.
+     Constructor, same as main, more lightweight (omits options). Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern: String, groupNames: [String]) throws {
-        try self.init(pattern:pattern, options: .defaultOptions, groupNames:groupNames)
+        try self.init(pattern:pattern, options: .`default`, groupNames:groupNames)
     }
     
     /**
-     * Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
-     * Can through an error.
+     Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
+     Can through an error.
      
-     - parameter pattern: A pattern to be used with Regex
-     - parameter groupNames: Group names to be used for matching
+     - parameters:
+       - pattern: A pattern to be used with Regex
+       - groupNames: Group names to be used for matching
      */
     public required convenience init(pattern: String, groupNames: String...) throws {
         try self.init(pattern:pattern, groupNames:groupNames)
@@ -110,9 +224,10 @@ public class Regex : RegexType {
     }
     
     /**
-     * Finds all the matches in the supplied string
+     Finds all the matches in the supplied string
      
-     - parameter source: String to be matched to the pattern
+     - parameters:
+       - source: String to be matched to the pattern
      - returns: A sequense of found matches. Can be empty if nothing was found.
      */
     public func findAll(in source:String) -> MatchSequence {
@@ -124,9 +239,10 @@ public class Regex : RegexType {
     }
     
     /**
-     * Returns the first match in the supplied string
+     Returns the first match in the supplied string
      
-     - parameter source: String to be matched to the pattern
+     - parameters:
+       - source: String to be matched to the pattern
      - returns: The match. Can be .none if nothing was found
      */
     public func findFirst(in source:String) -> Match? {
@@ -139,10 +255,11 @@ public class Regex : RegexType {
     }
     
     /**
-     * Replaces all occurances of the pattern using supplied replacement String.
+     Replaces all occurances of the pattern using supplied replacement String.
      
-     - parameter source: String to be matched to the pattern
-     - parameter replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
      - returns: A string, where all the occurances of the pattern were replaced.
      */
     public func replaceAll(in source:String, with replacement:String) -> String {
@@ -153,10 +270,11 @@ public class Regex : RegexType {
     }
     
     /**
-     * Replaces first occurance of the pattern using supplied replacement String.
+     Replaces first occurance of the pattern using supplied replacement String.
      
-     - parameter source: String to be matched to the pattern
-     - parameter replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
      - returns: A string, where the first occurance of the pattern was replaced.
      */
     public func replaceFirst(in source:String, with replacement:String) -> String {
@@ -182,9 +300,10 @@ public class Regex : RegexType {
     }
     
     /**
-     * Checks is supplied string matches the pattern.
+     Checks is supplied string matches the pattern.
      
-     - parameter source: String to be matched to the pattern
+     - parameters:
+       - source: String to be matched to the pattern
      - returns: True if the source matches, false otherwise.
      */
     public func matches(_ source:String) -> Bool {
@@ -195,10 +314,11 @@ public class Regex : RegexType {
     }
     
     /**
-     * Replaces all occurances of the pattern using supplied replacer function.
+     Replaces all occurances of the pattern using supplied replacer function.
      
-     - parameter source: String to be matched to the pattern
-     - parameter replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
      - returns: A string, where all the occurances of the pattern were replaced
      */
     public func replaceAll(in source:String, using replacer:(Match) -> String?) -> String {
@@ -207,10 +327,11 @@ public class Regex : RegexType {
     }
     
     /**
-     * Replaces the first occurance of the pattern using supplied replacer function.
+     Replaces the first occurance of the pattern using supplied replacer function.
      
-     - parameter source: String to be matched to the pattern
-     - parameter replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
+     - parameters:
+       - source: String to be matched to the pattern
+       - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
      - returns: A string, where the first occurance of the pattern was replaced
      */
     public func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String {
@@ -222,10 +343,11 @@ public class Regex : RegexType {
     }
     
     /**
-     * Splits the content of supplied string by pattern.
-     * In case the pattern contains subgroups, they are added to the resulting array as well.
+     Splits the content of supplied string by pattern.
+     In case the pattern contains subgroups, they are added to the resulting array as well.
      
-     - parameter source: String to be split
+     - parameters:
+       - source: String to be split
      - returns: Array of pieces of the string split with the pattern delimeter.
      */
     public func split(_ source:String) -> [String] {

@@ -16,7 +16,9 @@
 
 import Foundation
 
-public protocol MatchType {
+
+//Make this one public when we add a second implementation
+protocol MatchProtocol {
     var source:String {get}
     
     var range:StringRange {get}
@@ -35,7 +37,7 @@ public protocol MatchType {
 /**
  * Represents a pattern match
  */
-public class Match : MatchType {
+public class Match : MatchProtocol {
     /**
      * The original string supplied to Regex for matching
      */
@@ -103,7 +105,7 @@ public class Match : MatchType {
         //subrange can be empty
         return try? match.range(at: index(of: name)).asRange(ofString: source)
     }
-    
+
     /**
      * The whole matched substring.
      */
