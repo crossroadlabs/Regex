@@ -86,17 +86,17 @@ All the lines below are identical and represent simple matching. All operators a
 
 ```swift
 //operator way, can match either regex or string containing pattern
-"l321321alala" =~ "(.+?)([1,2,3]*)(.*)".r
-"l321321alala" =~ "(.+?)([1,2,3]*)(.*)"
+"l321321alala" =~ "(.+?)([123]*)(.*)".r
+"l321321alala" =~ "(.+?)([123]*)(.*)"
 
 //similar function
-"(.+?)([1,2,3]*)(.*)".r!.matches("l321321alala")
+"(.+?)([123]*)(.*)".r!.matches("l321321alala")
 ```
 Operator `!~` returns `true` if expression does **NOT** match:
 
 ```swift
-"l321321alala" !~ "(.+?)([1,2,3]*)(.*)".r
-"l321321alala" !~ "(.+?)([1,2,3]*)(.*)"
+"l321321alala" !~ "(.+?)([123]*)(.*)".r
+"l321321alala" !~ "(.+?)([123]*)(.*)"
 //both return false
 ```
 
@@ -143,14 +143,14 @@ bizarre symbol
 
 ```swift
 // strings can be converted to regex in Scala style .r property of a string
-let digits = "(.+?)([1,2,3]*)(.*)".r?.findFirst(in: "l321321alala")?.group(at: 2)
+let digits = "(.+?)([123]*)(.*)".r?.findFirst(in: "l321321alala")?.group(at: 2)
 // digits is "321321" here
 ```
 
 #### Named groups:
 
 ```swift
-let regex:RegexType = try Regex(pattern:"(.+?)([1,2,3]*)(.*)",
+let regex:RegexType = try Regex(pattern:"(.+?)([123]*)(.*)",
                                         groupNames:"letter", "digits", "rest")
 let match = regex.findFirst(in: "l321321alala")
 if let match = match {
@@ -164,14 +164,14 @@ if let match = match {
 #### Replace:
 
 ```swift
-let replaced = "(.+?)([1,2,3]*)(.*)".r?.replaceAll(in: "l321321alala", with: "$1-$2-$3")
+let replaced = "(.+?)([123]*)(.*)".r?.replaceAll(in: "l321321alala", with: "$1-$2-$3")
 //replaced is "l-321321-alala"
 ```
 
 #### Replace with custom replacer function:
 
 ```swift
-let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll(in: "l321321la321a") { match in
+let replaced = "(.+?)([123]+)(.+?)".r?.replaceAll(in: "l321321la321a") { match in
 	if match.group(at: 1) == "l" {
 		return nil
 	} else {

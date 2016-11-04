@@ -79,10 +79,19 @@ public struct RegexOptions : OptionSet {
 }
 
 #if !os(Linux)
-    public typealias RegularExpression = NSRegularExpression
+    /**
+     * Internal implementation that can't be hidden. Skip it.
+     */
+    typealias RegularExpression = NSRegularExpression
 #else
-    public extension RegularExpression {
-        public typealias MatchingOptions = NSMatchingOptions
+    /**
+     * Internal implementation that can't be hidden. Skip it.
+     */
+    extension RegularExpression {
+        /**
+         * Internal implementation that can't be hidden. Skip it.
+         */
+        typealias MatchingOptions = NSMatchingOptions
     }
 #endif
 
