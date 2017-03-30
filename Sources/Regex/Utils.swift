@@ -1,4 +1,4 @@
-//===--- GroupRangeUtils.swift --------------------------------------------===//
+//===--- Utils.swift ------------------------------------------------------===//
 //Copyright (c) 2016 Daniel Leping (dileping)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,22 +15,27 @@
 //===----------------------------------------------------------------------===//
 
 import Foundation
-import Boilerplate
-    
-enum InvalidRangeError : ErrorProtocol {
-    case Error
-}
 
-extension GroupRange {
-    func toStringRange(source:String) throws -> StringRange {
-        let len = source.characters.count
-        if self.location < 0 || self.location >= len || self.location + self.length > len {
-            throw InvalidRangeError.Error
+public typealias StringRange = Range<String.Index>
+
+#if !os(Linux)
+    extension NSTextCheckingResult {
+        func range(at idx: Int) -> NSRange {
+            return rangeAt(idx)
         }
-        
-        let start = source.startIndex.advanced(by: self.location)
-        let end = start.advanced(by: self.length)
-        
-        return start ..< end
+    }
+#endif
+
+extension Sequence where Iterator.Element : Hashable {
+    var indexHash:Dictionary<Iterator.Element, Int> {
+        get {
+            var result = Dictionary<Iterator.Element, Int>()
+            var index = 0
+            for e in self {
+                result[e] = index
+                index += 1
+            }
+            return result
+        }
     }
 }
