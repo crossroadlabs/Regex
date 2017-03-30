@@ -4,13 +4,15 @@ env:
 matrix:
   include:
     - script:
+        - swift build
+        - swift test
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
         - sleep 20
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
         - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
       os: osx
-      osx_image: xcode8
+      osx_image: xcode8.3
       language: objective-c
       env:
         - secure: hsSJ4btmCIbNjAPyAOZvCAUUbupx9Obo0YIXkrQ/iteC4oWRv0g4TMh9Ie/zg9Cdn8P6QOlV2waoG4ZdCymW08/MASK5+Z+uRqAuAExF2l0NllbVTymEDKHkzGdId9EN4thj10TXrsq8kfTWg8O1As3r2Nl/H2lBmDK49DHZVU2cNl9EbgmALYS7CoZ2LwM/TnJgSvUB4l0yzPyz4veDNAgRvQ9iMXN1/gHsemZdcxrd9q3ce53+PRap2z9NUGQrpAefXCLjN8M8aKHExgr90aUxGz4DoHm+pRppMqFo9hIjEi0WQc+ikD3ExchxQH6LCCdTF20L5L0Sxj3AzhUsojDtB5zG9Rc8O/1UjzbcuHbdr0PC+0mSFuQzYsG009Zg1i6moeattmQOC/F/QYp/cXdlHT9K9T4dqh62Wp9lU/CeigJ6orKR9NgBuxEDOsObzNVoiRsqBn4fEOE2b+24XB7D8u4Twc7koRB1gG96JUFNWm5pSmM1WDzTJIlHTcxiU4iHMV/19mWnzJhYTLSXhXOhG1lO2FddeRlkKCuklWqcKvWWr6FnFA2uFxp17hM6YfVsvhDQiJ3Xd/byuNIVgkDuL80Jo/v7dkM8tElYeJsRGiRkZLtkOlIiRnWYTeFclNNSzJ14Ub/MT5W6wfEm/nqeY2G0w50Peu362XL2rFs=
@@ -36,7 +38,8 @@ matrix:
           repo: crossroadlabs/Regex
           tags: true
     - script:
-        - swift build && swift test
+        - swift build
+        - swift test
       sudo: required
       dist: trusty
       language: generic
@@ -44,12 +47,15 @@ matrix:
         # install original swift distribution
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
-        - export SWIFT_VERSION="swift-3.0-release"
+        - export LINUX_VERSION="ubuntu14.04"
+        - export SWIFT_VERSION="swift-3.1-release"
+        - LINUX_VERSION_GLUED=`echo $LINUX_VERSION | perl -n -e'/^(.*?)\.(.*)$/; print "$1$2"'`
         - SWIFT_VERSION_UPPER=`echo $SWIFT_VERSION | perl -n -e'/^(.*?)-([\.\d]*?)-(.*)$/; $code = uc $3; print "$1-$2-${code}"'`
-        - wget https://swift.org/builds/$SWIFT_VERSION/ubuntu1404/$SWIFT_VERSION_UPPER/$SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
-        - tar xzf $SWIFT_VERSION_UPPER-ubuntu14.04.tar.gz
-        - export PATH="${PWD}/${SWIFT_VERSION_UPPER}-ubuntu14.04/usr/bin:${PATH}"
-        - export LD_LIBRARY_PATH="${PWD}/${SWIFT_VERSION_UPPER}-ubuntu14.04/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
+        - export RELEASE_NAME="$SWIFT_VERSION_UPPER-$LINUX_VERSION"
+        - wget https://swift.org/builds/$SWIFT_VERSION/$LINUX_VERSION_GLUED/$SWIFT_VERSION_UPPER/$RELEASE_NAME.tar.gz
+        - tar xzf $RELEASE_NAME.tar.gz
+        - export PATH="${PWD}/$RELEASE_NAME/usr/bin:${PATH}"
+        - export LD_LIBRARY_PATH="${PWD}/$RELEASE_NAME/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
         # get back home
         - cd $MODULE_NAME
 notifications:
