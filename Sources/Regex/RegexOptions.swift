@@ -56,7 +56,7 @@ extension RegexOptions : Hashable {
     }
 }
 
-private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptions> = [
+private let nsToRegexOptionsMap:[RegularExpression.Options: RegexOptions] = [
     .caseInsensitive:.caseInsensitive,
     .allowCommentsAndWhitespace:.allowCommentsAndWhitespace,
     .ignoreMetacharacters:.ignoreMetacharacters,
@@ -66,7 +66,7 @@ private let nsToRegexOptionsMap:Dictionary<RegularExpression.Options, RegexOptio
     .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
 
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, RegularExpression.Options> = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
+private let regexToNSOptionsMap:[RegexOptions: RegularExpression.Options] = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
     var dict = dict
     dict[kv.value] = kv.key
     return dict
