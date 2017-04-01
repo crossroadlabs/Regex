@@ -20,6 +20,28 @@ Still we hope it will be useful for everybody else.
 
 [Happy regexing ;)](#examples)
 
+## Features
+
+- [x] Deep Integration with Swift
+	- [x] `=~` operator support
+	- [x] Swift Pattern Matching (aka `switch` operator) support
+- [x] Named groups
+- [x] Match checking
+- [x] Extraction/Search functions
+- [x] Replace functions
+	- [x] With a pattern
+	- [x] With custom replacing function
+- [x] Splitting with a Regular Expression
+	- [x] Simple
+	- [x] With groups
+- [x] String extensions
+
+## Extra
+
+Path to Regex converter is available as a separate library here: [PathToRegex](https://github.com/crossroadlabs/PathToRegex)
+
+This one allows using path patterns like `/folder/*/:file.txt` or `/route/:one/:two` to be converted to Regular Expressions and matched against strings.
+
 ## Getting started
 
 ### Installation
@@ -64,32 +86,71 @@ All the lines below are identical and represent simple matching. All operators a
 
 ```swift
 //operator way, can match either regex or string containing pattern
-"l321321alala" =~ "(.+?)([1,2,3]*)(.*)".r
-"l321321alala" =~ "(.+?)([1,2,3]*)(.*)"
+"l321321alala" =~ "(.+?)([123]*)(.*)".r
+"l321321alala" =~ "(.+?)([123]*)(.*)"
 
 //similar function
-"(.+?)([1,2,3]*)(.*)".r!.matches("l321321alala")
+"(.+?)([123]*)(.*)".r!.matches("l321321alala")
 ```
 Operator `!~` returns `true` if expression does **NOT** match:
 
 ```swift
-"l321321alala" !~ "(.+?)([1,2,3]*)(.*)".r
-"l321321alala" !~ "(.+?)([1,2,3]*)(.*)"
+"l321321alala" !~ "(.+?)([123]*)(.*)".r
+"l321321alala" !~ "(.+?)([123]*)(.*)"
 //both return false
+```
+
+#### Swift Pattern Matching (aka `switch` keyword)
+
+Regex provides very deep integration with Swift and can be used with the switch keyword in the following way:
+
+```swift
+let letter = "a"
+let digit = "1"
+let other = "!"
+
+//you just put your string is a regular Swift's switch to match to regular expressions
+switch letter {
+	//note .r after the string literal of the pattern
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+
+switch digit {
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+
+switch other {
+	//note .r after the string literal of the pattern
+	case "\\d".r: print("digit")
+	case "[a-z]".r: print("letter")
+	default: print("bizarre symbol")
+}
+```
+
+The output of the code obove will be:
+
+```
+letter
+digit
+bizarre symbol
 ```
 
 #### Accessing groups:
 
 ```swift
 // strings can be converted to regex in Scala style .r property of a string
-let digits = "(.+?)([1,2,3]*)(.*)".r?.findFirst(in: "l321321alala")?.group(at: 2)
+let digits = "(.+?)([123]*)(.*)".r?.findFirst(in: "l321321alala")?.group(at: 2)
 // digits is "321321" here
 ```
 
 #### Named groups:
 
 ```swift
-let regex:RegexType = try Regex(pattern:"(.+?)([1,2,3]*)(.*)",
+let regex:RegexType = try Regex(pattern:"(.+?)([123]*)(.*)",
                                         groupNames:"letter", "digits", "rest")
 let match = regex.findFirst(in: "l321321alala")
 if let match = match {
@@ -103,14 +164,14 @@ if let match = match {
 #### Replace:
 
 ```swift
-let replaced = "(.+?)([1,2,3]*)(.*)".r?.replaceAll(in: "l321321alala", with: "$1-$2-$3")
+let replaced = "(.+?)([123]*)(.*)".r?.replaceAll(in: "l321321alala", with: "$1-$2-$3")
 //replaced is "l-321321-alala"
 ```
 
 #### Replace with custom replacer function:
 
 ```swift
-let replaced = "(.+?)([1,2,3]+)(.+?)".r?.replaceAll(in: "l321321la321a") { match in
+let replaced = "(.+?)([123]+)(.+?)".r?.replaceAll(in: "l321321la321a") { match in
 	if match.group(at: 1) == "l" {
 		return nil
 	} else {
@@ -146,34 +207,7 @@ let splits = myString.split(using: "(\\d)".r)
 
 ## Changelog
 
-* v0.7
-	* Support of Swift 3.0 preview 1
-	* Regex options support (like case sensetivity)
-	* Breaking change (Swift 3.0ish syntax)
-	* Renamed module in Pod from `CrossroadRegex` to `Regex`
-* v0.6
-	* Swift 3.0 support
-* v0.5.1
-	* Minor linux build related fixes
-* v0.5
-	* package manager support
-	* full linux support 🐧
-* v0.4.1
-	* support for optionally present groups
-* v0.4
-	* iOS, tvOS and watchOS support
-	* Pod supports watchOS
-	* automated pod deployment
-* v0.3
-	* Split
-	* Matches
-	* CocoaPod
-	* Syntactic sugar operators (`=~` and `!~`)
-* v0.2
-	* Replace functions
-	* Carthage support
-* v0.1
-	* basic find functions for OS X and iOS
+You can view the [CHANGELOG](./CHANGELOG.md) as a separate document [here](./CHANGELOG.md).
 
 ## Contributing
 

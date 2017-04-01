@@ -20,7 +20,7 @@ public typealias StringRange = Range<String.Index>
 
 #if !os(Linux)
     extension NSTextCheckingResult {
-        public func range(at idx: Int) -> NSRange {
+        func range(at idx: Int) -> NSRange {
             return rangeAt(idx)
         }
     }

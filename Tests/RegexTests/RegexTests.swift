@@ -15,11 +15,11 @@
 //===----------------------------------------------------------------------===//
 
 import XCTest
-@testable import Regex
+import Regex
 
 class RegexTests: XCTestCase {
     static let pattern:String = "(.+?)([1,2,3]*)(.*)"
-    let regex:RegexType = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
+    let regex:RegexProtocol = try! Regex(pattern:RegexTests.pattern, groupNames:"letter", "digits", "rest")
     let source = "l321321alala"
     let letter = "l"
     let digits = "321321"
@@ -38,6 +38,24 @@ class RegexTests: XCTestCase {
         
         XCTAssertFalse(source !~ regex)
         XCTAssertFalse(source !~ RegexTests.pattern)
+    }
+    
+    func testSwitch() {
+        let exp1 = self.expectation(description: "alpha works")
+        switch letter {
+            case "\\d".r: XCTFail("letter should not match a digit")
+            case "[a-z]".r: exp1.fulfill()
+            default: XCTFail("letter should have matched alpha")
+        }
+        
+        let exp2 = self.expectation(description: "alpha works")
+        switch digits {
+            case "[a-z]+".r: XCTFail("digits should not match letters")
+            case "[A-Z]+".r: XCTFail("digits should not match capital letters")
+            default: exp2.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 0, handler: nil)
     }
     
     func testSimple() {
@@ -160,6 +178,7 @@ extension RegexTests {
 	static var allTests : [(String, (RegexTests) -> () throws -> Void)] {
 		return [
 			("testMatches", testMatches),
+			("testSwitch", testSwitch),
 			("testSimple", testSimple),
 			("testLetter", testLetter),
 			("testDigits", testDigits),

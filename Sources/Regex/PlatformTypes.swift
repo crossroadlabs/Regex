@@ -23,8 +23,7 @@ import Foundation
     typealias CompiledPatternMatch = NSTextCheckingResult
     typealias GroupRange = NSRange
 #else
-    //here we use NSRegularExpression
-    typealias CompiledPattern = RegularExpression
+    typealias CompiledPattern = NSRegularExpression
     typealias CompiledMatchContext = [TextCheckingResult]
     typealias CompiledPatternMatch = TextCheckingResult
     typealias GroupRange = NSRange
