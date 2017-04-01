@@ -118,7 +118,7 @@ extension RegexOptions : Hashable {
     }
 }
 
-private let nsToRegexOptionsMap:[RegularExpression.Options: RegexOptions] = [
+private let nsToRegexOptionsMap:[NSRegularExpression.Options: RegexOptions] = [
     .caseInsensitive:.caseInsensitive,
     .allowCommentsAndWhitespace:.allowCommentsAndWhitespace,
     .ignoreMetacharacters:.ignoreMetacharacters,
@@ -128,7 +128,7 @@ private let nsToRegexOptionsMap:[RegularExpression.Options: RegexOptions] = [
     .useUnicodeWordBoundaries:.useUnicodeWordBoundaries
 ]
 
-private let regexToNSOptionsMap:[RegexOptions: RegularExpression.Options] = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
+private let regexToNSOptionsMap:[RegexOptions: NSRegularExpression.Options] = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
     var dict = dict
     dict[kv.value] = kv.key
     return dict
