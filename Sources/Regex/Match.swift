@@ -125,7 +125,7 @@ public class Match : MatchProtocol {
             let subRanges = ranges.suffix(from: 1)
             return subRanges.map { range in
                 range.map { range in
-                    source.substring(with: range)
+                    String(source[range])
                 }
             }
         }
@@ -140,7 +140,7 @@ public class Match : MatchProtocol {
     public func group(at index:Int) -> String? {
         let range = self.range(at: index)
         return range.map { range in
-            source.substring(with: range)
+            String(source[range])
         }
     }
     

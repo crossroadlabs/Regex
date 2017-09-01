@@ -287,15 +287,15 @@ public class Regex : RegexProtocol {
         var result = ""
         var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
-            result += source.substring(with: lastRange.upperBound ..< match.range.lowerBound)
+            result += source[lastRange.upperBound ..< match.range.lowerBound]
             if let replacement = replacer(match) {
                 result += replacement
             } else {
-                result += source.substring(with: match.range)
+                result += source[match.range]
             }
             lastRange = match.range
         }
-        result += source.substring(from: lastRange.upperBound)
+        result += source[lastRange.upperBound...]
         return result
     }
     
@@ -357,7 +357,7 @@ public class Regex : RegexProtocol {
         for match in matches {
             //extract the piece before the match
             let range = lastRange.upperBound ..< match.range.lowerBound
-            let piece = source.substring(with: range)
+            let piece = String(source[range])
             result.append(piece)
             lastRange = match.range
             
@@ -370,7 +370,7 @@ public class Regex : RegexProtocol {
             //add subgroups
             result.append(contentsOf: subgroups)
         }
-        let rest = source.substring(from: lastRange.upperBound)
+        let rest = String(source[lastRange.upperBound...])
         result.append(rest)
         return result
     }
