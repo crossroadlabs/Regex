@@ -172,27 +172,3 @@ class RegexTests: XCTestCase {
         XCTAssertNotNil(match.group(at: 2))
     }
 }
-
-#if os(Linux)
-extension RegexTests {
-	static var allTests : [(String, (RegexTests) -> () throws -> Void)] {
-		return [
-			("testMatches", testMatches),
-			("testSwitch", testSwitch),
-			("testSimple", testSimple),
-			("testLetter", testLetter),
-			("testDigits", testDigits),
-			("testRest", testRest),
-			("testFirstMatch", testFirstMatch),
-			("testReplaceAll", testReplaceAll),
-			("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
-			("testReplaceFirst", testReplaceFirst),
-			("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
-			("testSplit", testSplit),
-			("testSplitOnString", testSplitOnString),
-			("testSplitWithSubgroups", testSplitWithSubgroups),
-			("testNonExistingGroup", testNonExistingGroup),
-		]
-	}
-}
-#endif
