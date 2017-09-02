@@ -4,6 +4,7 @@ env:
 matrix:
   include:
     - script:
+        - open -b com.apple.iphonesimulator #https://github.com/travis-ci/travis-ci/issues/3040#issuecomment-146700203
         - swift build
         - swift test
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
