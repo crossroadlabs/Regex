@@ -96,7 +96,7 @@ public class Match : MatchProtocol {
     }
     
     /**
-     * Takes a subgroup match range by name. This will work if you suuplied subgroup names while creating Regex.
+     * Takes a subgroup match range by name. This will work if you supplied subgroup names while creating Regex.
      
      - parameter name: Name of subgroup to match to.
      - returns: A range or nil if the supplied subgroup does not exist.
@@ -145,7 +145,7 @@ public class Match : MatchProtocol {
     }
     
     /**
-     * Takes a subgroup match substring by name. This will work if you suuplied subgroup names while creating Regex.
+     * Takes a subgroup match substring by name. This will work if you supplied subgroup names while creating Regex.
      
      - parameter name: Index of subgroup to match to.
      - returns: A substring or nil if the supplied subgroup does not exist.
