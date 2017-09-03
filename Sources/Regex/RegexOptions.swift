@@ -118,22 +118,21 @@ extension RegexOptions : Hashable {
     }
 }
 
-private let nsToRegexOptionsMap:Dictionary<NSRegularExpression.Options, RegexOptions> = [
+private let nsToRegexOptionsMap:[NSRegularExpression.Options: RegexOptions] = [
     .caseInsensitive:.caseInsensitive,
     .allowCommentsAndWhitespace:.allowCommentsAndWhitespace,
     .ignoreMetacharacters:.ignoreMetacharacters,
     .dotMatchesLineSeparators:.dotMatchesLineSeparators,
     .anchorsMatchLines:.anchorsMatchLines,
     .useUnixLineSeparators:.useUnixLineSeparators,
-    .useUnicodeWordBoundaries:.useUnicodeWordBoundaries]
+    .useUnicodeWordBoundaries:.useUnicodeWordBoundaries
+]
 
-private let regexToNSOptionsMap:Dictionary<RegexOptions, NSRegularExpression.Options> = nsToRegexOptionsMap.map({ (key, value) in
-        return (value, key)
-    }).reduce([:], { (dict, kv) in
-        var dict = dict
-        dict[kv.0] = kv.1
-        return dict
-    })
+private let regexToNSOptionsMap:[RegexOptions: NSRegularExpression.Options] = nsToRegexOptionsMap.reduce([:]) { (dict, kv) in
+    var dict = dict
+    dict[kv.value] = kv.key
+    return dict
+}
 
 extension RegexOptions {
     var ns: NSRegularExpression.Options {
