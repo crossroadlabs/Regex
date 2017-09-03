@@ -78,18 +78,6 @@ public struct RegexOptions : OptionSet {
     public static let `default`:RegexOptions = [caseInsensitive]
 }
 
-#if os(Linux)
-    /**
-     * Internal implementation that can't be hidden. Skip it.
-     */
-    extension NSRegularExpression {
-        /**
-         * Internal implementation that can't be hidden. Skip it.
-         */
-        typealias MatchingOptions = NSMatchingOptions
-    }
-#endif
-
 /**
  * Internal implementation that can't be hidden. Skip it.
  */

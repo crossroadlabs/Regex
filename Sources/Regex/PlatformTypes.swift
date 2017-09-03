@@ -16,15 +16,8 @@
 
 import Foundation
 
-#if !os(Linux)
-    //here we use NSRegularExpression
-    typealias CompiledPattern = NSRegularExpression
-    typealias CompiledMatchContext = [NSTextCheckingResult]
-    typealias CompiledPatternMatch = NSTextCheckingResult
-    typealias GroupRange = NSRange
-#else
-    typealias CompiledPattern = NSRegularExpression
-    typealias CompiledMatchContext = [TextCheckingResult]
-    typealias CompiledPatternMatch = TextCheckingResult
-    typealias GroupRange = NSRange
-#endif
+//here we use NSRegularExpression
+typealias CompiledPattern = NSRegularExpression
+typealias CompiledMatchContext = [NSTextCheckingResult]
+typealias CompiledPatternMatch = NSTextCheckingResult
+typealias GroupRange = NSRange
