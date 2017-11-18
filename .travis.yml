@@ -48,9 +48,9 @@ matrix:
         # install original swift distribution
         - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
         - cd ..
-        - export BRANCH="swift-4.0-branch" #"swift-3.1-release"
+        - export BRANCH="swift-4.0.2-release"
         - export LINUX_VERSION="ubuntu14.04"
-        - export SWIFT_VERSION="swift-4.0-DEVELOPMENT-SNAPSHOT-2017-08-31-a" #"swift-3.1-RELEASE"
+        - export SWIFT_VERSION="swift-4.0.2-RELEASE"
         - LINUX_VERSION_GLUED=`echo $LINUX_VERSION | perl -n -e'/^(.*?)\.(.*)$/; print "$1$2"'`
         - export RELEASE_NAME="$SWIFT_VERSION-$LINUX_VERSION"
         - wget "https://swift.org/builds/$BRANCH/$LINUX_VERSION_GLUED/$SWIFT_VERSION/$RELEASE_NAME.tar.gz"
