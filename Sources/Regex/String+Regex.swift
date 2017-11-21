@@ -46,7 +46,7 @@ infix operator =~ : ComparisonPrecedence
 infix operator !~ : ComparisonPrecedence
 
 /**
- Sintactic sugar for pattern matching. Used as "ABC" =~ ".*".r
+ Syntactic sugar for pattern matching. Used as "ABC" =~ ".*".r
  
  - see: Regex.matches for more details.
  - parameters:
@@ -62,8 +62,8 @@ public func =~(source:String, regex:RegexProtocol?) -> Bool {
 }
 
 /**
- Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
- Regex is automaticall created from the second string.
+ Syntactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ Regex is automatically created from the second string.
  
  - see: Regex.matches for more details
  - parameters:
@@ -76,7 +76,7 @@ public func =~(source:String, pattern:String) -> Bool {
 }
 
 /**
- Sintactic sugar for pattern matching. Used as "ABC" !~ ".*".r
+ Syntactic sugar for pattern matching. Used as "ABC" !~ ".*".r
  Basically is negation of =~ operator.
  
  - see: Regex.matches for more details
@@ -90,10 +90,10 @@ public func !~(source:String, regex:RegexProtocol?) -> Bool {
 }
 
 /**
- Sintactic sugar for pattern matching. Used as "ABC" =~ ".*"
+ Syntactic sugar for pattern matching. Used as "ABC" =~ ".*"
  Basically is negation of =~ operator.
  
- Regex is automaticall created from the second string.
+ Regex is automatically created from the second string.
  
  - see: Regex.matches for more details
  - parameters:

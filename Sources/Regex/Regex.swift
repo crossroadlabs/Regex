@@ -23,7 +23,7 @@ import Foundation
  */
 public protocol RegexProtocol {
     /**
-     Constructor, same as main, more lightweight (omits options). Can through an error.
+     Constructor, same as main, more lightweight (omits options). Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -33,7 +33,7 @@ public protocol RegexProtocol {
     
     /**
      Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
-     Can through an error.
+     Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -52,7 +52,7 @@ public protocol RegexProtocol {
     init(pattern:String, options:RegexOptions, groupNames:[String]) throws
     
     /**
-     Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     Constructor, same as main, but group names can be supplied as var args. Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -85,7 +85,7 @@ public protocol RegexProtocol {
      
      - parameters:
        - source: String to be matched to the pattern
-     - returns: A sequense of found matches. Can be empty if nothing was found.
+     - returns: A sequence of found matches. Can be empty if nothing was found.
      */
     func findAll(in source:String) -> MatchSequence
     
@@ -99,42 +99,42 @@ public protocol RegexProtocol {
     func findFirst(in source:String) -> Match?
     
     /**
-     Replaces all occurances of the pattern using supplied replacement String.
+     Replaces all occurrences of the pattern using supplied replacement String.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
-     - returns: A string, where all the occurances of the pattern were replaced.
+     - returns: A string, where all the occurrences of the pattern were replaced.
      */
     func replaceAll(in source:String, with replacement:String) -> String
     
     /**
-     Replaces all occurances of the pattern using supplied replacer function.
+     Replaces all occurrences of the pattern using supplied replacer function.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
-     - returns: A string, where all the occurances of the pattern were replaced
+     - returns: A string, where all the occurrences of the pattern were replaced
      */
     func replaceAll(in source:String, using replacer:(Match) -> String?) -> String
     
     /**
-     Replaces first occurance of the pattern using supplied replacement String.
+     Replaces first occurrence of the pattern using supplied replacement String.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
-     - returns: A string, where the first occurance of the pattern was replaced.
+     - returns: A string, where the first occurrence of the pattern was replaced.
      */
     func replaceFirst(in source:String, with replacement:String) -> String
     
     /**
-     Replaces the first occurance of the pattern using supplied replacer function.
+     Replaces the first occurrence of the pattern using supplied replacer function.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
-     - returns: A string, where the first occurance of the pattern was replaced
+     - returns: A string, where the first occurrence of the pattern was replaced
      */
     func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String
     
@@ -144,7 +144,7 @@ public protocol RegexProtocol {
      
      - parameters:
        - source: String to be split
-     - returns: Array of pieces of the string split with the pattern delimeter.
+     - returns: Array of pieces of the string split with the pattern delimiter.
      */
     func split(_ source:String) -> [String]
 }
@@ -184,7 +184,7 @@ public class Regex : RegexProtocol {
     }
     
     /**
-     Constructor, same as main, but group names can be supplied as var args. Can through an error.
+     Constructor, same as main, but group names can be supplied as var args. Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -196,7 +196,7 @@ public class Regex : RegexProtocol {
     }
     
     /**
-     Constructor, same as main, more lightweight (omits options). Can through an error.
+     Constructor, same as main, more lightweight (omits options). Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -208,7 +208,7 @@ public class Regex : RegexProtocol {
     
     /**
      Constructor, same as main, more lightweight (omits options); group names can be supplied as var args.
-     Can through an error.
+     Can throw an error.
      
      - parameters:
        - pattern: A pattern to be used with Regex
@@ -228,11 +228,11 @@ public class Regex : RegexProtocol {
      
      - parameters:
        - source: String to be matched to the pattern
-     - returns: A sequense of found matches. Can be empty if nothing was found.
+     - returns: A sequence of found matches. Can be empty if nothing was found.
      */
     public func findAll(in source:String) -> MatchSequence {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.characters.count)
+        let range = GroupRange(location: 0, length: source.count)
         let context = compiled?.matches(in: source, options: options, range: range)
         //hard unwrap of context, because the instance would not exist without it
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
@@ -247,7 +247,7 @@ public class Regex : RegexProtocol {
      */
     public func findFirst(in source:String) -> Match? {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.characters.count)
+        let range = GroupRange(location: 0, length: source.count)
         let match = compiled?.firstMatch(in: source, options: options, range: range)
         return match.map { match in
             Match(source: source, match: match, groupNames: groupNames)
@@ -255,27 +255,27 @@ public class Regex : RegexProtocol {
     }
     
     /**
-     Replaces all occurances of the pattern using supplied replacement String.
+     Replaces all occurrences of the pattern using supplied replacement String.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
-     - returns: A string, where all the occurances of the pattern were replaced.
+     - returns: A string, where all the occurrences of the pattern were replaced.
      */
     public func replaceAll(in source:String, with replacement:String) -> String {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.characters.count)
+        let range = GroupRange(location: 0, length: source.count)
         
         return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
     
     /**
-     Replaces first occurance of the pattern using supplied replacement String.
+     Replaces first occurrence of the pattern using supplied replacement String.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacement: Replacement string. Can use $1, $2, etc. to insert matched groups.
-     - returns: A string, where the first occurance of the pattern was replaced.
+     - returns: A string, where the first occurrence of the pattern was replaced.
      */
     public func replaceFirst(in source:String, with replacement:String) -> String {
         return replaceFirst(in: source) { match in
@@ -287,15 +287,15 @@ public class Regex : RegexProtocol {
         var result = ""
         var lastRange:StringRange = source.startIndex ..< source.startIndex
         for match in matches {
-            result += source.substring(with: lastRange.upperBound ..< match.range.lowerBound)
+            result += source[lastRange.upperBound ..< match.range.lowerBound]
             if let replacement = replacer(match) {
                 result += replacement
             } else {
-                result += source.substring(with: match.range)
+                result += source[match.range]
             }
             lastRange = match.range
         }
-        result += source.substring(from: lastRange.upperBound)
+        result += source[lastRange.upperBound...]
         return result
     }
     
@@ -314,12 +314,12 @@ public class Regex : RegexProtocol {
     }
     
     /**
-     Replaces all occurances of the pattern using supplied replacer function.
+     Replaces all occurrences of the pattern using supplied replacer function.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
-     - returns: A string, where all the occurances of the pattern were replaced
+     - returns: A string, where all the occurrences of the pattern were replaced
      */
     public func replaceAll(in source:String, using replacer:(Match) -> String?) -> String {
         let matches = findAll(in: source)
@@ -327,12 +327,12 @@ public class Regex : RegexProtocol {
     }
     
     /**
-     Replaces the first occurance of the pattern using supplied replacer function.
+     Replaces the first occurrence of the pattern using supplied replacer function.
      
      - parameters:
        - source: String to be matched to the pattern
        - replacer: Function that takes a match and returns a replacement. If replacement is nil, the original match gets inserted instead
-     - returns: A string, where the first occurance of the pattern was replaced
+     - returns: A string, where the first occurrence of the pattern was replaced
      */
     public func replaceFirst(in source:String, using replacer:(Match) -> String?) -> String {
         var matches = Array<Match>()
@@ -348,7 +348,7 @@ public class Regex : RegexProtocol {
      
      - parameters:
        - source: String to be split
-     - returns: Array of pieces of the string split with the pattern delimeter.
+     - returns: Array of pieces of the string split with the pattern delimiter.
      */
     public func split(_ source:String) -> [String] {
         var result = Array<String>()
@@ -357,7 +357,7 @@ public class Regex : RegexProtocol {
         for match in matches {
             //extract the piece before the match
             let range = lastRange.upperBound ..< match.range.lowerBound
-            let piece = source.substring(with: range)
+            let piece = String(source[range])
             result.append(piece)
             lastRange = match.range
             
@@ -370,7 +370,7 @@ public class Regex : RegexProtocol {
             //add subgroups
             result.append(contentsOf: subgroups)
         }
-        let rest = source.substring(from: lastRange.upperBound)
+        let rest = String(source[lastRange.upperBound...])
         result.append(rest)
         return result
     }

@@ -22,7 +22,7 @@ enum InvalidRangeError : Error {
 
 extension GroupRange {
     func asRange(ofString source:String) throws -> StringRange {
-        let len = source.characters.count
+        let len = source.count
         if self.location < 0 || self.location >= len || self.location + self.length > len {
             throw InvalidRangeError.Error
         }

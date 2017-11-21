@@ -96,7 +96,7 @@ public class Match : MatchProtocol {
     }
     
     /**
-     * Takes a subgroup match range by name. This will work if you suuplied subgroup names while creating Regex.
+     * Takes a subgroup match range by name. This will work if you supplied subgroup names while creating Regex.
      
      - parameter name: Name of subgroup to match to.
      - returns: A range or nil if the supplied subgroup does not exist.
@@ -125,7 +125,7 @@ public class Match : MatchProtocol {
             let subRanges = ranges.suffix(from: 1)
             return subRanges.map { range in
                 range.map { range in
-                    source.substring(with: range)
+                    String(source[range])
                 }
             }
         }
@@ -140,12 +140,12 @@ public class Match : MatchProtocol {
     public func group(at index:Int) -> String? {
         let range = self.range(at: index)
         return range.map { range in
-            source.substring(with: range)
+            String(source[range])
         }
     }
     
     /**
-     * Takes a subgroup match substring by name. This will work if you suuplied subgroup names while creating Regex.
+     * Takes a subgroup match substring by name. This will work if you supplied subgroup names while creating Regex.
      
      - parameter name: Index of subgroup to match to.
      - returns: A substring or nil if the supplied subgroup does not exist.
