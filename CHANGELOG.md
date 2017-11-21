@@ -1,5 +1,9 @@
 ## Changelog
-
+* v1.1.0
+	* Support of Swift 4
+	* Added subscript access for groups (via Match groups property)
+* v1.0.0
+	* Support of Swift 3.1
 * v1.0.0-alpha.1
 	* Swift 3.0 (use 0.8.1 if you still need Swift 2.x)
 * v0.8.1
