@@ -171,6 +171,26 @@ class RegexTests: XCTestCase {
         XCTAssertNil(match.group(at: 1))
         XCTAssertNotNil(match.group(at: 2))
     }
+    
+    func testSubscriptAccess() {
+        let match = regex.findFirst(in: source)
+        XCTAssertNotNil(match)
+        if let match = match {
+            let groups = match.groups
+            XCTAssertEqual(letter, groups["letter"])
+            XCTAssertEqual(digits, groups["digits"])
+            XCTAssertEqual(rest, groups["rest"])
+            XCTAssertNil(groups["unexisted"])
+            
+            XCTAssertEqual(source, groups[0])
+            XCTAssertEqual(letter, groups[1])
+            XCTAssertEqual(digits, groups[2])
+            XCTAssertEqual(rest, groups[3])
+            XCTAssertNil(groups[4])
+        } else {
+            XCTFail("Bad test, can not reach this path")
+        }
+    }
 }
 
 #if os(Linux)
@@ -192,6 +212,7 @@ extension RegexTests {
 			("testSplitOnString", testSplitOnString),
 			("testSplitWithSubgroups", testSplitWithSubgroups),
 			("testNonExistingGroup", testNonExistingGroup),
+			("testSubscriptAccess", testSubscriptAccess)
 		]
 	}
 }

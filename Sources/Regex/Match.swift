@@ -16,6 +16,26 @@
 
 import Foundation
 
+/**
+ * Represents groups of pattern match. Supports subscripts.
+ */
+public protocol MatchGroupsProtocol {
+    /**
+     * Takes a subgroup match substring by index.
+     
+     - parameter index: Index of subgroup to match to. Zero represents the whole match.
+     - returns: A substring or nil if the supplied subgroup does not exist.
+     */
+    subscript(index: Int) -> String? {get}
+    
+    /**
+     * Takes a subgroup match substring by name. This will work if you supplied subgroup names while creating Regex.
+     
+     - parameter name: Name of subgroup to match to.
+     - returns: A substring or nil if the supplied subgroup does not exist.
+     */
+    subscript(name: String) -> String? {get}
+}
 
 //Make this one public when we add a second implementation
 protocol MatchProtocol {
@@ -29,9 +49,26 @@ protocol MatchProtocol {
     
     var matched:String {get}
     var subgroups:[String?] {get}
+    var groups: MatchGroupsProtocol {get}
     
     func group(at index:Int) -> String?
     func group(named name:String) -> String?
+}
+
+struct MatchGroups : MatchGroupsProtocol {
+    private let match: MatchProtocol
+    
+    init(match: MatchProtocol) {
+        self.match = match
+    }
+    
+    subscript(index: Int) -> String? {
+        return match.group(at: index)
+    }
+    
+    subscript(name: String) -> String? {
+        return match.group(named: name)
+    }
 }
 
 /**
@@ -54,8 +91,9 @@ public class Match : MatchProtocol {
         self.nameMap = groupNames.indexHash
     }
     
-    func index(of group:String) -> Int {
-        return nameMap[group]! + 1
+    func index(of group:String) -> Int? {
+        guard let groupIndex = nameMap[group] else { return nil }
+        return groupIndex + 1
     }
     
     /**
@@ -76,7 +114,6 @@ public class Match : MatchProtocol {
             var result = Array<StringRange?>()
             for i in 0..<match.numberOfRanges {
                 //subrange can be empty
-                
                 let stringRange = try? match.range(at: i).asRange(ofString: source)
                 
                 result.append(stringRange)
@@ -92,6 +129,7 @@ public class Match : MatchProtocol {
      - returns: A range or nil if the supplied subgroup does not exist.
      */
     public func range(at index:Int) -> StringRange? {
+        guard match.numberOfRanges > index else { return nil }
         return try? match.range(at: index).asRange(ofString: source)
     }
     
@@ -102,8 +140,9 @@ public class Match : MatchProtocol {
      - returns: A range or nil if the supplied subgroup does not exist.
      */
     public func range(named name:String) -> StringRange? {
+        guard let groupIndex = index(of: name) else { return nil }
         //subrange can be empty
-        return try? match.range(at: index(of: name)).asRange(ofString: source)
+        return try? match.range(at: groupIndex).asRange(ofString: source)
     }
 
     /**
@@ -121,13 +160,21 @@ public class Match : MatchProtocol {
      */
     public var subgroups:[String?] {
         get {
-            
             let subRanges = ranges.suffix(from: 1)
             return subRanges.map { range in
                 range.map { range in
                     String(source[range])
                 }
             }
+        }
+    }
+    
+    /**
+     * Returns groups object with subscript support. Zero index represents the whole match.
+     */
+    public var groups: MatchGroupsProtocol {
+        get {
+            return MatchGroups(match: self)
         }
     }
     
@@ -147,10 +194,11 @@ public class Match : MatchProtocol {
     /**
      * Takes a subgroup match substring by name. This will work if you supplied subgroup names while creating Regex.
      
-     - parameter name: Index of subgroup to match to.
+     - parameter name: Name of subgroup to match to.
      - returns: A substring or nil if the supplied subgroup does not exist.
      */
     public func group(named name:String) -> String? {
-        return self.group(at: index(of: name))
+        guard let groupIndex = index(of: name) else { return nil }
+        return self.group(at: groupIndex)
     }
 }

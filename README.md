@@ -48,13 +48,13 @@ This one allows using path patterns like `/folder/*/:file.txt` or `/route/:one/:
 
 #### [Package Manager](https://swift.org/package-manager/)
 
-Add the following dependency to your [Package.swift](https://github.com/apple/swift-package-manager/blob/master/Documentation/Package.swift.md):
+Add the following dependency to your [Package.swift](https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md#define-dependencies):
 
 ```swift
-.Package(url: "https://github.com/crossroadlabs/Regex.git", majorVersion: 0)
+.Package(url: "https://github.com/crossroadlabs/Regex.git", majorVersion: 1)
 ```
 
-Run ```swift build``` and build your app. Package manager is supported on OS X, but it's still recommended to be used on Linux only.
+Run ```swift build``` and build your app.
 
 #### [CocoaPods](http://cocoapods.org/)
 Add the following to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html):
@@ -200,10 +200,6 @@ let myString = "Hello 1 word. Sentence number 2."
 let splits = myString.split(using: "(\\d)".r)
 //splits contains ["Hello ", "1", " word. Sentence number ", "2", "."]
 ```
-
-## Roadmap
-
-* v1.0: stable release (once we will see that no issues are coming)
 
 ## Changelog
 
