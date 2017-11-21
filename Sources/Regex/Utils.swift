@@ -18,14 +18,6 @@ import Foundation
 
 public typealias StringRange = Range<String.Index>
 
-#if !os(Linux)
-    extension NSTextCheckingResult {
-        func range(at idx: Int) -> NSRange {
-            return rangeAt(idx)
-        }
-    }
-#endif
-
 extension Sequence where Iterator.Element : Hashable {
     var indexHash:Dictionary<Iterator.Element, Int> {
         get {
