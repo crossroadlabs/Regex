@@ -140,7 +140,7 @@ class RegexTests: XCTestCase {
             👍👍 Find me. 👌👨‍👩‍👧👨\u{200D}👩\u{200D}👧👌
             """
         let regex = try! Regex(pattern: "^(👍+) *([^👌]+?) *([👌👨‍👩‍👧]+)$",
-                               options: [.anchorsMatchLines, .useUnicodeWordBoundaries],
+                               options: [.anchorsMatchLines],
                                groupNames: [])
 
         guard let firstMatch = regex.findFirst(in: testString) else {
@@ -168,7 +168,6 @@ class RegexTests: XCTestCase {
 
 
         let familyEmojiRegex = try! Regex(pattern: "👌([👨‍👩‍👧]+)",
-                                          options: [.default],
                                           groupNames: [])
         guard let familyFirstMatch = familyEmojiRegex.findFirst(in: testString) else {
             return XCTFail("Failed to find first match using family regex.")
