@@ -232,7 +232,7 @@ public class Regex : RegexProtocol {
      */
     public func findAll(in source:String) -> MatchSequence {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.count)
+        let range = GroupRange(location: 0, length: source.utf16.count)
         let context = compiled?.matches(in: source, options: options, range: range)
         //hard unwrap of context, because the instance would not exist without it
         return MatchSequence(source: source, context: context!, groupNames: groupNames)
@@ -247,7 +247,7 @@ public class Regex : RegexProtocol {
      */
     public func findFirst(in source:String) -> Match? {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.count)
+        let range = GroupRange(location: 0, length: source.utf16.count)
         let match = compiled?.firstMatch(in: source, options: options, range: range)
         return match.map { match in
             Match(source: source, match: match, groupNames: groupNames)
@@ -264,7 +264,7 @@ public class Regex : RegexProtocol {
      */
     public func replaceAll(in source:String, with replacement:String) -> String {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        let range = GroupRange(location: 0, length: source.count)
+        let range = GroupRange(location: 0, length: source.utf16.count)
         
         return compiled!.stringByReplacingMatches(in: source, options: options, range: range, withTemplate: replacement)
     }
