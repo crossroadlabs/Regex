@@ -269,6 +269,7 @@ extension RegexTests {
 			("testReplaceAllWithReplacer", testReplaceAllWithReplacer),
 			("testReplaceFirst", testReplaceFirst),
 			("testReplaceFirstWithReplacer", testReplaceFirstWithReplacer),
+            ("testGraphemeClusters", testGraphemeClusters),
 			("testSplit", testSplit),
 			("testSplitOnString", testSplitOnString),
 			("testSplitWithSubgroups", testSplitWithSubgroups),
