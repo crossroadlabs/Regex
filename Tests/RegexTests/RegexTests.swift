@@ -15,7 +15,7 @@
 //===----------------------------------------------------------------------===//
 
 import XCTest
-import Regex
+@testable import Regex
 
 class RegexTests: XCTestCase {
     static let pattern:String = "(.+?)([1,2,3]*)(.*)"
@@ -133,6 +133,68 @@ class RegexTests: XCTestCase {
             return nil
         }
         XCTAssertEqual("l321321la321a", replaced2)
+    }
+
+    func testGraphemeClusters() {
+        let testString = """
+            👍👍 Find me. 👌👨‍👩‍👧👨\u{200D}👩\u{200D}👧👌
+            """
+        let regex = try! Regex(pattern: "^(👍+) *([^👌]+?) *([👌👨‍👩‍👧]+)$",
+                               options: [.anchorsMatchLines, .useUnicodeWordBoundaries],
+                               groupNames: [])
+
+        guard let firstMatch = regex.findFirst(in: testString) else {
+            return XCTFail("Failed to find first match using anchored regex.")
+        }
+
+        XCTAssert(firstMatch.group(at: 1) == "👍👍",
+                  "Incorrect first capture group for anchored regex.")
+        XCTAssert(firstMatch.group(at: 2) == "Find me.",
+                  "Incorrect second capture group for anchored regex.")
+        XCTAssert(firstMatch.group(at: 3) == "👌👨‍👩‍👧👨‍👩‍👧👌",
+                  "Incorrect third capture group for anchored regex.")
+
+        let englishMatchSequence = regex.findAll(in: testString)
+        XCTAssert(englishMatchSequence.context.count == 1,
+                  "Failed to find match using anchored regex.")
+
+        let englishFirstMatch = englishMatchSequence.makeIterator().next()!
+        XCTAssert(englishFirstMatch.group(at: 1) == "👍👍",
+                  "Incorrect first capture group for anchored regex.")
+        XCTAssert(englishFirstMatch.group(at: 2) == "Find me.",
+                  "Incorrect second capture group for anchored regex.")
+        XCTAssert(englishFirstMatch.group(at: 3) == "👌👨‍👩‍👧👨‍👩‍👧👌",
+                  "Incorrect third capture group for anchored regex.")
+
+
+        let familyEmojiRegex = try! Regex(pattern: "👌([👨‍👩‍👧]+)",
+                                          options: [.default],
+                                          groupNames: [])
+        guard let familyFirstMatch = familyEmojiRegex.findFirst(in: testString) else {
+            return XCTFail("Failed to find first match using family regex.")
+        }
+        XCTAssert(familyFirstMatch.matched == "👌👨‍👩‍👧👨‍👩‍👧",
+                  "Incorrect matched string for family emoji regex.")
+        XCTAssert(familyFirstMatch.group(at: 1) == "👨‍👩‍👧👨‍👩‍👧",
+                  "Incorrect first capture group for family emoji regex.")
+
+
+        let testInArabic = "اختبار"
+        let arabicTestString = "🇦🇪 مرحبًا ، هذا اختبار"
+        let arabicRegex = try! Regex(pattern: testInArabic, groupNames: [])
+        let arabicMatchSequence = arabicRegex.findAll(in: arabicTestString)
+        XCTAssert(arabicMatchSequence.context.count == 1, "Failed to find match in Arabic test string.")
+        let arabicFirstMatch = arabicMatchSequence.makeIterator().next()!
+        XCTAssert(arabicFirstMatch.matched == testInArabic, "Failed to match Arabic.")
+
+
+        let testInThai = "ทดสอบ"
+        let thaiTestString = "🇹🇭 สวัสดีนี่เป็นแบบทดสอบ"
+        let thaiRegex = try! Regex(pattern: testInThai, groupNames: [])
+        let thaiMatchSequence = thaiRegex.findAll(in: thaiTestString)
+        XCTAssert(thaiMatchSequence.context.count == 1, "Failed to find match in Thai test string.")
+        let thaiFirstMatch = thaiMatchSequence.makeIterator().next()!
+        XCTAssert(thaiFirstMatch.matched == testInThai, "Failed to match Thai.")
     }
     
     func testSplit() {
