@@ -35,6 +35,7 @@ Still we hope it will be useful for everybody else.
 	- [x] Simple
 	- [x] With groups
 - [x] String extensions
+- [x] Supports grapheme clusters 👨‍👩‍👧
 
 ## Extra
 
