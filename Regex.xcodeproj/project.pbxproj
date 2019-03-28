@@ -420,9 +420,11 @@
 				TargetAttributes = {
 					651654FB1C53AB2000B613AB = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1020;
 					};
 					651655051C53AB2000B613AB = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 1020;
 					};
 					65C529861C565EB8002BF559 = {
 						CreatedOnToolsVersion = 7.2;
@@ -755,6 +757,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Carthage/Checkouts";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -776,6 +779,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Carthage/Checkouts";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -787,6 +791,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -799,6 +804,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.RegexTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
