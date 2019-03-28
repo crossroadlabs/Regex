@@ -13,7 +13,7 @@ matrix:
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p'
         - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch - 42mm'
       os: osx
-      osx_image: xcode9 #xcode8.3
+      osx_image: xcode10.2 #xcode8.3
       language: objective-c
       env:
         - secure: "fZvksctuVyyVZ4Oz6iTaFhQl+lnj4YJs3UPGu7e/S8humZxRDvOBNba1l5Ip8FekP10dKGLTL77VfmS/bjUJTJKBbFDI9RcXEnN5ZQCaGPErTyIeJ+I7Apl08pfSHyJBE22zrIboHRQi+kxedSthHaTVBHsbVMz6eNyYA8Q4qAvx0IoWkKZ5vULKzqwlXpA13sQ5l4nJ34Aq8wJrzAe/y0vGmwKyrP4RxsEpmYIfbjqnxVfYgRMP+GUgkKBwnYYamTEE8zCiXV6d6QDFWPSo3Ay8SWd5RvjqjsXI5POP77sPikizd+Tqd7fNiHM0ImimbuqiWTsxRWiEYFpep0Xy3WGNeyTpzh/RkZhPwUPNLBr+OE+ZsfDcQHyexsyIqE7GZN0fRaC7zTvNjv6ZBo4qp3aTXLZbMw0wPCQBkjh4k+9hJRbrlJd3v9VKZHCkXCxU43ikTWFrPnqYbUEbYNqyjDL6voCYWHWytHOiKsxcCa2X6ju8XB3uWZA0+jxBkCuJhqIFFpYM7H//Eqtd46YEO5nHDf00ivNMdg/KGPFFuJJnHdcqow+wcrHTrtWMoYk0q6RgJ+3LvqKhJ9CxxEWutNJnMBizF+jbKWX5g3PwHEiA595Zh5mnRLLdTMh/3u7R2/Lp0yKG763+bdXNPXxoLuR9bw7rUM9+AfNWloxmiCg="
@@ -45,19 +45,6 @@ matrix:
       dist: trusty
       language: generic
       before_install:
-        # install original swift distribution
-        - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-        - cd ..
-        - export BRANCH="swift-4.0.2-release"
-        - export LINUX_VERSION="ubuntu14.04"
-        - export SWIFT_VERSION="swift-4.0.2-RELEASE"
-        - LINUX_VERSION_GLUED=`echo $LINUX_VERSION | perl -n -e'/^(.*?)\.(.*)$/; print "$1$2"'`
-        - export RELEASE_NAME="$SWIFT_VERSION-$LINUX_VERSION"
-        - wget "https://swift.org/builds/$BRANCH/$LINUX_VERSION_GLUED/$SWIFT_VERSION/$RELEASE_NAME.tar.gz"
-        - tar xzf $RELEASE_NAME.tar.gz
-        - export PATH="${PWD}/$RELEASE_NAME/usr/bin:${PATH}"
-        - export LD_LIBRARY_PATH="${PWD}/$RELEASE_NAME/usr/lib/swift/linux/:$LD_LIBRARY_PATH"
-        # get back home
-        - cd $MODULE_NAME
+        eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
 notifications:
   email: false
