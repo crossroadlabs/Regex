@@ -21,7 +21,7 @@ public extension String {
     /**
      * Creates a regex using this string as a pattern. Can return nil if pattern is invalid.
      */
-    public var r : Regex? {
+    var r : Regex? {
         get {
             return try? Regex(pattern: self)
         }
@@ -34,7 +34,7 @@ public extension String {
        - regex: Regex to split the string with
      - returns: An array. See Regex.split for more details.
      */
-    public func split(using regex:RegexProtocol?) -> [String] {
+    func split(using regex:RegexProtocol?) -> [String] {
         guard let regex = regex else {
             return [self]
         }
