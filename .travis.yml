@@ -4,27 +4,17 @@ env:
 matrix:
   include:
     - script:
-        # - open -b com.apple.iphonesimulator #https://github.com/travis-ci/travis-ci/issues/3040#issuecomment-146700203
         - swift build
         - swift test
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-OSX
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
-        # - sleep 20  # still needed? (@finestructure, 2019-04-03)
         - xcodebuild test -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
         - xcodebuild build -project $MODULE_NAME.xcodeproj -scheme $MODULE_NAME-watchOS -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Series 4 - 44mm'
       os: osx
-      osx_image: xcode10.2 #xcode8.3
+      osx_image: xcode10.2
       language: objective-c
       env:
         - secure: "fZvksctuVyyVZ4Oz6iTaFhQl+lnj4YJs3UPGu7e/S8humZxRDvOBNba1l5Ip8FekP10dKGLTL77VfmS/bjUJTJKBbFDI9RcXEnN5ZQCaGPErTyIeJ+I7Apl08pfSHyJBE22zrIboHRQi+kxedSthHaTVBHsbVMz6eNyYA8Q4qAvx0IoWkKZ5vULKzqwlXpA13sQ5l4nJ34Aq8wJrzAe/y0vGmwKyrP4RxsEpmYIfbjqnxVfYgRMP+GUgkKBwnYYamTEE8zCiXV6d6QDFWPSo3Ay8SWd5RvjqjsXI5POP77sPikizd+Tqd7fNiHM0ImimbuqiWTsxRWiEYFpep0Xy3WGNeyTpzh/RkZhPwUPNLBr+OE+ZsfDcQHyexsyIqE7GZN0fRaC7zTvNjv6ZBo4qp3aTXLZbMw0wPCQBkjh4k+9hJRbrlJd3v9VKZHCkXCxU43ikTWFrPnqYbUEbYNqyjDL6voCYWHWytHOiKsxcCa2X6ju8XB3uWZA0+jxBkCuJhqIFFpYM7H//Eqtd46YEO5nHDf00ivNMdg/KGPFFuJJnHdcqow+wcrHTrtWMoYk0q6RgJ+3LvqKhJ9CxxEWutNJnMBizF+jbKWX5g3PwHEiA595Zh5mnRLLdTMh/3u7R2/Lp0yKG763+bdXNPXxoLuR9bw7rUM9+AfNWloxmiCg="
-      # before_install:
-      #   - brew update
-      #   - brew outdated carthage || brew upgrade carthage
-      #   # - brew outdated xctool || brew upgrade xctool
-      # before_script:
-      #   # bootstrap the dependencies for the project
-      #   # you can remove if you don't have dependencies
-      #   # - carthage bootstrap
       before_deploy:
         - pod trunk push CrossroadRegex.podspec --allow-warnings
       deploy:
