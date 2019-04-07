@@ -15,7 +15,12 @@ matrix:
       language: objective-c
       env:
         - secure: "fZvksctuVyyVZ4Oz6iTaFhQl+lnj4YJs3UPGu7e/S8humZxRDvOBNba1l5Ip8FekP10dKGLTL77VfmS/bjUJTJKBbFDI9RcXEnN5ZQCaGPErTyIeJ+I7Apl08pfSHyJBE22zrIboHRQi+kxedSthHaTVBHsbVMz6eNyYA8Q4qAvx0IoWkKZ5vULKzqwlXpA13sQ5l4nJ34Aq8wJrzAe/y0vGmwKyrP4RxsEpmYIfbjqnxVfYgRMP+GUgkKBwnYYamTEE8zCiXV6d6QDFWPSo3Ay8SWd5RvjqjsXI5POP77sPikizd+Tqd7fNiHM0ImimbuqiWTsxRWiEYFpep0Xy3WGNeyTpzh/RkZhPwUPNLBr+OE+ZsfDcQHyexsyIqE7GZN0fRaC7zTvNjv6ZBo4qp3aTXLZbMw0wPCQBkjh4k+9hJRbrlJd3v9VKZHCkXCxU43ikTWFrPnqYbUEbYNqyjDL6voCYWHWytHOiKsxcCa2X6ju8XB3uWZA0+jxBkCuJhqIFFpYM7H//Eqtd46YEO5nHDf00ivNMdg/KGPFFuJJnHdcqow+wcrHTrtWMoYk0q6RgJ+3LvqKhJ9CxxEWutNJnMBizF+jbKWX5g3PwHEiA595Zh5mnRLLdTMh/3u7R2/Lp0yKG763+bdXNPXxoLuR9bw7rUM9+AfNWloxmiCg="
+      before_install:
+        - brew update
+        - brew outdated carthage || brew upgrade carthage
       before_deploy:
+        - carthage build --no-skip-current
+        - carthage archive $MODULE_NAME
         - pod trunk push CrossroadRegex.podspec --allow-warnings
       deploy:
         provider: releases

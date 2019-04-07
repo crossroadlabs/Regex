@@ -1,4 +1,7 @@
 ## Changelog
+* v1.2.0
+  * Support of Swift 5
+  * Support of Grapheme Clusters (emojis, arabic languages, etc.)
 * v1.1.0
 	* Support of Swift 4
 	* Added subscript access for groups (via Match groups property)
